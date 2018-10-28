@@ -1,0 +1,19 @@
+version: '2'
+services:
+
+  express:
+    build: server
+    ports:
+     - "3000:3000"
+    links:
+     - database
+
+  database:
+    image: mongo
+    ports:
+     - "27017:27017"
+
+  dbadmin:
+    image: mrvautin/adminmongo
+    ports:
+      - "1234:1234"
