@@ -18,7 +18,10 @@ const songSchema = new mongoose.Schema({
 // create mongoose model
 const Song = mongoose.model('Song', songSchema);
 
-/* GET all users. */
+router.get('/', (req, res) => {
+    res.send('api works');
+});
+
 router.get('/songs', (req, res) => {
     Song.find({}, (err, songs) => {
 		if (err) res.status(500).send(error);
