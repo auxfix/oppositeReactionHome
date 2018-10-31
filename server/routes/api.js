@@ -19,7 +19,7 @@ const songSchema = new mongoose.Schema({
 const Song = mongoose.model('Song', songSchema);
 
 router.get('/', (req, res) => {
-    res.send('api works');
+    res.send('api works 3');
 });
 
 router.get('/songs', (req, res) => {

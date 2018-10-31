@@ -3,6 +3,8 @@ services:
 
   express:
     build: server
+    volumes:
+      - './server/:/usr/src/app/'
     ports:
      - "3000:3000"
     links:
