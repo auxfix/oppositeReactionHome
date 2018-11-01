@@ -17,19 +17,16 @@ connection.once('open', function () {
 
     let storage = GridFSStorage({
         db: connection,
-        gfs: gfs,
-        filename: (req, file, cb) => {
-            let date = Date.now();
-            // The way you want to store your file in database
-            cb(null, file.trackName + '-' + date + '.');
-        },
 
-        // Additional Meta-data that you want to store
-        metadata: function(req, file, cb) {
-            cb(null, { originalName: file.trackName });
-        },
-
-        root: 'tracks' // Root collection name
+        file: (req, file) => {
+            return {
+                filename: 'file_' + file.trackName + Date.now(),
+                bucketName: 'tracks',
+                metadata: {
+                    trackName: file.trackName
+                }
+            };
+        }
     });
 
 // Multer configuration for single file uploads
@@ -69,7 +66,7 @@ connection.once('open', function () {
             files.forEach((file) => {
                 filesData[count++] = {
                     fileName: file.filename,
-                    originalName: file.metadata.originalName,
+                    trackName: file.metadata.trackName,
                     contentType: file.contentType
                 }
             });
