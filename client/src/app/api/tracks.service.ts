@@ -10,6 +10,6 @@ export class TracksService {
   constructor(private httpClient: HttpClient) { }
 
   public getAllTracks(): Observable<any> {
-    return this.httpClient.get(`${this.API}/songs`);
+    return this.httpClient.get(`${this.API}/tracks`);
   }
 }

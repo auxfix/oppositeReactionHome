@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { TracksService } from '../api/tracks.service';
 
-interface Song {
-  name: String;
-  time: Number;
+interface Track {
+  fileName: String;
+  originalName: String;
+  contentType: String;
 }
 
 @Component({
@@ -14,20 +15,20 @@ interface Song {
 })
 export class TracksComponent implements OnInit {
 
-  songs: Song[] = [];
+  tracks: Track[] = [];
 
   constructor(private http: TracksService) {}
 
   ngOnInit() {
-    this.getAllSongs();
+    this.getAllTracks();
   }
 
   // Get all users from the API
-  getAllSongs() {
+  getAllTracks() {
     this.http.getAllTracks()
       .subscribe(songs => {
         console.log(songs);
-        this.songs = songs;
+        this.tracks = songs;
       }, error => console.log(error));
   }
 }

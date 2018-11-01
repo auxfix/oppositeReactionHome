@@ -4,6 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { TracksComponent } from './tracks/tracks.component';
 import { AlbumComponent } from './album/album.component';
+import { AdminComponent } from './admin/admin.component';
 
 const routes: Routes = [
   {
@@ -13,7 +14,8 @@ const routes: Routes = [
   },
   { path: 'home', component: HomeComponent },
   { path: 'tracks', component: TracksComponent },
-  { path: 'album', component: AlbumComponent}
+  { path: 'album', component: AlbumComponent},
+  { path: 'admin', component: AdminComponent }
 ];
 
 @NgModule({
