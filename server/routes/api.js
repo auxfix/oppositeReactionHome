@@ -19,11 +19,12 @@ connection.once('open', function () {
         db: connection,
 
         file: (req, file) => {
+            console.dir(file);
             return {
-                filename: 'file_' + file.trackName + Date.now(),
+                filename: 'file_' + file.originalname + '_' + Date.now(),
                 bucketName: 'tracks',
                 metadata: {
-                    trackName: file.trackName
+                    trackName:  req.body.trackName
                 }
             };
         }

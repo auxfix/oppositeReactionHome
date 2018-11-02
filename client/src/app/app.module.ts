@@ -10,6 +10,7 @@ import { HomeComponent } from './home/home.component';
 import { TracksComponent } from './tracks/tracks.component';
 import { AlbumComponent } from './album/album.component';
 import { AdminComponent } from './admin/admin.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { AdminComponent } from './admin/admin.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
