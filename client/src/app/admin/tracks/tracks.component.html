@@ -1,4 +1,26 @@
-<div class="container">
+<div class="main-container">
+  <div class="upload-block"
+       [ngClass]="isActiveUpload ? 'show-shadow-fall-upload-up' : 'show-shadow-fall-upload-down'"
+  >
+    <div class="upload-controls">
+      <label >Choose file(s)</label>
+      <input type="text" [(ngModel)]="trackName" [ngModelOptions]="{standalone: true}"/>
+      <input type="file" class="form-control"  ng2FileSelect [uploader]="uploader"   />
+    </div>
+
+    <a
+      class="upload-button"
+      [ngClass]="{'active-upload-component': isActiveUpload }"
+      (click)="isActiveUpload = !isActiveUpload;"
+    >
+      Upload
+    </a>
+  </div>
+
+</div>
+
+
+<div style="display: none" class="container">
   <div class="row">
     <div class="col-md-4">
       <br>

@@ -13,9 +13,11 @@ export class AdminTracksComponent implements OnInit {
   private url = 'http://localhost:3000/tracks';
   private uploader: FileUploader;
   private trackName: String;
+  private isActiveUpload: boolean;
 
   ngOnInit() {
     this.uploader = new FileUploader({url: this.url});
+    this.isActiveUpload = false;
 
     this.uploader.onBuildItemForm = (fileItem, form) => {
       form.append('trackName', this.trackName);
