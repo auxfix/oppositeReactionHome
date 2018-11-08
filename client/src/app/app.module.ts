@@ -11,6 +11,10 @@ import { TracksComponent } from './tracks/tracks.component';
 import { AlbumComponent } from './album/album.component';
 import { AdminComponent } from './admin/admin.component';
 import { FormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatTabsModule } from '@angular/material/tabs';
+import { AdminPhotoComponent } from './admin/photo/photo.component';
+import { AdminTracksComponent } from './admin/tracks/tracks.component';
 
 @NgModule({
   declarations: [
@@ -20,13 +24,17 @@ import { FormsModule } from '@angular/forms';
     TracksComponent,
     AlbumComponent,
     AdminComponent,
-    FileSelectDirective
+    FileSelectDirective,
+    AdminTracksComponent,
+    AdminPhotoComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    BrowserAnimationsModule,
+    MatTabsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

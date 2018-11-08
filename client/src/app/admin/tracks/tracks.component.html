@@ -1,0 +1,28 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-4">
+      <br>
+      <form>
+        <div class="form-group">
+          <label >Choose file(s)</label>
+          <input type="text" [(ngModel)]="trackName" [ngModelOptions]="{standalone: true}"/>
+          <input type="file" class="form-control"  ng2FileSelect [uploader]="uploader"   />
+        </div>
+      </form>
+    </div>
+  </div>
+  <div>
+    <hr>
+    <div>
+      Total progress:
+      <div class="progress">
+        <div class="progress-bar" role="progressbar" [ngStyle]="{ 'width': uploader.progress + '%' }"></div>
+      </div>
+      <hr>
+    </div>
+    <button type="button" class="btn btn-success btn-s"
+            (click)="uploader.uploadAll()" [disabled]="!uploader.getNotUploadedItems().length">
+      <span class="fa fa-upload"></span> Upload all
+    </button>
+  </div>
+</div>
