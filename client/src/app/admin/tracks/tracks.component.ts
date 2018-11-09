@@ -16,7 +16,7 @@ export class AdminTracksComponent implements OnInit {
   private isActiveUpload: boolean;
 
   ngOnInit() {
-    this.uploader = new FileUploader({url: this.url});
+    this.uploader = new FileUploader({url: this.url, queueLimit: 1});
     this.isActiveUpload = false;
 
     this.uploader.onBuildItemForm = (fileItem, form) => {

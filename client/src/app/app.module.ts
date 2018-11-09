@@ -15,6 +15,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatTabsModule } from '@angular/material/tabs';
 import { AdminPhotoComponent } from './admin/photo/photo.component';
 import { AdminTracksComponent } from './admin/tracks/tracks.component';
+import { MatIconModule } from '@angular/material/icon';
+
 
 @NgModule({
   declarations: [
@@ -34,7 +36,8 @@ import { AdminTracksComponent } from './admin/tracks/tracks.component';
     HttpClientModule,
     FormsModule,
     BrowserAnimationsModule,
-    MatTabsModule
+    MatTabsModule,
+    MatIconModule
   ],
   providers: [],
   bootstrap: [AppComponent]

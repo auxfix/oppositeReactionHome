@@ -9,10 +9,28 @@
     align-items: center;
     position: relative;
 
-
     .upload-controls {
       opacity: 0;
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      align-items: center;
       transition: all 0.6s;
+
+      .input-block {
+        .label{
+          font-size: 1.2rem;
+        }
+        input{
+          width: 15rem;
+          height: 1.4rem;
+          margin-top: 0.4rem;
+          border-radius: 0.4rem;
+          border: 1px solid $grey-one;
+          padding: 0.3rem;
+        }
+        margin-right: 2rem;
+      }
     }
 
     &.show-shadow-fall-upload{
@@ -20,7 +38,7 @@
          animation: shadow-upload-frame-up 0.6s;
         .upload-controls {
           opacity: 1;
-          transition: all 0.6s;
+          transition: all 2.4s;
         }
       }
       &-down {
@@ -43,6 +61,7 @@
       left: 0.5rem;
       top: 0.5rem;
       transition: all 0.6s;
+      color: #555757;
 
       &.active-upload-component{
         left: 90%;
