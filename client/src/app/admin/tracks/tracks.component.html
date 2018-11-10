@@ -12,6 +12,9 @@
         <input type="text" [(ngModel)]="bandName" [ngModelOptions]="{standalone: true}"/>
       </div>
       <div class="upload-btn-block">
+        <button>
+          <mat-icon>attach_file</mat-icon>
+        </button>
         <input type="file" ng2FileSelect [uploader]="uploader" />
       </div>
       <div class="upload-btn">
