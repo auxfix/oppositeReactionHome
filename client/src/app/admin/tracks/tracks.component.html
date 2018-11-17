@@ -18,9 +18,11 @@
         <input type="file" ng2FileSelect [uploader]="uploader" />
       </div>
       <div class="upload-btn">
-        <button (click)="uploader.uploadAll()">
-          <mat-icon>arrow_upward</mat-icon>
-        </button>
+        <div class="shape-container">
+          <button (click)="uploader.uploadAll()">
+            <mat-icon [inline]="true">arrow_upward</mat-icon>
+          </button>
+        </div>
       </div>
 
     </div>

@@ -8,7 +8,7 @@
     justify-content: flex-start;
     align-items: center;
     position: relative;
-
+    overflow: hidden;
 
     .upload-controls {
       opacity: 0;
@@ -34,13 +34,32 @@
       }
 
       .upload-btn {
-        button{
-          background: $main-bkg;
-          width: 4rem;
-          height: 4rem;
-          border-radius: 0.4rem;
-          color: $grey-two;
-          border: 1px solid $grey-one;
+        .shape-container{
+          -webkit-clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+          clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+          background: $grey-two;
+          width: 3rem;
+          height: 3rem;
+          position: relative;
+          button{
+            -webkit-clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+            clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+            background: $main-bkg;
+            width: 2.4rem;
+            height: 2.4rem;
+            color: $grey-two;
+            border: none;
+            padding-top: 0.7rem;
+            position: absolute;
+            top: 0.6rem;
+            left: 0.29rem;
+            font-size: 1.6rem;
+            cursor: pointer;
+
+            &:active {
+              animation: slide-button 0.2s;
+            }
+          }
         }
       }
 
@@ -93,7 +112,6 @@
       height: 80%;
       width: 5.3rem;
       border-radius: 0.7rem;
-      color: $dark-one;
       text-align: center;
       cursor: pointer;
       position: absolute;
@@ -139,3 +157,15 @@
     border-radius: 1rem;
   }
 }
+
+@keyframes slide-button {
+  50%{
+    width:3rem;
+    height:3rem;
+    top:0;
+    left:0;
+    padding-top:1.7rem;
+    font-size: 2rem;
+  }
+}
+
