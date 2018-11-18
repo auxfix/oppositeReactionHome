@@ -1,4 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { FileSelectDirective } from 'ng2-file-upload';
@@ -11,7 +12,6 @@ import { TracksComponent } from './tracks/tracks.component';
 import { AlbumComponent } from './album/album.component';
 import { AdminComponent } from './admin/admin.component';
 import { FormsModule } from '@angular/forms';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatTabsModule } from '@angular/material/tabs';
 import { AdminPhotoComponent } from './admin/photo/photo.component';
 import { AdminTracksComponent } from './admin/tracks/tracks.component';
@@ -32,10 +32,10 @@ import { MatIconModule } from '@angular/material/icon';
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    BrowserAnimationsModule,
     MatTabsModule,
     MatIconModule
   ],
