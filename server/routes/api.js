@@ -24,7 +24,8 @@ connection.once('open', function () {
                 filename: 'file_' + file.originalname + '_' + Date.now(),
                 bucketName: 'tracks',
                 metadata: {
-                    trackName:  req.body.trackName
+                    trackName:  req.body.trackName,
+                    bandName: req.body.bandName
                 }
             };
         }
@@ -68,6 +69,7 @@ connection.once('open', function () {
                 filesData[count++] = {
                     fileName: file.filename,
                     trackName: file.metadata.trackName,
+                    bandName: file.metadata.bandName,
                     contentType: file.contentType
                 }
             });

@@ -47,6 +47,7 @@ export class AdminTracksComponent implements OnInit {
   private url = 'http://localhost:3000/tracks';
   private uploader: FileUploader;
   private trackName: String;
+  private bandName: String;
   private isActiveUpload: boolean;
   private slideButtonAnimTrigger: string;
 
@@ -57,6 +58,7 @@ export class AdminTracksComponent implements OnInit {
 
     this.uploader.onBuildItemForm = (fileItem, form) => {
       form.append('trackName', this.trackName);
+      form.append('bandName', this.bandName);
       return {fileItem, form};
     };
   }
