@@ -1,49 +1,50 @@
 <div class="main-container">
-  <div class="upload-block"
-       [ngClass]="isActiveUpload ? 'show-shadow-fall-upload-up' : 'show-shadow-fall-upload-down'"
-  >
-    <div class="upload-controls">
-      <div class="input-block">
-        <div class="label">track name</div>
-        <input type="text" [(ngModel)]="trackName" [ngModelOptions]="{standalone: true}"/>
-      </div>
-      <div class="input-block">
-        <div class="label">band name</div>
-        <input type="text" [(ngModel)]="bandName" [ngModelOptions]="{standalone: true}"/>
-      </div>
-      <div class="upload-btn-block">
-        <button>
-          <mat-icon>attach_file</mat-icon>
-        </button>
-        <input type="file" ng2FileSelect [uploader]="uploader" />
-      </div>
-      <div
-        class="upload-btn"
+
+    <div class="upload-container">
+      <div class="upload-block"
+           [ngClass]="isActiveUpload ? 'show-shadow-fall-upload-up' : 'show-shadow-fall-upload-down'"
       >
-        <div class="shape-container">
-          <button (click)="uploadTrack()"
-                  [@slideButtonAnim]="slideButtonAnimTrigger"
-                  (@slideButtonAnim.done)="slideEnd()"
-          >
-            <mat-icon [inline]="true">arrow_upward</mat-icon>
-          </button>
+        <div class="upload-controls">
+        <div class="input-block">
+          <div class="label">track name</div>
+          <input type="text" [(ngModel)]="trackName" [ngModelOptions]="{standalone: true}"/>
         </div>
+        <div class="input-block">
+          <div class="label">band name</div>
+          <input type="text" [(ngModel)]="bandName" [ngModelOptions]="{standalone: true}"/>
+        </div>
+        <div class="upload-btn-block">
+          <button>
+            <mat-icon>attach_file</mat-icon>
+          </button>
+          <input type="file" ng2FileSelect [uploader]="uploader" />
+        </div>
+        <div
+          class="upload-btn"
+        >
+          <div class="shape-container">
+            <button (click)="uploadTrack()"
+                    [@slideButtonAnim]="slideButtonAnimTrigger"
+                    (@slideButtonAnim.done)="slideEnd()"
+            >
+              <mat-icon [inline]="true">arrow_upward</mat-icon>
+            </button>
+          </div>
+        </div>
+
       </div>
-
+        <a
+          class="upload-button"
+          [ngClass]="{'active-upload-component': isActiveUpload }"
+          (click)="isActiveUpload = !isActiveUpload;"
+        >
+          <mat-icon>cloud_upload</mat-icon>
+        </a>
+      </div>
+      <div class="progress-bar" [ngStyle]="{ 'width': uploader.progress === 100 ? 0 : uploader.progress + '%'  }"></div>
     </div>
-    <div class="progress">
-      <div class="progress-bar" [ngStyle]="{ 'width': uploader.progress + '%' }"></div>
-    </div>
-    <a
-      class="upload-button"
-      [ngClass]="{'active-upload-component': isActiveUpload }"
-      (click)="isActiveUpload = !isActiveUpload;"
-    >
-      <mat-icon>cloud_upload</mat-icon>
-    </a>
-  </div>
-
 </div>
+
 
 
 <div style="display: none" class="container">
