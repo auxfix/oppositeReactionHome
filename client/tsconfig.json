@@ -1,7 +1,7 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
-    "baseUrl": "./",
+    "baseUrl": ".",
     "outDir": "./dist/out-tsc",
     "sourceMap": true,
     "declaration": false,
@@ -16,6 +16,29 @@
     "lib": [
       "es2018",
       "dom"
-    ]
+    ],
+    "paths": {
+      "app/*": [
+        "src/app/*"
+      ],
+      "admin/*": [
+        "src/app/admin/*"
+      ],
+      "album/*": [
+        "src/app/album/*"
+      ],
+      "api/*": [
+        "src/app/api/*"
+      ],
+      "home/*": [
+        "src/app/home/*"
+      ],
+      "navigation/*": [
+        "src/app/navigation/*"
+      ],
+      "tracks/*": [
+        "src/app/tracks/*"
+      ]
+    }
   }
 }

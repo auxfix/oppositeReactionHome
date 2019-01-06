@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { TracksService } from '../api/tracks.service';
+import { TracksService } from 'api/tracks.service';
 
 interface Track {
   fileName: String;
