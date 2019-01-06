@@ -1,5 +1,9 @@
 import { Component, OnInit, HostBinding } from '@angular/core';
 import { FileUploader } from 'ng2-file-upload';
+import {
+  AbstractControl, FormArray, FormBuilder, FormControl, FormGroup, ValidatorFn,
+  Validators
+} from '@angular/forms';
 
 import {
   trigger,
@@ -42,14 +46,24 @@ import {
 })
 export class AdminTracksComponent implements OnInit {
 
-  constructor() { }
-
   private url = 'http://localhost:3000/tracks';
   private uploader: FileUploader;
   private trackName: String;
   private bandName: String;
   private isActiveUpload: boolean;
   private slideButtonAnimTrigger: string;
+
+
+  // form data
+  private trackUploadForm: FormGroup = null;
+
+  constructor(private fb: FormBuilder) {
+
+    this.trackUploadForm = fb.group({
+      trackName: ['', [Validators.required, Validators.maxLength(50)]],
+      bandName: ['', [Validators.required, Validators.maxLength(50)]],
+    });
+  }
 
   ngOnInit() {
     this.uploader = new FileUploader({url: this.url, queueLimit: 1});

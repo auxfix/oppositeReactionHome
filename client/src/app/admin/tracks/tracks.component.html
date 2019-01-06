@@ -1,17 +1,18 @@
-<div class="main-container">
-
-    <div class="upload-container">
+<form class="main-container" novalidate [formGroup]="trackUploadForm">
+  <div class="upload-container">
       <div class="upload-block"
            [ngClass]="isActiveUpload ? 'show-shadow-fall-upload-up' : 'show-shadow-fall-upload-down'"
       >
         <div class="upload-controls">
         <div class="input-block">
           <div class="label">track name</div>
-          <input type="text" [(ngModel)]="trackName" [ngModelOptions]="{standalone: true}"/>
+          <input type="text" formControlName="trackName"/>
+          <validator-message [field]="trackUploadForm.get('trackName')"></validator-message>
         </div>
         <div class="input-block">
           <div class="label">band name</div>
-          <input type="text" [(ngModel)]="bandName" [ngModelOptions]="{standalone: true}"/>
+          <input type="text" formControlName="bandName"/>
+          <validator-message [field]="trackUploadForm.get('bandName')"></validator-message>
         </div>
         <div class="upload-btn-block">
           <button>
@@ -43,7 +44,7 @@
       </div>
       <div class="progress-bar" [ngStyle]="{ 'width': uploader.progress === 100 ? 0 : uploader.progress + '%'  }"></div>
     </div>
-</div>
+</form>
 
 
 

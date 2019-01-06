@@ -38,6 +38,9 @@
       ],
       "tracks/*": [
         "src/app/tracks/*"
+      ],
+      "common/*": [
+        "src/app/common/*"
       ]
     }
   }
