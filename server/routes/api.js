@@ -19,6 +19,7 @@ connection.once('open', function () {
         db: connection,
 
         file: (req, file) => {
+            console.dir(req.body);
             console.dir(file);
             return {
                 filename: 'file_' + file.originalname + '_' + Date.now(),

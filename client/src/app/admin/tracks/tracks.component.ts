@@ -1,5 +1,5 @@
-import { Component, OnInit, HostBinding } from '@angular/core';
-import { FileUploader } from 'ng2-file-upload';
+import {Component, OnInit, HostBinding, ViewChild} from '@angular/core';
+import { TracksService } from 'api/tracks.service';
 import {
   AbstractControl, FormArray, FormBuilder, FormControl, FormGroup, ValidatorFn,
   Validators
@@ -17,6 +17,7 @@ import {
   selector: 'app-admin-tracks',
   templateUrl: './tracks.component.html',
   styleUrls: ['./tracks.component.scss'],
+  providers: [TracksService],
   animations: [
     trigger('slideButtonAnim', [
       state('down', style({
@@ -46,43 +47,54 @@ import {
 })
 export class AdminTracksComponent implements OnInit {
 
-  private url = 'http://localhost:3000/tracks';
-  private uploader: FileUploader;
-  private trackName: String;
-  private bandName: String;
   private isActiveUpload: boolean;
-  private slideButtonAnimTrigger: string;
+  public slideButtonAnimTrigger: string;
+
+  @ViewChild('trackUploadFormTag') trackUploadFormRef;
 
 
   // form data
-  private trackUploadForm: FormGroup = null;
+  public trackUploadForm: FormGroup;
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private http: TracksService) {
 
     this.trackUploadForm = fb.group({
       trackName: ['', [Validators.required, Validators.maxLength(50)]],
       bandName: ['', [Validators.required, Validators.maxLength(50)]],
+      file: ['', [Validators.required]],
     });
   }
 
   ngOnInit() {
-    this.uploader = new FileUploader({url: this.url, queueLimit: 1});
     this.isActiveUpload = false;
     this.slideButtonAnimTrigger = 'down';
-
-    this.uploader.onBuildItemForm = (fileItem, form) => {
-      form.append('trackName', this.trackName);
-      form.append('bandName', this.bandName);
-      return {fileItem, form};
-    };
   }
 
   uploadTrack() {
     this.slideButtonAnimTrigger = 'up';
-    this.uploader.uploadAll();
+    this.trackUploadFormRef.ngSubmit.emit();
+    (this.trackUploadFormRef as any).submitted = true;
   }
 
   slideEnd() {
     this.slideButtonAnimTrigger = 'down';
+  }
+
+  addFile(e) {
+    const file = e.target.files[0];
+    this.trackUploadForm.controls.file.setValue(file);
+  }
+
+  onFormSubmit() {
+    const trackData = this.trackUploadForm.value;
+    const input = new FormData();
+
+    input.append('file', trackData.file);
+    input.append('trackName', trackData.trackName);
+    input.append('bandName', trackData.bandName);
+
+    this.http.uploadTrack(input).subscribe(res => {
+      this.trackUploadForm.reset();
+    });
   }
 }
