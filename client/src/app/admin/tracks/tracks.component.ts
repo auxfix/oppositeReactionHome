@@ -89,9 +89,9 @@ export class AdminTracksComponent implements OnInit {
     const trackData = this.trackUploadForm.value;
     const input = new FormData();
 
-    input.append('file', trackData.file);
     input.append('trackName', trackData.trackName);
     input.append('bandName', trackData.bandName);
+    input.append('file', trackData.file);
 
     this.http.uploadTrack(input).subscribe(res => {
       this.trackUploadForm.reset();
