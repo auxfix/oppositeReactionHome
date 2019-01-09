@@ -1,7 +1,7 @@
 import {Component, OnInit, HostBinding, ViewChild} from '@angular/core';
 import { TracksService } from 'api/tracks.service';
 import {
-  AbstractControl, FormArray, FormBuilder, FormControl, FormGroup, ValidatorFn,
+  AbstractControl, FormArray, FormBuilder, FormControl, FormGroup, NgForm, ValidatorFn,
   Validators
 } from '@angular/forms';
 
@@ -50,7 +50,7 @@ export class AdminTracksComponent implements OnInit {
   private isActiveUpload: boolean;
   public slideButtonAnimTrigger: string;
 
-  @ViewChild('trackUploadFormTag') trackUploadFormRef;
+  @ViewChild('trackUploadFormTag') trackUploadFormRef: NgForm;
 
 
   // form data
@@ -73,7 +73,6 @@ export class AdminTracksComponent implements OnInit {
   uploadTrack() {
     this.slideButtonAnimTrigger = 'up';
     this.trackUploadFormRef.ngSubmit.emit();
-    (this.trackUploadFormRef as any).submitted = true;
   }
 
   slideEnd() {

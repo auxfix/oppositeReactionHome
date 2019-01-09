@@ -1,4 +1,4 @@
-<form class="main-container" #trackUploadFormTag [formGroup]="trackUploadForm" (ngSubmit)="onFormSubmit()">
+<form class="main-container" #trackUploadFormTag="ngForm" [formGroup]="trackUploadForm" (ngSubmit)="onFormSubmit($event)">
   <div class="upload-container">
       <div class="upload-block"
            [ngClass]="isActiveUpload ? 'show-shadow-fall-upload-up' : 'show-shadow-fall-upload-down'"
@@ -25,9 +25,11 @@
           *ngIf="trackUploadForm.valid && trackUploadForm.touched"
         >
           <div class="shape-container">
-            <button (click)="uploadTrack()"
-                    [@slideButtonAnim]="slideButtonAnimTrigger"
-                    (@slideButtonAnim.done)="slideEnd()"
+            <button
+              type="button"
+              (click)="uploadTrack()"
+              [@slideButtonAnim]="slideButtonAnimTrigger"
+              (@slideButtonAnim.done)="slideEnd()"
             >
               <mat-icon [inline]="true">arrow_upward</mat-icon>
             </button>
