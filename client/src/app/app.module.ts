@@ -19,9 +19,11 @@ import { AlbumComponent } from 'album/album.component';
 import { AdminComponent } from 'admin/admin.component';
 import { AdminPhotoComponent } from 'admin/photo/photo.component';
 import { AdminTracksComponent } from 'admin/tracks/tracks.component';
+import { RoundButtonComponent } from 'common/components/round-button/round-button.component';
 
 // directives
 import { ValidatorMessageComponent } from 'common/directives/validator-message.directive';
+
 
 
 
@@ -37,6 +39,7 @@ import { ValidatorMessageComponent } from 'common/directives/validator-message.d
     AdminTracksComponent,
     AdminPhotoComponent,
     ValidatorMessageComponent,
+    RoundButtonComponent,
   ],
   imports: [
     BrowserModule,

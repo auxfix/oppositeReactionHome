@@ -35,6 +35,12 @@
             </button>
           </div>
         </div>
+        <app-round-button
+          *ngIf="trackUploadForm.touched"
+          (clickButton)="clearForm()"
+        >
+
+        </app-round-button>
 
       </div>
         <a

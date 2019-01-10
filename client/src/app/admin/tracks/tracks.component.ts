@@ -96,4 +96,8 @@ export class AdminTracksComponent implements OnInit {
       this.trackUploadForm.reset();
     });
   }
+
+  clearForm() {
+    this.trackUploadForm.reset();
+  }
 }
