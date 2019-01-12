@@ -4,46 +4,47 @@
            [ngClass]="isActiveUpload ? 'show-shadow-fall-upload-up' : 'show-shadow-fall-upload-down'"
       >
         <div class="upload-controls">
-        <div class="input-block">
-          <div class="label">track name</div>
-          <input type="text" formControlName="trackName"/>
-          <validator-message [field]="trackUploadForm && trackUploadForm.get('trackName')"></validator-message>
-        </div>
-        <div class="input-block">
-          <div class="label">band name</div>
-          <input type="text" formControlName="bandName"/>
-          <validator-message [field]="trackUploadForm && trackUploadForm.get('bandName')"></validator-message>
-        </div>
-        <div class="upload-btn-block">
-          <button>
-            <mat-icon>attach_file</mat-icon>
-          </button>
-          <input type="file" (change)="addFile($event)" />
-        </div>
-        <div
-          class="upload-btn"
-          *ngIf="trackUploadForm.valid && trackUploadForm.touched"
-        >
-          <div class="shape-container">
-            <button
-              type="button"
-              (click)="uploadTrack()"
-              [@slideButtonAnim]="slideButtonAnimTrigger"
-              (@slideButtonAnim.done)="slideEnd()"
-            >
-              <mat-icon [inline]="true">arrow_upward</mat-icon>
-            </button>
+          <div class="input-block">
+            <div class="label">track name</div>
+            <input type="text" formControlName="trackName"/>
+            <validator-message [field]="trackUploadForm && trackUploadForm.get('trackName')"></validator-message>
           </div>
+          <div class="input-block">
+            <div class="label">band name</div>
+            <input type="text" formControlName="bandName"/>
+            <validator-message [field]="trackUploadForm && trackUploadForm.get('bandName')"></validator-message>
+          </div>
+          <div class="upload-btn-block">
+            <button>
+              <mat-icon>attach_file</mat-icon>
+            </button>
+            <input type="file" (change)="addFile($event)" />
+          </div>
+          <div
+            class="upload-btn"
+            *ngIf="trackUploadForm.valid && trackUploadForm.touched"
+          >
+            <div class="shape-container">
+              <button
+                type="button"
+                (click)="uploadTrack()"
+                [@slideButtonAnim]="slideButtonAnimTrigger"
+                (@slideButtonAnim.done)="slideEnd()"
+              >
+                <mat-icon [inline]="true">arrow_upward</mat-icon>
+              </button>
+            </div>
+          </div>
+          <app-round-button
+            [customStyles]="{width: '3rem',height: '3rem'}"
+            [icon]="'clear'"
+            *ngIf="trackUploadForm.touched"
+            (clickButton)="clearForm()"
+          >
+
+          </app-round-button>
+
         </div>
-        <app-round-button
-          [icon]="'clear'"
-          *ngIf="trackUploadForm.touched"
-          (clickButton)="clearForm()"
-        >
-
-        </app-round-button>
-
-      </div>
         <a
           class="upload-button"
           [ngClass]="{'active-upload-component': isActiveUpload }"

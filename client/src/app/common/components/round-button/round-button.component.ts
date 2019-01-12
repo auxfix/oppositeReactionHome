@@ -8,6 +8,7 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 export class RoundButtonComponent implements OnInit {
 
   @Input() icon: string;
+  @Input() customStyles: object;
   @Output() clickButton = new EventEmitter<any>();
 
   constructor() { }
