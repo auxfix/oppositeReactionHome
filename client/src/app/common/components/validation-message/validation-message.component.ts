@@ -2,17 +2,14 @@ import { Component, Input } from '@angular/core';
 import { FormControl } from '@angular/forms';
 
 @Component({
-  selector: 'validator-message',
-  template: `
-    <div class="alert alert-danger" *ngIf="field.invalid && field.touched && validatorMessages?.length">
-      <li *ngFor="let errMsg of validatorMessages"> {{errMsg}}</li>
-    </div>
-  `
+  selector: 'validation-message',
+  templateUrl: './validation-message.component.html',
+  styleUrls: ['./validation-message.component.scss']
 })
-export class ValidatorMessageComponent {
+export class ValidationMessageComponent {
   @Input() field: FormControl;
 
-  public get validatorMessages() {
+  public get validationMessages() {
     const field = this.field;
     if (!field || !field.errors) {
       return false;
