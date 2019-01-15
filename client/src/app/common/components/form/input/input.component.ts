@@ -9,15 +9,13 @@ import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => InputComponent),
+      useExisting: forwardRef(() => FormInputComponent),
       multi: true
     }
   ],
 })
 export class FormInputComponent implements ControlValueAccessor {
-  @Input('fieldName') fName: string;
-  @Input('value') val: string;
-  @Input('parentForm') parentForm: any;
+  private val: string = "";
 
   onChange: any = () => { };
   onTouched: any = () => { };

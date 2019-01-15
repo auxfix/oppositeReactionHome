@@ -6,12 +6,12 @@
         <div class="upload-controls">
           <div class="input-block">
             <div class="label">track name</div>
-            <input type="text" formControlName="trackName"/>
+            <or-input-form-control [formControl]="trackUploadForm.controls['trackName']"></or-input-form-control>
             <validation-message [field]="trackUploadForm && trackUploadForm.get('trackName')"></validation-message>
           </div>
           <div class="input-block">
             <div class="label">band name</div>
-            <input type="text" formControlName="bandName"/>
+            <or-input-form-control [formControl]="trackUploadForm.controls['bandName']"></or-input-form-control>
             <validation-message [field]="trackUploadForm && trackUploadForm.get('bandName')"></validation-message>
           </div>
           <div class="upload-btn-block">
