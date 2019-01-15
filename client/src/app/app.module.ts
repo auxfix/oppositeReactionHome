@@ -21,6 +21,7 @@ import { AdminPhotoComponent } from 'admin/photo/photo.component';
 import { AdminTracksComponent } from 'admin/tracks/tracks.component';
 import { RoundButtonComponent } from 'common/components/round-button/round-button.component';
 import { ValidationMessageComponent } from 'common/components/validation-message/validation-message.component';
+import { FormInputComponent } from 'common/components/form/input/input.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { ValidationMessageComponent } from 'common/components/validation-message
     AdminPhotoComponent,
     ValidationMessageComponent,
     RoundButtonComponent,
+    FormInputComponent,
   ],
   imports: [
     BrowserModule,
