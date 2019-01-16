@@ -79,11 +79,6 @@ export class AdminTracksComponent implements OnInit {
     this.slideButtonAnimTrigger = 'down';
   }
 
-  addFile(e) {
-    const file = e.target.files[0];
-    this.trackUploadForm.controls.file.setValue(file);
-  }
-
   onFormSubmit() {
     const trackData = this.trackUploadForm.value;
     const input = new FormData();
@@ -93,7 +88,7 @@ export class AdminTracksComponent implements OnInit {
     input.append('file', trackData.file);
 
     this.http.uploadTrack(input).subscribe(res => {
-      this.trackUploadForm.reset();
+      this.clearForm();
     });
   }
 
@@ -102,10 +97,8 @@ export class AdminTracksComponent implements OnInit {
     this.trackUploadForm.reset();
     this.trackUploadForm.markAsUntouched();
     Object.keys(this.trackUploadForm.controls).forEach((name) => {
-      if (name !== 'file') {
         control = this.trackUploadForm.controls[name];
         control.setErrors(null);
-      }
     });
   }
 }

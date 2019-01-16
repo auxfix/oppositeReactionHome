@@ -22,6 +22,8 @@ import { AdminTracksComponent } from 'admin/tracks/tracks.component';
 import { RoundButtonComponent } from 'common/components/round-button/round-button.component';
 import { ValidationMessageComponent } from 'common/components/validation-message/validation-message.component';
 import { FormInputComponent } from 'common/components/form/input/input.component';
+import { UploadTrackControlComponent } from './common/components/upload-track-control/upload-track-control.component';
+import { FileFormComponent } from 'common/components/form/file-input/file-input.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +40,8 @@ import { FormInputComponent } from 'common/components/form/input/input.component
     ValidationMessageComponent,
     RoundButtonComponent,
     FormInputComponent,
+    UploadTrackControlComponent,
+    FileFormComponent,
   ],
   imports: [
     BrowserModule,
