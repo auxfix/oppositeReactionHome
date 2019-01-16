@@ -93,12 +93,7 @@ export class AdminTracksComponent implements OnInit {
   }
 
   clearForm() {
-    let control: AbstractControl = null;
-    this.trackUploadForm.reset();
+    this.trackUploadFormRef.resetForm();
     this.trackUploadForm.markAsUntouched();
-    Object.keys(this.trackUploadForm.controls).forEach((name) => {
-        control = this.trackUploadForm.controls[name];
-        control.setErrors(null);
-    });
   }
 }

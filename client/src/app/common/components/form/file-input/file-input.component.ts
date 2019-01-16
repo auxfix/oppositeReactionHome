@@ -15,33 +15,27 @@ import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
   ],
 })
 export class FileFormComponent implements ControlValueAccessor {
-  private file: object;
-
-  onChange: any = () => { };
-  onTouched: any = () => { };
+  onChange;
+  onTouched;
+  value = null;
 
   addFile(e) {
     if(e.target && e.target.files && e.target.files[0]){
-      this.file = e.target.files[0];
-    } else {
-      this.file = null;
+      this.value = e.target.files[0];
+      this.onChange(e.target.files[0]);
+      this.onTouched();
     }
-    this.onChange(this.file);
-    this.onTouched();
   }
 
-  // We implement this method to keep a reference to the onChange
-  // callback function passed by the forms API
+  writeValue(value) {
+    this.value = value;
+  }
+
   registerOnChange(fn) {
     this.onChange = fn;
   }
-  // We implement this method to keep a reference to the onTouched
-  //callback function passed by the forms API
+
   registerOnTouched(fn) {
     this.onTouched = fn;
-  }
-  // This is a basic setter that the forms API is going to use
-  writeValue(value) {
-    this.addFile(value)
   }
 }
