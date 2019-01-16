@@ -41,8 +41,6 @@ export class FormInputComponent implements ControlValueAccessor {
   }
   // This is a basic setter that the forms API is going to use
   writeValue(value) {
-    if (value) {
-      this.value = value;
-    }
+    this.value = value;
   }
 }
