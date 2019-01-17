@@ -1,57 +1,18 @@
-import {Component, OnInit, HostBinding, ViewChild} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import { TracksService } from 'api/tracks.service';
-import {
-  AbstractControl, FormArray, FormBuilder, FormControl, FormGroup, NgForm, ValidatorFn,
-  Validators
-} from '@angular/forms';
-
-import {
-  trigger,
-  state,
-  style,
-  animate,
-  transition,
-} from '@angular/animations';
+import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-admin-tracks',
   templateUrl: './tracks.component.html',
   styleUrls: ['./tracks.component.scss'],
-  providers: [TracksService],
-  animations: [
-    trigger('slideButtonAnim', [
-      state('down', style({
-        width: '2.4rem',
-        height: '2.4rem',
-        top: '0.6rem',
-        left: '0.29rem',
-        paddingTop: '0.7rem',
-        fontSize: '1.6rem',
-      })),
-      state('up', style({
-        width: '3rem',
-        height: '3rem',
-        top: 0,
-        left: 0,
-        paddingTop: '1.7rem',
-        fontSize: '2rem',
-      })),
-      transition('down => up', [
-        animate('0.2s')
-      ]),
-      transition('up => down', [
-        animate('0.2s')
-      ]),
-    ]),
-  ]
+  providers: [TracksService]
 })
 export class AdminTracksComponent implements OnInit {
 
   private isActiveUpload: boolean;
-  public slideButtonAnimTrigger: string;
 
   @ViewChild('trackUploadFormTag') trackUploadFormRef: NgForm;
-
 
   // form data
   public trackUploadForm: FormGroup;
@@ -67,16 +28,10 @@ export class AdminTracksComponent implements OnInit {
 
   ngOnInit() {
     this.isActiveUpload = false;
-    this.slideButtonAnimTrigger = 'down';
   }
 
   uploadTrack() {
-    this.slideButtonAnimTrigger = 'up';
     this.trackUploadFormRef.ngSubmit.emit();
-  }
-
-  slideEnd() {
-    this.slideButtonAnimTrigger = 'down';
   }
 
   onFormSubmit() {

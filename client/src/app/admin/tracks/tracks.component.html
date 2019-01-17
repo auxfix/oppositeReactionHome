@@ -16,19 +16,11 @@
           </div>
           <or-file-form-control [formControl]="trackUploadForm.controls['file']"></or-file-form-control>
           <div
-            class="upload-btn"
             *ngIf="trackUploadForm.valid && trackUploadForm.touched"
           >
-            <div class="shape-container">
-              <button
-                type="button"
-                (click)="uploadTrack()"
-                [@slideButtonAnim]="slideButtonAnimTrigger"
-                (@slideButtonAnim.done)="slideEnd()"
-              >
-                <mat-icon [inline]="true">arrow_upward</mat-icon>
-              </button>
-            </div>
+            <or-triangle-slide-btn
+              (clickBtn)="uploadTrack()"
+            ></or-triangle-slide-btn>
           </div>
           <app-round-button
             [customStyles]="{width: '3rem',height: '3rem'}"

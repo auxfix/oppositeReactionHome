@@ -24,6 +24,7 @@ import { ValidationMessageComponent } from 'common/components/validation-message
 import { FormInputComponent } from 'common/components/form/input/input.component';
 import { UploadTrackControlComponent } from './common/components/upload-track-control/upload-track-control.component';
 import { FileFormComponent } from 'common/components/form/file-input/file-input.component';
+import { TriangleSlideBtnComponent } from './common/components/triangle-slide-btn/triangle-slide-btn.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import { FileFormComponent } from 'common/components/form/file-input/file-input.
     FormInputComponent,
     UploadTrackControlComponent,
     FileFormComponent,
+    TriangleSlideBtnComponent,
   ],
   imports: [
     BrowserModule,
