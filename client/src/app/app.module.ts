@@ -22,9 +22,9 @@ import { AdminTracksComponent } from 'admin/tracks/tracks.component';
 import { RoundButtonComponent } from 'common/components/round-button/round-button.component';
 import { ValidationMessageComponent } from 'common/components/validation-message/validation-message.component';
 import { FormInputComponent } from 'common/components/form/input/input.component';
-import { UploadTrackControlComponent } from './common/components/upload-track-control/upload-track-control.component';
 import { FileFormComponent } from 'common/components/form/file-input/file-input.component';
-import { TriangleSlideBtnComponent } from './common/components/triangle-slide-btn/triangle-slide-btn.component';
+import { TriangleSlideBtnComponent } from 'common/components/triangle-slide-btn/triangle-slide-btn.component';
+import { UploadTrackComponent } from 'common/components/upload-track/upload-track.component';
 
 @NgModule({
   declarations: [
@@ -41,9 +41,9 @@ import { TriangleSlideBtnComponent } from './common/components/triangle-slide-bt
     ValidationMessageComponent,
     RoundButtonComponent,
     FormInputComponent,
-    UploadTrackControlComponent,
     FileFormComponent,
     TriangleSlideBtnComponent,
+    UploadTrackComponent,
   ],
   imports: [
     BrowserModule,

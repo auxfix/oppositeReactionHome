@@ -1,0 +1,44 @@
+<form class="main-container" #trackUploadFormTag="ngForm" [formGroup]="trackUploadForm" (ngSubmit)="onFormSubmit($event)">
+  <div class="upload-container">
+    <div class="upload-block"
+         [ngClass]="isActiveUpload ? 'show-shadow-fall-upload-up' : 'show-shadow-fall-upload-down'"
+    >
+      <div class="upload-controls">
+        <div class="input-block">
+          <div class="label">track name</div>
+          <or-input-form-control [formControl]="trackUploadForm.controls['trackName']"></or-input-form-control>
+          <validation-message [field]="trackUploadForm && trackUploadForm.get('trackName')"></validation-message>
+        </div>
+        <div class="input-block">
+          <div class="label">band name</div>
+          <or-input-form-control [formControl]="trackUploadForm.controls['bandName']"></or-input-form-control>
+          <validation-message [field]="trackUploadForm && trackUploadForm.get('bandName')"></validation-message>
+        </div>
+        <or-file-form-control [formControl]="trackUploadForm.controls['file']"></or-file-form-control>
+        <div
+          *ngIf="trackUploadForm.valid && trackUploadForm.touched"
+        >
+          <or-triangle-slide-btn
+            (clickBtn)="uploadTrack()"
+          ></or-triangle-slide-btn>
+        </div>
+        <app-round-button
+          [customStyles]="{width: '3rem',height: '3rem'}"
+          [icon]="'clear'"
+          *ngIf="trackUploadForm.touched"
+          (clickButton)="clearForm()"
+        >
+
+        </app-round-button>
+
+      </div>
+      <a
+        class="upload-button"
+        [ngClass]="{'active-upload-component': isActiveUpload }"
+        (click)="isActiveUpload = !isActiveUpload;"
+      >
+        <mat-icon>cloud_upload</mat-icon>
+      </a>
+    </div>
+  </div>
+</form>

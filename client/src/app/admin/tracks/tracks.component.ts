@@ -1,6 +1,10 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import { TracksService } from 'api/tracks.service';
-import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
+
+interface UploadDataType {
+  data: FormData;
+  endCallback();
+}
 
 @Component({
   selector: 'app-admin-tracks',
@@ -10,45 +14,14 @@ import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 })
 export class AdminTracksComponent implements OnInit {
 
-  private isActiveUpload: boolean;
+  constructor(private http: TracksService) {}
 
-  @ViewChild('trackUploadFormTag') trackUploadFormRef: NgForm;
-
-  // form data
-  public trackUploadForm: FormGroup;
-
-  constructor(private fb: FormBuilder, private http: TracksService) {
-
-    this.trackUploadForm = fb.group({
-      trackName: ['', [Validators.required, Validators.maxLength(50)]],
-      bandName: ['', [Validators.required, Validators.maxLength(50)]],
-      file: ['', [Validators.required]],
+  uploadTrack(uploadData: UploadDataType) {
+    this.http.uploadTrack(uploadData.data).subscribe(res => {
+      uploadData.endCallback();
     });
   }
 
-  ngOnInit() {
-    this.isActiveUpload = false;
-  }
-
-  uploadTrack() {
-    this.trackUploadFormRef.ngSubmit.emit();
-  }
-
-  onFormSubmit() {
-    const trackData = this.trackUploadForm.value;
-    const input = new FormData();
-
-    input.append('trackName', trackData.trackName);
-    input.append('bandName', trackData.bandName);
-    input.append('file', trackData.file);
-
-    this.http.uploadTrack(input).subscribe(res => {
-      this.clearForm();
-    });
-  }
-
-  clearForm() {
-    this.trackUploadFormRef.resetForm();
-    this.trackUploadForm.markAsUntouched();
+  ngOnInit(): void {
   }
 }

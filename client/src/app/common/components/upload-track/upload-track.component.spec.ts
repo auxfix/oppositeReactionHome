@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { UploadTrackControlComponent } from './upload-track-control.component';
+import { UploadTrackComponent } from './upload-track.component';
 
-describe('UploadTrackControlComponent', () => {
-  let component: UploadTrackControlComponent;
-  let fixture: ComponentFixture<UploadTrackControlComponent>;
+describe('UploadTrackComponent', () => {
+  let component: UploadTrackComponent;
+  let fixture: ComponentFixture<UploadTrackComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ UploadTrackControlComponent ]
+      declarations: [ UploadTrackComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(UploadTrackControlComponent);
+    fixture = TestBed.createComponent(UploadTrackComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
