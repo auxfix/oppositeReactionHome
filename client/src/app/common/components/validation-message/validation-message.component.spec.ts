@@ -2,41 +2,58 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ValidationMessageComponent } from './validation-message.component';
 import { FormControl } from '@angular/forms';
+import {DebugElement} from '@angular/core';
+import {By} from '@angular/platform-browser';
 
 class MockFormControl extends FormControl {
   errors = {};
+
+  invalidProp: boolean;
+  touchedProp: boolean;
+
   public get invalid(): boolean {
-    return true;
+    return this.invalidProp;
   }
-  public get touched() {
-    return true;
+  public get touched(): boolean {
+    return this.touchedProp;
   }
 
-  constructor(errors = {}) {
+  public set invalid(flag: boolean) {
+    this.invalidProp = flag;
+  }
+
+  public set touched(flag: boolean) {
+    this.touchedProp = flag;
+  }
+
+  constructor(errors = {}, touched = true, invalid = true) {
     super();
     this.errors = errors;
+    this.touched = touched;
+    this.invalid = invalid;
   }
 }
 
 describe('ValidationMessageComponent', () => {
-  let component: ValidationMessageComponent;
   let fixture: ComponentFixture<ValidationMessageComponent>;
+  let component: ValidationMessageComponent;
+  let el: HTMLElement;
+  let de: DebugElement;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ ValidationMessageComponent ]
     })
-      .compileComponents();
+    .compileComponents().then(() => {
+      fixture = TestBed.createComponent(ValidationMessageComponent);
+      component = fixture.componentInstance;
+      const FormControlMock = new MockFormControl({required: true});
+      component.field = FormControlMock;
+      fixture.detectChanges();
+      de = fixture.debugElement.query(By.css('div'));
+      el = de.nativeElement;
+    });
   }));
-
-  beforeEach(() => {
-    fixture = TestBed.createComponent(ValidationMessageComponent);
-    component = fixture.componentInstance;
-
-    component.field = new MockFormControl();
-
-    fixture.detectChanges();
-  });
 
   it('should create', () => {
     expect(component).toBeTruthy();
@@ -44,12 +61,11 @@ describe('ValidationMessageComponent', () => {
 
   it('show custom error', () => {
     const validationMsg = 'Custom validation message';
-
-    component.field = new MockFormControl({
-        custom: validationMsg,
+    const FormControlMock = new MockFormControl({
+      custom: validationMsg,
     });
+    component.field = FormControlMock;
     fixture.detectChanges();
-    expect(fixture.nativeElement.querySelector('li').innerText).toEqual(validationMsg);
+    expect(el.querySelector('li').innerText.trim()).toEqual(validationMsg);
   });
-
 });
