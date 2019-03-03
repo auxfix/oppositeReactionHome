@@ -68,4 +68,64 @@ describe('ValidationMessageComponent', () => {
     fixture.detectChanges();
     expect(el.querySelector('li').innerText.trim()).toEqual(validationMsg);
   });
+  it('show required error', () => {
+    const validationMsg = 'Field is required';
+    const FormControlMock = new MockFormControl({
+      required: true,
+    });
+    component.field = FormControlMock;
+    fixture.detectChanges();
+    expect(el.querySelector('li').innerText.trim()).toEqual(validationMsg);
+  });
+  it('show required true error', () => {
+    const validationMsg = 'Value should be positive';
+    const FormControlMock = new MockFormControl({
+      requiredTrue: true,
+    });
+    component.field = FormControlMock;
+    fixture.detectChanges();
+    expect(el.querySelector('li').innerText.trim()).toEqual(validationMsg);
+  });
+  it('show email error', () => {
+    const validationMsg = 'Field should contain e-mail';
+    const FormControlMock = new MockFormControl({
+      email: true,
+    });
+    component.field = FormControlMock;
+    fixture.detectChanges();
+    expect(el.querySelector('li').innerText.trim()).toEqual(validationMsg);
+  });
+  it('show pattern error', () => {
+    const validationMsg = 'Field does not match to pattern';
+    const FormControlMock = new MockFormControl({
+      pattern: true,
+    });
+    component.field = FormControlMock;
+    fixture.detectChanges();
+    expect(el.querySelector('li').innerText.trim()).toEqual(validationMsg);
+  });
+  it('show minlength error', () => {
+    const fieldMinLength =  10;
+    const validationMsg = `Minimum length ${fieldMinLength}`;
+    const FormControlMock = new MockFormControl({
+      minlength: {
+        requiredLength: 10,
+      },
+    });
+    component.field = FormControlMock;
+    fixture.detectChanges();
+    expect(el.querySelector('li').innerText.trim()).toEqual(validationMsg);
+  });
+  it('show maxlength error', () => {
+    const fieldMaxLength =  10;
+    const validationMsg = `Maximum length ${fieldMaxLength}`;
+    const FormControlMock = new MockFormControl({
+      maxlength: {
+        requiredLength: 10,
+      },
+    });
+    component.field = FormControlMock;
+    fixture.detectChanges();
+    expect(el.querySelector('li').innerText.trim()).toEqual(validationMsg);
+  });
 });
