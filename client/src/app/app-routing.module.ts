@@ -6,7 +6,7 @@ import { TracksComponent } from './tracks/tracks.component';
 import { AlbumComponent } from './album/album.component';
 import { AdminComponent } from './admin/admin.component';
 
-const routes: Routes = [
+export const routes: Routes = [
   {
     path: '',
     redirectTo: '/home',
