@@ -4,7 +4,7 @@ import { By } from '@angular/platform-browser';
 import { FileFormComponent } from './file-input.component';
 import { MatIconModule } from '@angular/material';
 
-describe('Triangle slide button', () => {
+describe('Component: file-input', () => {
   let fixture: ComponentFixture<FileFormComponent>;
   let component: FileFormComponent;
   let el: HTMLElement;
@@ -28,7 +28,7 @@ describe('Triangle slide button', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
-  it('should handle onClick properly', () => {
+  it('should handle onChange properly', () => {
     el.dispatchEvent(new Event('change'));
 
     expect(component.addFile).toHaveBeenCalled();
