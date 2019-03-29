@@ -3,7 +3,7 @@ import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
 
 
 @Component({
-  selector: 'or-input-form-control',
+  selector: 'app-input-form-control',
   templateUrl: './input.component.html',
   styleUrls: ['./input.component.scss'],
   providers: [
@@ -35,7 +35,7 @@ export class FormInputComponent implements ControlValueAccessor {
     this.onChange = fn;
   }
   // We implement this method to keep a reference to the onTouched
-  //callback function passed by the forms API
+  // callback function passed by the forms API
   registerOnTouched(fn) {
     this.onTouched = fn;
   }

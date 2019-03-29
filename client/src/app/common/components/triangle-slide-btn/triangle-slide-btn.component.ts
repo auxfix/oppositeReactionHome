@@ -2,7 +2,7 @@ import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {animate, state, style, transition, trigger} from '@angular/animations';
 
 @Component({
-  selector: 'or-triangle-slide-btn',
+  selector: 'app-triangle-slide-btn',
   templateUrl: './triangle-slide-btn.component.html',
   styleUrls: ['./triangle-slide-btn.component.scss'],
   animations: [

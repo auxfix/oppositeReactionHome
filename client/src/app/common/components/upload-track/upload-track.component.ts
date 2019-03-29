@@ -8,7 +8,7 @@ interface UploadDataType {
 }
 
 @Component({
-  selector: 'or-upload-track',
+  selector: 'app-upload-track',
   templateUrl: './upload-track.component.html',
   styleUrls: ['./upload-track.component.scss']
 })

@@ -2,7 +2,7 @@ import { Component, Input } from '@angular/core';
 import { FormControl } from '@angular/forms';
 
 @Component({
-  selector: 'validation-message',
+  selector: 'app-validation-message',
   templateUrl: './validation-message.component.html',
   styleUrls: ['./validation-message.component.scss']
 })

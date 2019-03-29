@@ -3,7 +3,7 @@ import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
 
 
 @Component({
-  selector: 'or-file-form-control',
+  selector: 'app-file-form-control',
   templateUrl: './file-input.component.html',
   styleUrls: ['./file-input.component.scss'],
   providers: [
@@ -20,7 +20,7 @@ export class FileFormComponent implements ControlValueAccessor {
   value = null;
 
   addFile(e) {
-    if(e.target && e.target.files && e.target.files[0]){
+    if (e.target && e.target.files && e.target.files[0]) {
       this.value = e.target.files[0];
       this.onChange(e.target.files[0]);
       this.onTouched();
