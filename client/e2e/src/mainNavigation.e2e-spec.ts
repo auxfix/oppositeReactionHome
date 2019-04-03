@@ -24,6 +24,6 @@ describe('e2e: main navigation', () => {
 
   it('navigate to album', () => {
     page.navigateTo('/album');
-    expect(page.getCssText('app-root h3')).toEqual('Album2');
+    expect(page.getCssText('app-root h3')).toEqual('Album');
   });
 });
