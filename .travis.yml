@@ -17,4 +17,5 @@ before_script:
 
 script:
   - npm run test:ci
+  - npm run e2e:ci
   - npm run lint

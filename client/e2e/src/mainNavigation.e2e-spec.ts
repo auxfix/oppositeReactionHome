@@ -16,4 +16,14 @@ describe('e2e: main navigation', () => {
     page.navigateTo('/home');
     expect(page.getCssText('app-root h3')).toEqual('Home');
   });
+
+  it('navigate to tracks', () => {
+    page.navigateTo('/tracks');
+    expect(page.getCssText('app-root h3')).toEqual('Tracks');
+  });
+
+  it('navigate to album', () => {
+    page.navigateTo('/album');
+    expect(page.getCssText('app-root h3')).toEqual('Album2');
+  });
 });
