@@ -2,7 +2,7 @@ import { storiesOf, moduleMetadata  } from '@storybook/angular';
 import { MatIconModule } from '@angular/material/icon';
 import { RoundButtonComponent } from './round-button.component';
 
-storiesOf('round button', module)
+storiesOf('round-button', module)
   .addDecorator(moduleMetadata({
     imports: [
       MatIconModule,

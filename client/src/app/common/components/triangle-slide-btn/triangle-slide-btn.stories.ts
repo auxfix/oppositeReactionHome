@@ -5,7 +5,7 @@ import { TriangleSlideBtnComponent } from './triangle-slide-btn.component';
 
 import '!style-loader!css-loader!./story-styles.css';
 
-storiesOf('triangle button', module)
+storiesOf('triangle-slide-btn', module)
   .addDecorator(moduleMetadata({
     imports: [
       MatIconModule,
