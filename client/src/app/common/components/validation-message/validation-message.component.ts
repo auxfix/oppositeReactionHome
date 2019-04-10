@@ -7,7 +7,9 @@ import { FormControl } from '@angular/forms';
   styleUrls: ['./validation-message.component.scss']
 })
 export class ValidationMessageComponent {
-  @Input() field: FormControl;
+  @Input()  field: FormControl;
+
+
 
   public get validationMessages() {
     const field = this.field;
