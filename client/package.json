@@ -12,14 +12,12 @@
     "e2e": "ng e2e",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
-    "precommit": "npm run lint",
-    "prepush": "npm run lint && npm run push"
+    "prepush": "npm run lint && npm run test:ci && npm run test:e2e"
   },
   "lint-staged": {
-    "*.{ts}": [
-      "lint",
-      "git add"
-    ]
+    "linters": {
+      "*.{ts}": ["npm run lint", "git add"]
+    }
   },
   "private": true,
   "dependencies": {
