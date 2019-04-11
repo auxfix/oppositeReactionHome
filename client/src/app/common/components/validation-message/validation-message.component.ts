@@ -9,9 +9,6 @@ import { FormControl } from '@angular/forms';
 export class ValidationMessageComponent {
   @Input()  field: FormControl;
 
-
-
-
   public get validationMessages() {
     const field = this.field;
     if (!field || !field.errors) {
