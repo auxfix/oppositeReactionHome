@@ -25,6 +25,8 @@ import { FormInputComponent } from 'common/components/form/input/input.component
 import { FileFormComponent } from 'common/components/form/file-input/file-input.component';
 import { TriangleSlideBtnComponent } from 'common/components/triangle-slide-btn/triangle-slide-btn.component';
 import { UploadTrackComponent } from 'common/components/upload-track/upload-track.component';
+import { TracksListComponent } from './admin/tracks/tracks-list/tracks-list.component';
+import { EditTrackItemComponent } from './admin/tracks/tracks-list/edit-track-item/edit-track-item.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +46,8 @@ import { UploadTrackComponent } from 'common/components/upload-track/upload-trac
     FileFormComponent,
     TriangleSlideBtnComponent,
     UploadTrackComponent,
+    TracksListComponent,
+    EditTrackItemComponent,
   ],
   imports: [
     BrowserModule,
