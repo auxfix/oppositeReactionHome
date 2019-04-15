@@ -3,6 +3,7 @@ import {Component, Input, OnInit} from '@angular/core';
 interface Track {
   fileName: string;
   trackName: string;
+  bandName: string;
 }
 
 @Component({

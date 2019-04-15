@@ -1,0 +1,28 @@
+@import "src/vrs";
+
+.container{
+  display: flex;
+  height: 7rem;
+  flex-direction: column;
+  justify-content: space-around;
+  border: 0.2rem solid lighten( $font-color-header-one, 20%);
+  border-radius: 1.8rem;
+  padding: 0.6rem 2rem;
+  margin-top: 0.9rem;
+
+  .name-block {
+    display: flex;
+    justify-content: flex-start;
+
+    .track-name{
+
+      &:nth-child(2){
+        margin-left: 0.4rem;
+      }
+      display: inline-block;
+      font-size: 2rem;
+      font-weight: 500;
+      font-color: $font-color-header-one;
+    }
+  }
+}
