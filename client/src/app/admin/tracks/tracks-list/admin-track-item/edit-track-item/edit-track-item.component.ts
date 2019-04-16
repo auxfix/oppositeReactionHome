@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 
 interface Track {
   fileName: string;
@@ -12,11 +12,15 @@ interface Track {
   styleUrls: ['./edit-track-item.component.scss']
 })
 export class EditTrackItemComponent implements OnInit {
-  @Input()  trackData: Track;
+  @Input() trackData: Track;
+  @Output() changeState = new EventEmitter();
 
   constructor() { }
 
   ngOnInit() {
   }
 
+  doChangeState() {
+    this.changeState.emit();
+  }
 }
