@@ -2,4 +2,21 @@
 
 .container{
   cursor:pointer;
+  height: 6.5rem;
+
+  .name-block {
+    display: flex;
+    justify-content: flex-start;
+
+    .track-name{
+      &:nth-child(2){
+        margin-left: 0.4rem;
+      }
+      display: inline-block;
+      text-align: center;
+      font-size: 2rem;
+      font-weight: 500;
+      color: $font-color-header-one;
+    }
+  }
 }
