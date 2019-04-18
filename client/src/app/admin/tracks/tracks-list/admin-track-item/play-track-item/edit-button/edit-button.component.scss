@@ -1,0 +1,26 @@
+@import "src/vrs";
+
+button {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  color: $font-color-header-one;
+  background-color: $main-bkg;
+  border: 0.1rem solid $font-color-header-one;
+  height: 2.5rem;
+  width: 2.5rem;
+  border-radius: 50%;
+  cursor: pointer;
+
+  .mat-icon{
+    cursor: pointer;
+    height: 1.3rem;
+    width: 1.3rem;
+    font-size: 1.3rem;
+    &:hover{
+      height: 1.5rem;
+      width: 1.5rem;
+      font-size: 1.5rem;
+    }
+  }
+}

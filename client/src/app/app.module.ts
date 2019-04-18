@@ -29,6 +29,7 @@ import { TracksListComponent } from 'admin/tracks/tracks-list/tracks-list.compon
 import { EditTrackItemComponent } from 'admin/tracks/tracks-list/admin-track-item/edit-track-item/edit-track-item.component';
 import { PlayTrackItemComponent } from 'admin/tracks/tracks-list/admin-track-item/play-track-item/play-track-item.component';
 import { AdminTrackItemComponent } from 'admin/tracks/tracks-list/admin-track-item/admin-track-item.component';
+import { EditButtonComponent } from './admin/tracks/tracks-list/admin-track-item/play-track-item/edit-button/edit-button.component';
 
 @NgModule({
   declarations: [
@@ -52,6 +53,7 @@ import { AdminTrackItemComponent } from 'admin/tracks/tracks-list/admin-track-it
     EditTrackItemComponent,
     PlayTrackItemComponent,
     AdminTrackItemComponent,
+    EditButtonComponent,
   ],
   imports: [
     BrowserModule,
