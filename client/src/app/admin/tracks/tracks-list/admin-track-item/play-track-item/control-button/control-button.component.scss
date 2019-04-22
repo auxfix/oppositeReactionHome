@@ -23,18 +23,5 @@ button {
       font-size: 1.5rem;
     }
   }
-  .up-down {
-    .mat-icon{
-      cursor: pointer;
-      height: 1.6rem;
-      width: 1.6rem;
-      font-size: 1.6rem;
-      &:hover{
-        height: 1.9rem;
-        width: 1.9rem;
-        font-size: 1.9rem;
-        font-weight: bolder;
-      }
-    }
-  }
 }
+
