@@ -7,8 +7,8 @@ button {
   color: $font-color-header-one;
   background-color: $main-bkg;
   border: 0.1rem solid $font-color-header-one;
-  height: 2.5rem;
-  width: 2.5rem;
+  height: 2.2rem;
+  width: 2.2rem;
   border-radius: 50%;
   cursor: pointer;
 
@@ -21,6 +21,20 @@ button {
       height: 1.5rem;
       width: 1.5rem;
       font-size: 1.5rem;
+    }
+  }
+  .up-down {
+    .mat-icon{
+      cursor: pointer;
+      height: 1.6rem;
+      width: 1.6rem;
+      font-size: 1.6rem;
+      &:hover{
+        height: 1.9rem;
+        width: 1.9rem;
+        font-size: 1.9rem;
+        font-weight: bolder;
+      }
     }
   }
 }

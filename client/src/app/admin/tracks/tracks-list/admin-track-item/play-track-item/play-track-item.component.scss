@@ -1,22 +1,31 @@
 @import "src/vrs";
 
 .container{
-  cursor:pointer;
-  height: 6.5rem;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  .left-container {
+    .name-block {
+      display: flex;
+      justify-content: flex-start;
 
-  .name-block {
-    display: flex;
-    justify-content: flex-start;
-
-    .track-name{
-      &:nth-child(2){
-        margin-left: 0.4rem;
+      .track-name{
+        &:nth-child(2){
+          margin-left: 0.4rem;
+        }
+        display: inline-block;
+        text-align: center;
+        font-size: 2rem;
+        font-weight: 500;
+        color: $font-color-header-one;
       }
-      display: inline-block;
-      text-align: center;
-      font-size: 2rem;
-      font-weight: 500;
-      color: $font-color-header-one;
     }
+  }
+
+  .right-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
   }
 }
