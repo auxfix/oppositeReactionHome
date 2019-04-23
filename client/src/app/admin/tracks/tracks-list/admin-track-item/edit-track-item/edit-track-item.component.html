@@ -1,3 +1,25 @@
 <div class="container" (click)="doChangeState()">
-<span>edit</span>
+  <form class="main-container" #trackEditFormTag="ngForm" [formGroup]="trackEditForm" (ngSubmit)="onFormSubmit($event)">
+    <div class="upload-container">
+        <div class="upload-controls">
+          <div class="input-block">
+            <div class="label">track name</div>
+            <app-input-form-control [formControl]="trackEditForm.controls['trackName']"></app-input-form-control>
+            <app-validation-message [field]="trackEditForm && trackEditForm.get('trackName')"></app-validation-message>
+          </div>
+          <div class="input-block">
+            <div class="label">band name</div>
+            <app-input-form-control [formControl]="trackEditForm.controls['bandName']"></app-input-form-control>
+            <app-validation-message [field]="trackEditForm && trackEditForm.get('bandName')"></app-validation-message>
+          </div>
+          <app-round-button
+            *ngIf="trackEditForm.valid && trackEditForm.touched"
+            [customStyles]="{width: '3rem',height: '3rem'}"
+            [icon]="'clear'"
+            (clickButton)="saveTrack()"
+          >
+          </app-round-button>
+        </div>
+    </div>
+  </form>
 </div>

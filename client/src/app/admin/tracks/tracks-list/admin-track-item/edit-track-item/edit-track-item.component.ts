@@ -1,4 +1,5 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, OnInit, ViewChild, Input} from '@angular/core';
+import {FormBuilder, FormGroup, NgForm, Validators} from '@angular/forms';
 
 interface Track {
   fileName: string;
@@ -13,14 +14,32 @@ interface Track {
 })
 export class EditTrackItemComponent implements OnInit {
   @Input() trackData: Track;
-  @Output() changeState = new EventEmitter();
 
-  constructor() { }
+  @ViewChild('trackEditFormTag') trackEditFormRef: NgForm;
 
-  ngOnInit() {
+  // form data
+  public trackEditForm: FormGroup;
+
+  ngOnInit(): void {
   }
 
-  doChangeState() {
-    this.changeState.emit();
+  constructor(private fb: FormBuilder) {
+    const trackPointer = this.trackData;
+    this.trackEditForm = fb.group({
+      trackName: [trackPointer.trackName, [Validators.required, Validators.maxLength(50)]],
+      bandName: [trackPointer.bandName, [Validators.required, Validators.maxLength(50)]],
+    });
+  }
+
+  saveTrack() {
+    this.trackEditFormRef.ngSubmit.emit();
+  }
+
+  onFormSubmit() {
+    const trackData = this.trackEditForm.value;
+    const input = new FormData();
+
+    input.append('trackName', trackData.trackName);
+    input.append('bandName', trackData.bandName);
   }
 }
