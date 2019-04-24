@@ -21,14 +21,14 @@ export class EditTrackItemComponent implements OnInit {
   public trackEditForm: FormGroup;
 
   ngOnInit(): void {
+    this.trackEditForm = this.fb.group({
+      trackName: [this.trackData.trackName, [Validators.required, Validators.maxLength(50)]],
+      bandName: [this.trackData.bandName, [Validators.required, Validators.maxLength(50)]],
+    });
   }
 
-  constructor(private fb: FormBuilder) {
-    const trackPointer = this.trackData;
-    this.trackEditForm = fb.group({
-      trackName: [trackPointer.trackName, [Validators.required, Validators.maxLength(50)]],
-      bandName: [trackPointer.bandName, [Validators.required, Validators.maxLength(50)]],
-    });
+  constructor(public fb: FormBuilder) {
+
   }
 
   saveTrack() {
