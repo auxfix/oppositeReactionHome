@@ -13,11 +13,13 @@ button {
   border: 1px solid $grey-one;
   cursor: pointer;
 
-  &:hover {
-    animation-duration: 1.5s;
-    animation-name: hovered-button;
-    animation-iteration-count: infinite;
-    animation-direction: alternate;
+  &.is-flashing{
+    &:hover {
+      animation-duration: 1.5s;
+      animation-name: hovered-button;
+      animation-iteration-count: infinite;
+      animation-direction: alternate;
+    }
   }
 }
 

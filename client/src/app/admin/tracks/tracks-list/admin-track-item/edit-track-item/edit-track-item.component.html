@@ -11,7 +11,8 @@
       <app-round-button
         *ngIf="trackEditForm.valid && trackEditForm.touched"
         [customStyles]="{width: '3rem',height: '3rem'}"
-        [icon]="'clear'"
+        iconSize="1.9rem"
+        [icon]="'save'"
         (clickButton)="saveTrack()"
       >
       </app-round-button>

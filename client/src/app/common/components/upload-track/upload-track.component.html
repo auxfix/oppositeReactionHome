@@ -25,6 +25,7 @@
         <app-round-button
           [customStyles]="{width: '3rem',height: '3rem'}"
           [icon]="'clear'"
+          isFlashing="true"
           *ngIf="trackUploadForm.touched"
           (clickButton)="clearForm()"
         >
