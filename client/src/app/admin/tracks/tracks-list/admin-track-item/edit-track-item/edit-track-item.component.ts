@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewChild, Input} from '@angular/core';
+import {Component, OnInit, ViewChild, Input, Output, EventEmitter} from '@angular/core';
 import {FormBuilder, FormGroup, NgForm, Validators} from '@angular/forms';
 
 interface Track {
@@ -14,6 +14,7 @@ interface Track {
 })
 export class EditTrackItemComponent implements OnInit {
   @Input() trackData: Track;
+  @Output() changeState = new EventEmitter();
 
   @ViewChild('trackEditFormTag') trackEditFormRef: NgForm;
 
@@ -41,5 +42,9 @@ export class EditTrackItemComponent implements OnInit {
 
     input.append('trackName', trackData.trackName);
     input.append('bandName', trackData.bandName);
+  }
+
+  doChangeState() {
+    this.changeState.emit();
   }
 }

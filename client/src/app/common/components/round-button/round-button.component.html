@@ -1,3 +1,3 @@
 <button (click)="onButtonClick()" [ngStyle]="customStyles" [ngClass]="{'is-flashing': isFlashing}">
-  <mat-icon [ngStyle]="{width: iconSize, height: iconSize, fontSize: iconSize}">{{icon}}</mat-icon>
+  <mat-icon [ngStyle]="customIconStyle">{{icon}}</mat-icon>
 </button>
