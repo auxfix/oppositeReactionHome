@@ -3,7 +3,7 @@ import cors from "cors";
 import express from "express";
 import http from "http";
 
-import api from "./routes/api";
+import tracksRoutes from "./routes/tracks";
 
 const app = express();
 
@@ -19,7 +19,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 // Set our api routes
-app.use("/", api);
+app.use("/", tracksRoutes);
 
 /**
  * Get port from environment and store in Express.

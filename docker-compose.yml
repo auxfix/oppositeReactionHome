@@ -16,6 +16,10 @@ services:
      - "27017:27017"
 
   dbadmin:
-    image: mrvautin/adminmongo
+    image: mongo-express
     ports:
-      - "1234:1234"
+      - "8081:8081"
+    links:
+      - database
+    environment:
+      - ME_CONFIG_MONGODB_SERVER=database

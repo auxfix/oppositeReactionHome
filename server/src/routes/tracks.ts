@@ -43,12 +43,18 @@ connection.once("open", () => {
                 res.json({error_code: 1, err_desc: err});
                 return;
             }
+            console.log('SAVED_FILE_DATA:', res.req.file) // tslint:disable-line
             res.json({error_code: 0, error_desc: null, file_uploaded: true});
         });
     });
 
     router.get("/tracks", (req, res) => {
-        const filesData: any[] | Array<{ fileName: any; trackName: any; bandName: any; contentType: any; }> = [];
+        const filesData: any[] | Array<{
+            id: any,
+            fileName: any;
+            trackName: any;
+            bandName: any;
+            contentType: any; }> = [];
         let count = 0;
         gfs.collection("tracks"); // set the collection to look up into
 
@@ -72,7 +78,6 @@ connection.once("open", () => {
             res.json(filesData);
         });
     });
-
 });
 
 export default router;
