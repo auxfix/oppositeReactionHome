@@ -2,7 +2,7 @@ import bodyParser from "body-parser";
 import cors from "cors";
 import express from "express";
 import http from "http";
-
+import mongoose from "mongoose";
 import tracksRoutes from "./routes/tracks";
 
 const app = express();

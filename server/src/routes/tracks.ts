@@ -5,17 +5,18 @@ import GridFSStorage from "multer-gridfs-storage";
 const router = express.Router();
 
 import multer from "multer";
+import { TrackSchema } from "../Schemas/track";
+mongoose.Promise = global.Promise;
 
 const dbHost = "mongodb://database/mean-docker";
+export const db = mongoose.createConnection(dbHost);
 
-// Connect to mongodb
-const connection = mongoose.createConnection(dbHost);
-connection.once("open", () => {
+db.once("open", () => {
 
-    const gfs = Grid(connection.db, mongoose.mongo);
+    const gfs = Grid(db.db, mongoose.mongo);
 
     const storage = new GridFSStorage({
-        db: connection,
+        db,
         file: (req: any, file) => {
             return {
                 bucketName: "tracks",
@@ -37,46 +38,33 @@ connection.once("open", () => {
     });
 
 // Route for file upload
-    router.post("/tracks", (req, res) => {
+    router.post("/tracks", (req, res, next) => {
         upload(req, res, (err) => {
             if (err) {
                 res.json({error_code: 1, err_desc: err});
                 return;
             }
-            console.log('SAVED_FILE_DATA:', res.req.file) // tslint:disable-line
-            res.json({error_code: 0, error_desc: null, file_uploaded: true});
+
+            const TrackModel = db.model("tracks", TrackSchema);
+
+            const TrackInstance = new TrackModel({
+                _id: new mongoose.Types.ObjectId(),
+                logoId: null,
+                songId: res.req.file.id,
+                bandName: res.req.file.metadata.bandName,
+                trackName: res.req.file.metadata.trackName, }
+                );
+            TrackInstance.save().then(() => {
+                console.log('SAVED_FILE_DATA:', res.req.file) // tslint:disable-line
+                res.json({error_code: 0, error_desc: null, file_uploaded: true});
+            }).catch((error) => res.send(error));
         });
     });
 
     router.get("/tracks", (req, res) => {
-        const filesData: any[] | Array<{
-            id: any,
-            fileName: any;
-            trackName: any;
-            bandName: any;
-            contentType: any; }> = [];
-        let count = 0;
-        gfs.collection("tracks"); // set the collection to look up into
-
-        gfs.files.find({}).toArray((err, files) => {
-            // Error checking
-            if (!files || files.length === 0) {
-                return res.status(404).json({
-                    responseCode: 1,
-                    responseMessage: "error"
-                });
-            }
-            // Loop through all the files and fetch the necessary information
-            files.forEach((file) => {
-                filesData[count++] = {
-                    bandName: file.metadata.bandName,
-                    contentType: file.contentType,
-                    fileName: file.filename,
-                    trackName: file.metadata.trackName,
-                };
-            });
-            res.json(filesData);
-        });
+        const TrackModel = db.model("tracks", TrackSchema);
+        // @ts-ignore
+        TrackModel.find((err, tracks) => {res.send(tracks); });
     });
 });
 
