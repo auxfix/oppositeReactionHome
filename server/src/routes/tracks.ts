@@ -9,7 +9,7 @@ import { TrackSchema } from "../Schemas/track";
 mongoose.Promise = global.Promise;
 
 const dbHost = "mongodb://database/mean-docker";
-export const db = mongoose.createConnection(dbHost);
+const db = mongoose.createConnection(dbHost);
 
 db.once("open", () => {
 
@@ -37,7 +37,7 @@ db.once("open", () => {
         res.send("api works 3");
     });
 
-// Route for file upload
+    // Route for file upload
     router.post("/tracks", (req, res, next) => {
         upload(req, res, (err) => {
             if (err) {
@@ -61,10 +61,40 @@ db.once("open", () => {
         });
     });
 
+    // Get all routes
     router.get("/tracks", (req, res) => {
         const TrackModel = db.model("tracks", TrackSchema);
-        // @ts-ignore
+
         TrackModel.find((err, tracks) => {res.send(tracks); });
+    });
+
+    // Delete track
+    router.get("/tracks/delete/:trackId", (req, res, next) => {
+        const TrackModel = db.model("tracks", TrackSchema);
+
+        TrackModel.find({ id: req.params.trackId}).remove( () => next() );
+    });
+
+    // Edit track
+    router.post("/tracks/edit/:trackId", (req, res, next) => {
+        const TrackModel = db.model("tracks", TrackSchema);
+        TrackModel.findById(req.params.trackId, (err, track: any) => {
+            if (!track) {
+                return next(new Error("Could not load track"));
+            } else {
+                // do your updates here
+                track.bandName = req.body.bandName;
+                track.trackName = req.body.trackName;
+
+                track.save((error: any) => {
+                    if (error) {
+                        return next(new Error("Could not load save track"));
+                    } else {
+                        res.send(track);
+                    }
+                });
+            }
+        });
     });
 });
 
