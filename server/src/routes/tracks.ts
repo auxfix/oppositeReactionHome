@@ -6,6 +6,7 @@ const router = express.Router();
 
 import multer from "multer";
 import { TrackSchema } from "../Schemas/track";
+import {error} from "util";
 mongoose.Promise = global.Promise;
 
 const dbHost = "mongodb://database/mean-docker";
@@ -95,8 +96,8 @@ db.once("open", () => {
                 track.bandName = req.body.bandName;
                 track.trackName = req.body.trackName;
 
-                track.save((error: any) => {
-                    if (error) {
+                track.save((saveError: any) => {
+                    if (saveError) {
                         return next(new Error("Could not load save track"));
                     } else {
                         res.send(track);
@@ -106,28 +107,32 @@ db.once("open", () => {
         });
     });
 
-    router.get("/tracks/shift/:order/:way", (req, res, next) => {
+    router.post("/tracks/shift/:order/:way", async (req, res, next) => {
         const TrackModel = db.model("tracks", TrackSchema);
+        const allTracks = await TrackModel.find({});
+        const allTracksLength = allTracks.length;
 
-        const allTracks = TrackModel.find({});
-        const sortedTracks: any = allTracks.sort((a: { order: number; }, b: { order: number; }) => a.order - b.order);
-        if (req.params.way === "up") {
-            if (req.params.order === 0) { next(); }
-            sortedTracks[req.params.order].order = req.params.order + 1;
-            sortedTracks[req.params.order - 1].order = req.params.order;
-        } else  if (req.params.way === "down") {
-            if (req.params.order === sortedTracks.length - 1 ) { next(); }
-            sortedTracks[req.params.order].order = req.params.order - 1;
-            sortedTracks[req.params.order + 1].order = req.params.order;
+        if (req.params.way === "down") {
+           if (req.params.order >= allTracksLength - 2) {return next(); }
+
+           const trackToDown: any = await TrackModel.find({order: req.params.order});
+           const trackToUp: any = await TrackModel.find({order: req.params.order + 1});
+           console.log(trackToDown);
+           console.log(trackToUp);
+           trackToDown.order = req.params.order + 1
+           trackToUp.order = req.params.order;
+           try {
+            await trackToDown.save();
+            await trackToUp.save();
+           }
+           catch (err) {
+             console.log(err);
+           }
+
+           const allTracksFinal = await TrackModel.find({});
+
+           res.send(allTracksFinal);
         }
-
-        sortedTracks.save((error: any) => {
-            if (error) {
-                return next(new Error("Could not load save tracks"));
-            } else {
-                res.send(sortedTracks);
-            }
-        });
     });
 });
 
