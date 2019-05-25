@@ -1,12 +1,12 @@
 import express from "express";
 import Grid from "gridfs-stream";
+import { ObjectID } from "mongodb";
 import mongoose from "mongoose";
 import GridFSStorage from "multer-gridfs-storage";
 const router = express.Router();
-
 import multer from "multer";
 import { TrackSchema } from "../Schemas/track";
-import {error} from "util";
+
 mongoose.Promise = global.Promise;
 
 const dbHost = "mongodb://database/mean-docker";
@@ -75,7 +75,7 @@ db.once("open", () => {
     router.get("/tracks", (req, res) => {
         const TrackModel = db.model("tracks", TrackSchema);
 
-        TrackModel.find((err, tracks) => {res.send(tracks); });
+        TrackModel.find({}).sort({order: 1}).exec((err, tracks) => {res.send(tracks); });
     });
 
     // Delete track
@@ -109,29 +109,29 @@ db.once("open", () => {
 
     router.post("/tracks/shift/:order/:way", async (req, res, next) => {
         const TrackModel = db.model("tracks", TrackSchema);
-        const allTracks = await TrackModel.find({});
+        const allTracks = await TrackModel.find({}, null, {sort: {order: 1}});
         const allTracksLength = allTracks.length;
 
         if (req.params.way === "down") {
-           if (req.params.order >= allTracksLength - 2) {return next(); }
-
-           const trackToDown: any = await TrackModel.find({order: req.params.order});
-           const trackToUp: any = await TrackModel.find({order: req.params.order + 1});
-           console.log(trackToDown);
-           console.log(trackToUp);
-           trackToDown.order = req.params.order + 1
-           trackToUp.order = req.params.order;
-           try {
-            await trackToDown.save();
-            await trackToUp.save();
-           }
-           catch (err) {
-             console.log(err);
-           }
-
-           const allTracksFinal = await TrackModel.find({});
-
-           res.send(allTracksFinal);
+            if (Number(req.params.order) > (allTracksLength - 1) || Number(req.params.order) < 1) {
+                return res.send(allTracks);
+            }
+            const itemToMove: any = await TrackModel.findOne({order: req.params.order});
+            const downItem: any = await TrackModel.findOne({order: Number(req.params.order) + 1});
+            await TrackModel.findByIdAndUpdate(itemToMove._id, {$set: {order: Number(req.params.order) + 1}});
+            await TrackModel.findByIdAndUpdate(downItem._id, {$set: {order: Number(req.params.order)}});
+            TrackModel.find({}).sort({order: 1}).exec((err, tracks) => { res.send(tracks); });
+        } else if (req.params.way === "up") {
+            if (Number(req.params.order) < 2 || (Number(req.params.order) > allTracks.length)) {
+                return res.send(allTracks);
+            }
+            const itemToMove: any = await TrackModel.findOne({order: req.params.order});
+            const upItem: any = await TrackModel.findOne({order: Number(req.params.order) - 1});
+            await TrackModel.findByIdAndUpdate(itemToMove._id, {$set: {order: Number(req.params.order) - 1}});
+            await TrackModel.findByIdAndUpdate(upItem._id, {$set: {order: Number(req.params.order)}});
+            TrackModel.find({}).sort({order: 1}).exec((err, tracks) => { res.send(tracks); });
+        } else {
+            res.send(allTracks);
         }
     });
 });

@@ -20,4 +20,4 @@ COPY . /usr/src/app
 EXPOSE 3000
 
 # Serve the app
-CMD ["npm", "run", "start:dev"]
+CMD ["npm", "run", "start:watch"]
