@@ -1,5 +1,15 @@
 <div class="container">
-  <app-play-track-item class="max-width" *ngIf="!isEdit" (changeState)="switchStates(true)" [trackData]="trackDataToShare"></app-play-track-item>
-  <app-edit-track-item class="max-width" *ngIf="isEdit" (changeState)="switchStates(false)" [trackData]="trackDataToShare"></app-edit-track-item>
+  <app-play-track-item class="max-width"
+                       *ngIf="!isEdit"
+                       (changeOrder)="changeOrder($event.way, $event.order)"
+                       (changeState)="switchStates(true)"
+                       [trackData]="trackDataToShare">
+
+  </app-play-track-item>
+  <app-edit-track-item class="max-width"
+                       *ngIf="isEdit"
+                       [trackData]="trackDataToShare">
+
+  </app-edit-track-item>
 </div>
 

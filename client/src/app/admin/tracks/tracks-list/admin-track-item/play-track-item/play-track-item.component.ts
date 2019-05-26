@@ -4,6 +4,8 @@ interface Track {
   fileName: string;
   trackName: string;
   bandName: string;
+  order: Number;
+  _id: any;
 }
 
 @Component({
@@ -14,6 +16,7 @@ interface Track {
 export class PlayTrackItemComponent implements OnInit {
   @Input()  trackData: Track;
   @Output() changeState = new EventEmitter();
+  @Output() changeOrder = new EventEmitter();
 
   constructor() { }
 
@@ -23,4 +26,13 @@ export class PlayTrackItemComponent implements OnInit {
   doChangeState() {
     this.changeState.emit();
   }
+
+  orderUp() {
+    this.changeOrder.emit({ way: 'up' , order: this.trackData.order});
+  }
+
+  orderDown() {
+    this.changeOrder.emit({ way: 'down', order: this.trackData.order});
+  }
+
 }

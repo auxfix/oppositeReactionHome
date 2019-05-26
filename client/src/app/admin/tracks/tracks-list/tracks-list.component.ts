@@ -30,5 +30,4 @@ export class TracksListComponent implements OnInit {
         this.tracks = songs;
       }, error => console.log(error));
   }
-
 }

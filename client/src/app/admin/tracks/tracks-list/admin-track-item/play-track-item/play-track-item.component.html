@@ -1,12 +1,13 @@
-<div class="container" (click)="doChangeState()">
+<div class="container">
   <div class="left-container">
+    <div class="order">{{trackData.order}}</div>
     <div class="name-block">
       <span class="track-name"><strong>{{trackData.bandName}}</strong> &mdash; {{trackData.trackName}}</span>
     </div>
   </div>
   <div class="right-container">
-    <app-control-track-button [icon]="'edit'"></app-control-track-button>
-    <app-control-track-button [icon]="'keyboard_arrow_up'"></app-control-track-button>
-    <app-control-track-button [icon]="'keyboard_arrow_down'"></app-control-track-button>
+    <app-control-track-button [icon]="'edit'" (click)="doChangeState()"></app-control-track-button>
+    <app-control-track-button [icon]="'keyboard_arrow_up'" (click)="orderUp()"></app-control-track-button>
+    <app-control-track-button [icon]="'keyboard_arrow_down'" (click)="orderDown()"></app-control-track-button>
   </div>
 </div>

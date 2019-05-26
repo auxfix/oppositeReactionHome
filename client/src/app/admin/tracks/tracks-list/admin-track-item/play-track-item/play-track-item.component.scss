@@ -5,7 +5,21 @@
   width: 100%;
   display: flex;
   justify-content: space-between;
+  align-items: flex-start;
   .left-container {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    .order{
+      display:flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 2rem;
+      border: 0.2rem solid $font-color-header-one;
+      border-radius: 50%;
+      width: 2.3rem;
+      margin-right: 1rem;
+    }
     .name-block {
       display: flex;
       justify-content: flex-start;

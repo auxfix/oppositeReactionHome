@@ -16,4 +16,8 @@ export class TracksService {
   public uploadTrack(trackData: FormData): Observable<any> {
     return this.httpClient.post(`${this.API}/tracks`, trackData);
   }
+
+  public changeOrder(way: string, order: Number): Observable<any> {
+    return this.httpClient.post(`${this.API}/tracks/shift/${order}/${way}`, {});
+  }
 }

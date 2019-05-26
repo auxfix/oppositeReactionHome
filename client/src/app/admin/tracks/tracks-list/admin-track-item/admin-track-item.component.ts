@@ -1,4 +1,5 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import { TracksService } from 'api/tracks.service';
 
 interface Track {
   fileName: string;
@@ -15,8 +16,9 @@ export class AdminTrackItemComponent implements OnInit {
   private isEdit: boolean;
   private trackDataToShare: Track;
   @Input() trackData: Track;
+  @Output() orderChanged = new EventEmitter();
 
-  constructor() { }
+  constructor(private http: TracksService) { }
 
   ngOnInit() {
     this.isEdit = false;
@@ -25,5 +27,10 @@ export class AdminTrackItemComponent implements OnInit {
 
   switchStates(isEdit: boolean) {
     this.isEdit = isEdit;
+  }
+
+  async changeOrder(way: string, order: Number) {
+    await this.http.changeOrder(way, order).toPromise();
+    this.orderChanged.emit();
   }
 }
