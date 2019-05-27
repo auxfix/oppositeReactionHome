@@ -5,6 +5,7 @@ interface Track {
   fileName: string;
   trackName: string;
   bandName: string;
+  _id: any;
 }
 
 @Component({
@@ -15,6 +16,7 @@ interface Track {
 export class EditTrackItemComponent implements OnInit {
   @Input() trackData: Track;
   @Output() changeState = new EventEmitter();
+  @Output() updateTrackData = new EventEmitter();
 
   @ViewChild('trackEditFormTag') trackEditFormRef: NgForm;
 
@@ -37,11 +39,9 @@ export class EditTrackItemComponent implements OnInit {
   }
 
   onFormSubmit() {
-    const trackData = this.trackEditForm.value;
-    const input = new FormData();
-
-    input.append('trackName', trackData.trackName);
-    input.append('bandName', trackData.bandName);
+    const currentTrack = this.trackEditForm.value;
+    const trackData = {trackName: currentTrack.trackName, bandName: currentTrack.bandName};
+    this.updateTrackData.emit({id: this.trackData._id, trackData: trackData});
   }
 
   doChangeState() {

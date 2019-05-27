@@ -8,6 +8,7 @@
   </app-play-track-item>
   <app-edit-track-item class="max-width"
                        *ngIf="isEdit"
+                       (updateTrackData)="updateTrackData($event.id, $event.trackData)"
                        [trackData]="trackDataToShare">
 
   </app-edit-track-item>

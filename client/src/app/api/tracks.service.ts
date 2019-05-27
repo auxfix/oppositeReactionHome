@@ -20,4 +20,8 @@ export class TracksService {
   public changeOrder(way: string, order: Number): Observable<any> {
     return this.httpClient.post(`${this.API}/tracks/shift/${order}/${way}`, {});
   }
+
+  public updateTrackData(id: any, trackData: Object): Observable<any> {
+    return this.httpClient.post(`${this.API}/tracks/edit/${id}`, trackData);
+  }
 }

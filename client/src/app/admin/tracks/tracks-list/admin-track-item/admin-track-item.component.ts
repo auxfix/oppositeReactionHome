@@ -33,4 +33,10 @@ export class AdminTrackItemComponent implements OnInit {
     await this.http.changeOrder(way, order).toPromise();
     this.orderChanged.emit();
   }
+
+  async updateTrackData(id: any, trackData: Object) {
+    await this.http.updateTrackData(id, trackData).toPromise();
+    this.isEdit = false;
+    this.orderChanged.emit();
+  }
 }
