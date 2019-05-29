@@ -1,7 +1,6 @@
 import express from "express";
-import Grid from "gridfs-stream";
-import { ObjectID } from "mongodb";
 import mongoose from "mongoose";
+import Grid from "gridfs-stream";
 import GridFSStorage from "multer-gridfs-storage";
 const router = express.Router();
 import multer from "multer";
@@ -13,7 +12,6 @@ const dbHost = "mongodb://database/mean-docker";
 const db = mongoose.createConnection(dbHost);
 
 db.once("open", () => {
-
     const gfs = Grid(db.db, mongoose.mongo);
 
     const storage = new GridFSStorage({
@@ -42,12 +40,11 @@ db.once("open", () => {
     router.post("/tracks", async (req, res, next) => {
         const AllTracksModel = db.model("tracks", TrackSchema);
 
-        const allTracks: any = await AllTracksModel.find();
+        const allTracks: any = await AllTracksModel.find({});
         let maxOrder = 0;
         if (!!allTracks) {
-           maxOrder = Math.max(allTracks.map((track: any) => track.order));
+           maxOrder = Math.max.apply(null, allTracks.map((track: any) => track.order));
         }
-
         upload(req, res, (err) => {
             if (err) {
                 res.json({error_code: 1, err_desc: err});
@@ -79,10 +76,14 @@ db.once("open", () => {
     });
 
     // Delete track
-    router.get("/tracks/delete/:trackId", (req, res, next) => {
+    router.delete("/tracks/delete/:trackId", async (req, res, next) => {
         const TrackModel = db.model("tracks", TrackSchema);
 
-        TrackModel.find({ id: req.params.trackId}).remove( () => next() );
+        await TrackModel.deleteOne({ _id: req.params.trackId });
+
+        const allTracks = await TrackModel.find({}, null, {sort: {order: 1}});
+
+        res.send(allTracks);
     });
 
     // Edit track
