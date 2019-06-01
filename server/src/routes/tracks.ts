@@ -1,8 +1,9 @@
 import express from "express";
-import mongoose from "mongoose";
 import Grid from "gridfs-stream";
+import mongoose from "mongoose";
 import GridFSStorage from "multer-gridfs-storage";
 const router = express.Router();
+import mongodb, {MongoClient, ObjectID} from "mongodb";
 import multer from "multer";
 import { TrackSchema } from "../Schemas/track";
 
@@ -11,9 +12,41 @@ mongoose.Promise = global.Promise;
 const dbHost = "mongodb://database/mean-docker";
 const db = mongoose.createConnection(dbHost);
 
+MongoClient.connect("mongodb://database", (err, client) => {
+    if (err) {
+        process.exit(1);
+    }
+    const dbRaw = client.db("mean-docker");
+
+    router.get("/tracks/play/:trackID", (req, res) => {
+
+        const trackID = new ObjectID(req.params.trackID);
+
+        res.set("content-type", "audio/mp3");
+        res.set("accept-ranges", "bytes");
+
+        const bucket = new mongodb.GridFSBucket(dbRaw, {
+            bucketName: "tracks"
+        });
+
+        const downloadStream = bucket.openDownloadStream(trackID);
+
+        downloadStream.on("data", (chunk) => {
+            res.write(chunk);
+        });
+
+        downloadStream.on("error", () => {
+            res.sendStatus(404);
+        });
+
+        downloadStream.on("end", () => {
+            res.end();
+        });
+    });
+});
+
 db.once("open", () => {
     const gfs = Grid(db.db, mongoose.mongo);
-
     const storage = new GridFSStorage({
         db,
         file: (req: any, file) => {
