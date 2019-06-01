@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { TracksService } from 'api/tracks.service';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 
 interface Track {
   fileName: String;
@@ -14,20 +13,17 @@ interface Track {
 })
 export class TracksListComponent implements OnInit {
 
-  tracks: Track[] = [];
+  @Input() tracks: Track[] = [];
+  @Output() getAllTracksOut: EventEmitter<any> = new EventEmitter();
 
-  constructor(private http: TracksService) {}
+  constructor() {}
 
   ngOnInit() {
-    this.getAllTracks();
+
   }
 
-  // Get all users from the API
   getAllTracks() {
-    this.http.getAllTracks()
-      .subscribe(songs => {
-        console.log(songs);
-        this.tracks = songs;
-      }, error => console.log(error));
+    this.getAllTracksOut.emit();
   }
+
 }
