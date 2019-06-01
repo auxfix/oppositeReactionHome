@@ -24,4 +24,8 @@ export class TracksService {
   public updateTrackData(id: any, trackData: Object): Observable<any> {
     return this.httpClient.post(`${this.API}/tracks/edit/${id}`, trackData);
   }
+
+  public deleteTrack(id: any) {
+    return this.httpClient.delete(`${this.API}/tracks/delete/${id}`, {});
+  }
 }

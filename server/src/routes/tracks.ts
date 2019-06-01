@@ -82,7 +82,11 @@ db.once("open", () => {
         await TrackModel.deleteOne({ _id: req.params.trackId });
 
         const allTracks = await TrackModel.find({}, null, {sort: {order: 1}});
-
+        for (let i = 0; i < allTracks.length; i++) {
+            const trackToUpdate: any  = allTracks[i];
+            trackToUpdate.order = i + 1;
+            trackToUpdate.save();
+        }
         res.send(allTracks);
     });
 

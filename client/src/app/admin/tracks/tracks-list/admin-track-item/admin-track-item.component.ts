@@ -16,7 +16,7 @@ export class AdminTrackItemComponent implements OnInit {
   private isEdit: boolean;
   private trackDataToShare: Track;
   @Input() trackData: Track;
-  @Output() orderChanged = new EventEmitter();
+  @Output() trackDataChanged = new EventEmitter();
 
   constructor(private http: TracksService) { }
 
@@ -31,12 +31,17 @@ export class AdminTrackItemComponent implements OnInit {
 
   async changeOrder(way: string, order: Number) {
     await this.http.changeOrder(way, order).toPromise();
-    this.orderChanged.emit();
+    this.trackDataChanged.emit();
   }
 
   async updateTrackData(id: any, trackData: Object) {
     await this.http.updateTrackData(id, trackData).toPromise();
     this.isEdit = false;
-    this.orderChanged.emit();
+    this.trackDataChanged.emit();
+  }
+
+  async deleteTrack(id: any) {
+    await this.http.deleteTrack(id).toPromise();
+    this.trackDataChanged.emit();
   }
 }

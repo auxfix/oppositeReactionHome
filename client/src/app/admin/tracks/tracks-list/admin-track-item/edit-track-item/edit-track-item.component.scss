@@ -6,6 +6,11 @@
   display:flex;
   justify-content: space-between;
   align-items: center;
+  .right-buttons{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
   .track-edit-form{
     height: 50%;
     display:flex;

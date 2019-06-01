@@ -17,11 +17,19 @@
       >
       </app-round-button>
   </form>
-  <app-round-button
-    [customStyles]="{width: '3.7rem',height: '3.7rem'}"
-    [customIconStyle]="{marginLeft:'1rem'}"
-    [icon]="'arrow_back_ios'"
-    (clickButton)="doChangeState()"
-  >
-  </app-round-button>
+  <div class="right-buttons">
+    <app-round-button
+      [customStyles]="{width: '3.7rem',height: '3.7rem', marginRight: '1rem'}"
+      [icon]="'delete_forever'"
+      (clickButton)="deleteTrack()"
+    >
+    </app-round-button>
+    <app-round-button
+      [customStyles]="{width: '3.7rem',height: '3.7rem'}"
+      [customIconStyle]="{marginLeft:'1rem'}"
+      [icon]="'arrow_back_ios'"
+      (clickButton)="doChangeState()"
+    >
+    </app-round-button>
+  </div>
 </div>

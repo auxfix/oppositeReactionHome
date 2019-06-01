@@ -8,6 +8,8 @@
   </app-play-track-item>
   <app-edit-track-item class="max-width"
                        *ngIf="isEdit"
+                       (changeState)="switchStates(false)"
+                       (deleteTrackEvent)="deleteTrack($event.id)"
                        (updateTrackData)="updateTrackData($event.id, $event.trackData)"
                        [trackData]="trackDataToShare">
 

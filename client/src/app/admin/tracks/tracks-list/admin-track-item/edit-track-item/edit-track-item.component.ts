@@ -17,6 +17,7 @@ export class EditTrackItemComponent implements OnInit {
   @Input() trackData: Track;
   @Output() changeState = new EventEmitter();
   @Output() updateTrackData = new EventEmitter();
+  @Output() deleteTrackEvent = new EventEmitter();
 
   @ViewChild('trackEditFormTag') trackEditFormRef: NgForm;
 
@@ -36,6 +37,10 @@ export class EditTrackItemComponent implements OnInit {
 
   saveTrack() {
     this.trackEditFormRef.ngSubmit.emit();
+  }
+
+  deleteTrack() {
+    this.deleteTrackEvent.emit({id: this.trackData._id});
   }
 
   onFormSubmit() {
