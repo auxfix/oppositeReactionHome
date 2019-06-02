@@ -2,6 +2,12 @@
   <h1 class="edit-list-header">Edit tracks list</h1>
 
   <div *ngFor="let track of tracks">
-    <app-admin-track-item [trackData]="track" (trackDataChanged)="getAllTracks()"></app-admin-track-item>
+    <app-admin-track-item
+      [trackData]="track"
+      (trackDataChanged)="getAllTracks()"
+      [currentTrackId]="currentTrackId"
+      [isPlay]="isPlay"
+      (trackPlayEvnt)="trackPlay($event.trackId, $event.isPlay)"
+    ></app-admin-track-item>
   </div>
 </div>

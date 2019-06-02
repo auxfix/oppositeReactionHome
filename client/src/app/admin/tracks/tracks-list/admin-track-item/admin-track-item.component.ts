@@ -17,6 +17,9 @@ export class AdminTrackItemComponent implements OnInit {
   private trackDataToShare: Track;
   @Input() trackData: Track;
   @Output() trackDataChanged = new EventEmitter();
+  @Input() public currentTrackId: any;
+  @Input() public isPlay: boolean;
+  @Output() trackPlayEvnt: EventEmitter<{trackId: any, isPlay: boolean}> = new EventEmitter();
 
   constructor(private http: TracksService) { }
 
@@ -43,5 +46,9 @@ export class AdminTrackItemComponent implements OnInit {
   async deleteTrack(id: any) {
     await this.http.deleteTrack(id).toPromise();
     this.trackDataChanged.emit();
+  }
+
+  trackPlay(trackId: any, isPlay: boolean) {
+    this.trackPlayEvnt.emit({trackId, isPlay});
   }
 }

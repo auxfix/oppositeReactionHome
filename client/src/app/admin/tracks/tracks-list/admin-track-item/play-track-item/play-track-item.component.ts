@@ -5,6 +5,7 @@ interface Track {
   trackName: string;
   bandName: string;
   order: Number;
+  songId: any;
   _id: any;
 }
 
@@ -17,6 +18,9 @@ export class PlayTrackItemComponent implements OnInit {
   @Input()  trackData: Track;
   @Output() changeState = new EventEmitter();
   @Output() changeOrder = new EventEmitter();
+  @Input() public currentTrackId: any;
+  @Input() public isPlay: boolean;
+  @Output() trackPlayEvent: EventEmitter<{trackId: any, isPlay: boolean}> = new EventEmitter();
 
   constructor() { }
 
@@ -35,4 +39,7 @@ export class PlayTrackItemComponent implements OnInit {
     this.changeOrder.emit({ way: 'down', order: this.trackData.order});
   }
 
+  trackPlay (trackId: any, isPlay: boolean) {
+    this.trackPlayEvent.emit({trackId: trackId, isPlay: isPlay});
+  }
 }

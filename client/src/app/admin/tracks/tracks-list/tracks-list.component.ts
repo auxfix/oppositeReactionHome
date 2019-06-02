@@ -14,6 +14,9 @@ interface Track {
 export class TracksListComponent implements OnInit {
 
   @Input() tracks: Track[] = [];
+  @Input() public currentTrackId: any;
+  @Input() public isPlay: boolean;
+  @Output() trackPlayFromList: EventEmitter<{trackId: any, isPlay: boolean}> = new EventEmitter();
   @Output() getAllTracksOut: EventEmitter<any> = new EventEmitter();
 
   constructor() {}
@@ -26,4 +29,7 @@ export class TracksListComponent implements OnInit {
     this.getAllTracksOut.emit();
   }
 
+  trackPlay(trackId: any, isPlay: boolean) {
+    this.trackPlayFromList.emit({trackId, isPlay});
+  }
 }

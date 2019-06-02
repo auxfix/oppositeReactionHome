@@ -1,10 +1,24 @@
 <div class="container">
-  <div class="left-container">
-    <div class="order">{{trackData.order}}</div>
-    <div class="name-block">
-      <span class="track-name"><strong>{{trackData.bandName}}</strong> &mdash; {{trackData.trackName}}</span>
+  <div class="left-main-container">
+    <div class="left-container">
+      <div class="order">{{trackData.order}}</div>
+      <div class="name-block">
+        <span class="track-name"><strong>{{trackData.bandName}}</strong> &mdash; {{trackData.trackName}}</span>
+      </div>
     </div>
-  </div>
+    <app-round-button *ngIf="(trackData.songId === currentTrackId) && isPlay"
+      [customStyles]="{width: '3.7rem',height: '3.7rem'}"
+      [icon]="'pause'"
+      (clickButton)="trackPlay(trackData.songId, false)"
+    >
+    </app-round-button>
+    <app-round-button *ngIf="(trackData.songId !== currentTrackId) || !isPlay"
+      [customStyles]="{width: '3.7rem',height: '3.7rem'}"
+      [icon]="'play_arrow'"
+      (clickButton)="trackPlay(trackData.songId, true)"
+    >
+    </app-round-button>
+    </div>
   <div class="right-container">
     <app-control-track-button [icon]="'edit'" (click)="doChangeState()"></app-control-track-button>
     <app-control-track-button [icon]="'keyboard_arrow_up'" (click)="orderUp()"></app-control-track-button>

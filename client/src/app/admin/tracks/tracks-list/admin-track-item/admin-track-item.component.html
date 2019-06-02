@@ -3,7 +3,11 @@
                        *ngIf="!isEdit"
                        (changeOrder)="changeOrder($event.way, $event.order)"
                        (changeState)="switchStates(true)"
-                       [trackData]="trackDataToShare">
+                       [trackData]="trackDataToShare"
+                       [currentTrackId]="currentTrackId"
+                       [isPlay]="isPlay"
+                       (trackPlayEvent)="trackPlay($event.trackId, $event.isPlay)"
+  >
 
   </app-play-track-item>
   <app-edit-track-item class="max-width"
