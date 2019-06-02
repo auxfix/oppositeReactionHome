@@ -1,5 +1,7 @@
-<h1 class="edit-list-header">Edit tracks list</h1>
+<div class="container">
+  <h1 class="edit-list-header">Edit tracks list</h1>
 
-<div *ngFor="let track of tracks">
-  <app-admin-track-item [trackData]="track" (trackDataChanged)="getAllTracks()"></app-admin-track-item>
+  <div *ngFor="let track of tracks">
+    <app-admin-track-item [trackData]="track" (trackDataChanged)="getAllTracks()"></app-admin-track-item>
+  </div>
 </div>

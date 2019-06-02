@@ -1,3 +1,11 @@
-.tracks-container{
-  margin-top: 3rem;
+.container {
+  height: 70rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  .tracks-container{
+    margin-top: 3rem;
+    max-height: 55rem;
+    overflow-y: auto;
+  }
 }

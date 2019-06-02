@@ -1,0 +1,7 @@
+@import "src/vrs";
+
+.container{
+  border: 0.2rem solid lighten( $font-color-header-one, 20%);
+  border-radius: 1rem;
+  height: 6rem;
+}

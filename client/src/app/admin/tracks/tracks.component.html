@@ -1,5 +1,8 @@
 <app-upload-track (uploadStart)="uploadTrack($event)"></app-upload-track>
-<div class="tracks-container">
-  <app-tracks-list [tracks]="tracks" (getAllTracksOut)="getAllTracks()"></app-tracks-list>
+<div class="container">
+  <div class="tracks-container">
+    <app-tracks-list [tracks]="tracks" (getAllTracksOut)="getAllTracks()"></app-tracks-list>
+  </div>
+  <app-audio-plr></app-audio-plr>
 </div>
 
