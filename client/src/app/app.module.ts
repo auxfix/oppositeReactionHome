@@ -12,7 +12,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 // components
-import { PlyrModule } from 'ngx-plyr';
+import { PlyrModule } from 'modules/ngx-plyr/src/public_api';
 import { NavPanelComponent } from 'navigation/nav-panel/nav-panel.component';
 import { HomeComponent } from 'home/home.component';
 import { TracksComponent } from 'tracks/tracks.component';
@@ -31,7 +31,7 @@ import { EditTrackItemComponent } from 'admin/tracks/tracks-list/admin-track-ite
 import { PlayTrackItemComponent } from 'admin/tracks/tracks-list/admin-track-item/play-track-item/play-track-item.component';
 import { AdminTrackItemComponent } from 'admin/tracks/tracks-list/admin-track-item/admin-track-item.component';
 import { ControlButtonComponent } from 'admin/tracks/tracks-list/admin-track-item/play-track-item/control-button/control-button.component';
-import { AudioPlrComponent } from './admin/tracks/audio-plr/audio-plr.component';
+import { AudioPlrComponent } from 'admin/tracks/audio-plr/audio-plr.component';
 
 @NgModule({
   declarations: [

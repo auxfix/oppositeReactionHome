@@ -24,6 +24,9 @@
       "app/*": [
         "src/app/*"
       ],
+      "modules/*": [
+        "src/app/modules/*"
+      ],
       "admin/*": [
         "src/app/admin/*"
       ],

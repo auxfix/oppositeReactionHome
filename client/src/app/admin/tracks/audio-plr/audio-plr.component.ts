@@ -1,6 +1,5 @@
-import {Component, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
-import Plyr from 'plyr';
-import { PlyrComponent } from 'ngx-plyr';
+import {Component, EventEmitter, OnInit, Output, ViewChild} from '@angular/core';
+import { PlyrComponent } from 'modules/ngx-plyr/src/lib/plyr/plyr.component';
 
 @Component({
   selector: 'app-audio-plr',
@@ -25,7 +24,7 @@ export class AudioPlrComponent implements OnInit {
     this.plyr.player.pause();
   }
 
-  play(id: any): void {
+  play(id: any) {
     this.trackId = id;
     this.plyr.player.source = {
       type: 'audio',
@@ -33,9 +32,10 @@ export class AudioPlrComponent implements OnInit {
         {
           src: `http://localhost:3000/tracks/play/${this.trackId}`,
           type: 'audio/mp3',
-        },
-      ],
+        }
+      ]
     };
+
     this.plyr.player.play();
   }
 
