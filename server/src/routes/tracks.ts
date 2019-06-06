@@ -75,7 +75,7 @@ db.once("open", () => {
 
         const allTracks: any = await AllTracksModel.find({});
         let maxOrder = 0;
-        if (!!allTracks) {
+        if (!!allTracks && allTracks.length > 0) {
            maxOrder = Math.max.apply(null, allTracks.map((track: any) => track.order));
         }
         upload(req, res, (err) => {

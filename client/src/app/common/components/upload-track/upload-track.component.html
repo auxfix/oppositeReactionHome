@@ -5,14 +5,14 @@
     >
       <div class="upload-controls">
         <div class="input-block">
-          <div class="label">track name</div>
-          <app-input-form-control [formControl]="trackUploadForm.controls['trackName']"></app-input-form-control>
-          <app-validation-message [field]="trackUploadForm && trackUploadForm.get('trackName')"></app-validation-message>
-        </div>
-        <div class="input-block">
           <div class="label">band name</div>
           <app-input-form-control [formControl]="trackUploadForm.controls['bandName']"></app-input-form-control>
           <app-validation-message [field]="trackUploadForm && trackUploadForm.get('bandName')"></app-validation-message>
+        </div>
+        <div class="input-block">
+          <div class="label">track name</div>
+          <app-input-form-control [formControl]="trackUploadForm.controls['trackName']"></app-input-form-control>
+          <app-validation-message [field]="trackUploadForm && trackUploadForm.get('trackName')"></app-validation-message>
         </div>
         <app-file-form-control [formControl]="trackUploadForm.controls['file']"></app-file-form-control>
         <div

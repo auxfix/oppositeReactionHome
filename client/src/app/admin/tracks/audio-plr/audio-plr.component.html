@@ -1,6 +1,8 @@
 <div class="container">
   <div
        plyr
+       plyrType="audio"
+       [plyrSources]="audioSources"
        (plyrPlay) = "playStart()"
        (plyrPause) = "playPause()"
   ></div>

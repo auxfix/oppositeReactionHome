@@ -12,7 +12,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 // components
-import { PlyrModule } from 'modules/ngx-plyr/src/public_api';
+import { PlyrModule } from 'ngx-plyr';
 import { NavPanelComponent } from 'navigation/nav-panel/nav-panel.component';
 import { HomeComponent } from 'home/home.component';
 import { TracksComponent } from 'tracks/tracks.component';
