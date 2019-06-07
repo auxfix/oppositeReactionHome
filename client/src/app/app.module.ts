@@ -30,8 +30,9 @@ import { TracksListComponent } from 'admin/tracks/tracks-list/tracks-list.compon
 import { EditTrackItemComponent } from 'admin/tracks/tracks-list/admin-track-item/edit-track-item/edit-track-item.component';
 import { PlayTrackItemComponent } from 'admin/tracks/tracks-list/admin-track-item/play-track-item/play-track-item.component';
 import { AdminTrackItemComponent } from 'admin/tracks/tracks-list/admin-track-item/admin-track-item.component';
-import { ControlButtonComponent } from 'admin/tracks/tracks-list/admin-track-item/play-track-item/control-button/control-button.component';
+import { ControlButtonComponent } from 'common/components/control-button/control-button.component';
 import { AudioPlrComponent } from 'admin/tracks/audio-plr/audio-plr.component';
+import { PublicTrackItemComponent } from 'tracks/components/public-track-item/public-track-item.component';
 
 @NgModule({
   declarations: [
@@ -57,6 +58,7 @@ import { AudioPlrComponent } from 'admin/tracks/audio-plr/audio-plr.component';
     AdminTrackItemComponent,
     ControlButtonComponent,
     AudioPlrComponent,
+    PublicTrackItemComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,23 @@
+<div class="container">
+  <div class="control-button-container">
+    <app-round-button *ngIf="true"
+                      [customStyles]="{width: '3.7rem',height: '3.7rem'}"
+                      [icon]="'pause'"
+                      (clickButton)="trackPlay(trackData.songId, false)"
+    >
+    </app-round-button>
+    <app-round-button *ngIf="false"
+                      [customStyles]="{width: '3.7rem',height: '3.7rem'}"
+                      [icon]="'play_arrow'"
+                      (clickButton)="trackPlay(trackData.songId, true)"
+    >
+    </app-round-button>
+  </div>
+  <div class="left-container">
+      <div class="order">{{trackData.order}}</div>
+      <div class="name-block">
+        <span class="track-name"><strong>{{trackData.bandName}}</strong> &mdash; {{trackData.trackName}}</span>
+      </div>
+    </div>
+</div>
+

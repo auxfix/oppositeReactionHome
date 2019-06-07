@@ -1,0 +1,51 @@
+@import "src/vrs";
+
+.container{
+  height: 4rem;
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+
+  .control-button-container {
+
+  }
+
+  .name-block {
+    display: flex;
+    justify-content: flex-start;
+
+    .track-name {
+      &:nth-child(2) {
+        margin-left: 0.4rem;
+      }
+
+      display: inline-block;
+      text-align: center;
+      font-size: 2rem;
+      font-weight: 500;
+      color: $font-color-header-one;
+    }
+  }
+
+  .left-main-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    .left-container {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+
+      .order {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 2rem;
+        width: 4rem;
+        margin-right: 1rem;
+      }
+    }
+  }
+}
