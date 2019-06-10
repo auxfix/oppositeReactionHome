@@ -1,0 +1,10 @@
+.main-container {
+  max-height: 90vh;
+  overflow-y: auto;
+
+  .container{
+    &:first-child {
+      margin-top: 5rem;
+    }
+  }
+}

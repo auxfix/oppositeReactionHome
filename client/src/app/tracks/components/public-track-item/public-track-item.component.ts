@@ -15,7 +15,7 @@ interface Track {
   styleUrls: ['./public-track-item.component.scss']
 })
 export class PublicTrackItemComponent implements OnInit {
-  @Input()  trackData: Track;
+  @Input() public trackData: Track;
   @Input() public currentTrackId: any;
   @Input() public isPlay: boolean;
   @Output() trackPlayEvent: EventEmitter<{trackId: any, isPlay: boolean}> = new EventEmitter();
