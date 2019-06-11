@@ -33,6 +33,7 @@ import { AdminTrackItemComponent } from 'admin/tracks/tracks-list/admin-track-it
 import { ControlButtonComponent } from 'common/components/control-button/control-button.component';
 import { AudioPlrComponent } from 'admin/tracks/audio-plr/audio-plr.component';
 import { PublicTrackItemComponent } from 'tracks/components/public-track-item/public-track-item.component';
+import { PublicAudioPlayerComponent } from './tracks/components/public-audio-player/public-audio-player.component';
 
 @NgModule({
   declarations: [
@@ -59,6 +60,7 @@ import { PublicTrackItemComponent } from 'tracks/components/public-track-item/pu
     ControlButtonComponent,
     AudioPlrComponent,
     PublicTrackItemComponent,
+    PublicAudioPlayerComponent,
   ],
   imports: [
     BrowserModule,
