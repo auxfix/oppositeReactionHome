@@ -1,12 +1,12 @@
 <div class="container">
   <div class="control-button-container">
-    <app-round-button *ngIf="true"
+    <app-round-button *ngIf="(trackData.songId === currentTrackId) && isPlay"
                       [customStyles]="{width: '3.7rem',height: '3.7rem'}"
                       [icon]="'pause'"
                       (clickButton)="trackPlay(trackData.songId, false)"
     >
     </app-round-button>
-    <app-round-button *ngIf="false"
+    <app-round-button *ngIf="(trackData.songId !== currentTrackId) || !isPlay"
                       [customStyles]="{width: '3.7rem',height: '3.7rem'}"
                       [icon]="'play_arrow'"
                       (clickButton)="trackPlay(trackData.songId, true)"

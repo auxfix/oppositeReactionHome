@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit, ViewChild} from '@angular/core';
 import { TracksService } from 'api/tracks.service';
+import {PublicAudioPlayerComponent} from 'tracks/components/public-audio-player/public-audio-player.component';
 
 interface Track {
   fileName: String;
@@ -16,6 +17,10 @@ interface Track {
 export class TracksComponent implements OnInit {
 
   tracks: Track[] = [];
+  @Input() currentTrackId: any;
+  @Input() isPlay: boolean;
+
+  @ViewChild(PublicAudioPlayerComponent) player: PublicAudioPlayerComponent;
 
   constructor(private http: TracksService) {}
 
@@ -30,5 +35,20 @@ export class TracksComponent implements OnInit {
         console.log(songs);
         this.tracks = songs;
       }, error => console.log(error));
+  }
+
+  trackPlay(trackId: any, isPlay: boolean) {
+    this.currentTrackId = trackId;
+    this.isPlay = isPlay;
+  }
+
+  trackPlayFromLst(trackId: any, isPlay: boolean) {
+    this.currentTrackId = trackId;
+    this.isPlay = isPlay;
+    if (isPlay) {
+      this.player.play(trackId);
+    } else {
+      this.player.pause();
+    }
   }
 }

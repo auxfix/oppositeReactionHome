@@ -1,4 +1,5 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
+import { PlyrComponent } from 'ngx-plyr';
 
 interface Track {
   fileName: string;
@@ -18,7 +19,7 @@ export class PublicTrackItemComponent implements OnInit {
   @Input() public trackData: Track;
   @Input() public currentTrackId: any;
   @Input() public isPlay: boolean;
-  @Output() trackPlayEvent: EventEmitter<{trackId: any, isPlay: boolean}> = new EventEmitter();
+  @Output() playTrack: EventEmitter<{trackId: any, isPlay: boolean}> = new EventEmitter();
 
   constructor() { }
 
@@ -26,6 +27,6 @@ export class PublicTrackItemComponent implements OnInit {
   }
 
   trackPlay (trackId: any, isPlay: boolean) {
-    this.trackPlayEvent.emit({trackId: trackId, isPlay: isPlay});
+    this.playTrack.emit({trackId: trackId, isPlay: isPlay});
   }
 }
