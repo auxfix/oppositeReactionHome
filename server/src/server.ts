@@ -8,6 +8,7 @@ mongoose.connect("mongodb://database/mean-docker");
 
 import "./models/newsItem";
 import "./models/track";
+import newsRoutes from "./routes/news";
 import tracksRoutes from "./routes/tracks";
 
 const app = express();
@@ -25,6 +26,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 // Set our api routes
 app.use("/", tracksRoutes);
+app.use("/", newsRoutes);
 
 /**
  * Get port from environment and store in Express.
