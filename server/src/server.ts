@@ -3,6 +3,11 @@ import cors from "cors";
 import express from "express";
 import http from "http";
 import mongoose from "mongoose";
+
+mongoose.connect("mongodb://database/mean-docker");
+
+import "./models/newsItem";
+import "./models/track";
 import tracksRoutes from "./routes/tracks";
 
 const app = express();

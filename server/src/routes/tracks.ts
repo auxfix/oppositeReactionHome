@@ -1,11 +1,10 @@
 import express from "express";
-import Grid from "gridfs-stream";
 import mongoose from "mongoose";
 import GridFSStorage from "multer-gridfs-storage";
 const router = express.Router();
 import mongodb, {MongoClient, ObjectID} from "mongodb";
 import multer from "multer";
-import { TrackSchema } from "../Schemas/track";
+const trackModel = mongoose.model("Track");
 
 mongoose.Promise = global.Promise;
 
@@ -46,7 +45,6 @@ MongoClient.connect("mongodb://database", (err, client) => {
 });
 
 db.once("open", () => {
-    const gfs = Grid(db.db, mongoose.mongo);
     const storage = new GridFSStorage({
         db,
         file: (req: any, file) => {
@@ -71,9 +69,8 @@ db.once("open", () => {
 
     // Route for file upload
     router.post("/tracks", async (req, res, next) => {
-        const AllTracksModel = db.model("tracks", TrackSchema);
 
-        const allTracks: any = await AllTracksModel.find({});
+        const allTracks: any = await trackModel.find({});
         let maxOrder = 0;
         if (!!allTracks && allTracks.length > 0) {
            maxOrder = Math.max.apply(null, allTracks.map((track: any) => track.order));
@@ -84,9 +81,7 @@ db.once("open", () => {
                 return;
             }
 
-            const TrackModel = db.model("tracks", TrackSchema);
-
-            const TrackInstance = new TrackModel({
+            const TrackInstance = new trackModel({
                 _id: new mongoose.Types.ObjectId(),
                 logoId: null,
                 order: maxOrder + 1,
@@ -100,78 +95,72 @@ db.once("open", () => {
             }).catch((error) => res.send(error));
         });
     });
+});
 
-    // Get all routes
-    router.get("/tracks", (req, res) => {
-        const TrackModel = db.model("tracks", TrackSchema);
+// Get all routes
+router.get("/tracks", (req, res) => {
+    trackModel.find({}).sort({order: 1}).exec((err, tracks) => {res.send(tracks); });
+});
 
-        TrackModel.find({}).sort({order: 1}).exec((err, tracks) => {res.send(tracks); });
-    });
+// Delete track
+router.delete("/tracks/delete/:trackId", async (req, res, next) => {
+    await trackModel.deleteOne({ _id: req.params.trackId });
 
-    // Delete track
-    router.delete("/tracks/delete/:trackId", async (req, res, next) => {
-        const TrackModel = db.model("tracks", TrackSchema);
+    const allTracks = await trackModel.find({}, null, {sort: {order: 1}});
+    for (let i = 0; i < allTracks.length; i++) {
+        const trackToUpdate: any  = allTracks[i];
+        trackToUpdate.order = i + 1;
+        trackToUpdate.save();
+    }
+    res.send(allTracks);
+});
 
-        await TrackModel.deleteOne({ _id: req.params.trackId });
-
-        const allTracks = await TrackModel.find({}, null, {sort: {order: 1}});
-        for (let i = 0; i < allTracks.length; i++) {
-            const trackToUpdate: any  = allTracks[i];
-            trackToUpdate.order = i + 1;
-            trackToUpdate.save();
-        }
-        res.send(allTracks);
-    });
-
-    // Edit track
-    router.post("/tracks/edit/:trackId", (req, res, next) => {
-        const TrackModel = db.model("tracks", TrackSchema);
-        TrackModel.findById(req.params.trackId, (err, track: any) => {
-            if (!track) {
-                return next(new Error("Could not load track"));
-            } else {
-                // do your updates here
-                track.bandName = req.body.bandName;
-                track.trackName = req.body.trackName;
-
-                track.save((saveError: any) => {
-                    if (saveError) {
-                        return next(new Error("Could not load save track"));
-                    } else {
-                        res.send(track);
-                    }
-                });
-            }
-        });
-    });
-
-    router.post("/tracks/shift/:order/:way", async (req, res, next) => {
-        const TrackModel = db.model("tracks", TrackSchema);
-        const allTracks = await TrackModel.find({}, null, {sort: {order: 1}});
-        const allTracksLength = allTracks.length;
-
-        if (req.params.way === "down") {
-            if (Number(req.params.order) > (allTracksLength - 1) || Number(req.params.order) < 1) {
-                return res.send(allTracks);
-            }
-            const itemToMove: any = await TrackModel.findOne({order: req.params.order});
-            const downItem: any = await TrackModel.findOne({order: Number(req.params.order) + 1});
-            await TrackModel.findByIdAndUpdate(itemToMove._id, {$set: {order: Number(req.params.order) + 1}});
-            await TrackModel.findByIdAndUpdate(downItem._id, {$set: {order: Number(req.params.order)}});
-            TrackModel.find({}).sort({order: 1}).exec((err, tracks) => { res.send(tracks); });
-        } else if (req.params.way === "up") {
-            if (Number(req.params.order) < 2 || (Number(req.params.order) > allTracks.length)) {
-                return res.send(allTracks);
-            }
-            const itemToMove: any = await TrackModel.findOne({order: req.params.order});
-            const upItem: any = await TrackModel.findOne({order: Number(req.params.order) - 1});
-            await TrackModel.findByIdAndUpdate(itemToMove._id, {$set: {order: Number(req.params.order) - 1}});
-            await TrackModel.findByIdAndUpdate(upItem._id, {$set: {order: Number(req.params.order)}});
-            TrackModel.find({}).sort({order: 1}).exec((err, tracks) => { res.send(tracks); });
+// Edit track
+router.post("/tracks/edit/:trackId", (req, res, next) => {
+    trackModel.findById(req.params.trackId, (err, track: any) => {
+        if (!track) {
+            return next(new Error("Could not load track"));
         } else {
-            res.send(allTracks);
+            // do your updates here
+            track.bandName = req.body.bandName;
+            track.trackName = req.body.trackName;
+
+            track.save((saveError: any) => {
+                if (saveError) {
+                    return next(new Error("Could not load save track"));
+                } else {
+                    res.send(track);
+                }
+            });
         }
     });
+});
+
+router.post("/tracks/shift/:order/:way", async (req, res, next) => {
+    const allTracks = await trackModel.find({}, null, {sort: {order: 1}});
+    const allTracksLength = allTracks.length;
+
+    if (req.params.way === "down") {
+        if (Number(req.params.order) > (allTracksLength - 1) || Number(req.params.order) < 1) {
+            return res.send(allTracks);
+        }
+        const itemToMove: any = await trackModel.findOne({order: req.params.order});
+        const downItem: any = await trackModel.findOne({order: Number(req.params.order) + 1});
+        await trackModel.findByIdAndUpdate(itemToMove._id, {$set: {order: Number(req.params.order) + 1}});
+        await trackModel.findByIdAndUpdate(downItem._id, {$set: {order: Number(req.params.order)}});
+        trackModel.find({}).sort({order: 1}).exec((err, tracks) => { res.send(tracks); });
+    } else if (req.params.way === "up") {
+        if (Number(req.params.order) < 2 || (Number(req.params.order) > allTracks.length)) {
+            return res.send(allTracks);
+        }
+        const itemToMove: any = await trackModel.findOne({order: req.params.order});
+        const upItem: any = await trackModel.findOne({order: Number(req.params.order) - 1});
+        await trackModel.findByIdAndUpdate(itemToMove._id, {$set: {order: Number(req.params.order) - 1}});
+        await trackModel.findByIdAndUpdate(upItem._id, {$set: {order: Number(req.params.order)}});
+        trackModel.find({}).sort({order: 1}).exec((err, tracks) => { res.send(tracks); });
+    } else {
+        res.send(allTracks);
+    }
 });
 
 export default router;

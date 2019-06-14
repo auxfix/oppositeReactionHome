@@ -9,4 +9,4 @@ const TrackSchema = new mongoose.Schema({
     trackName: String,
 });
 
-export { TrackSchema };
+mongoose.model("Track", TrackSchema);
