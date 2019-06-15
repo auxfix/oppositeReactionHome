@@ -44,6 +44,7 @@ import { NewsAdminItemComponent } from 'admin/news/components/list-of-news/news-
     AppComponent,
     NavPanelComponent,
     NavPanelComponent,
+    NavPanelComponent,
     HomeComponent,
     TracksComponent,
     AlbumComponent,

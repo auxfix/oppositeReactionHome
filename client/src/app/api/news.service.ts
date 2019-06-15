@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
 @Injectable()
-export class TracksService {
+export class NewsService {
 
   API = 'http://localhost:3000';
 

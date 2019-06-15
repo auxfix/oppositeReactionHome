@@ -1,3 +1,8 @@
-<p>
-  list-of-news works!
-</p>
+<div class="container">
+  <div *ngFor="let newsItem of news">
+    <app-news-admin-item
+      [data]="newsItem"
+    >
+    </app-news-admin-item>
+  </div>
+</div>

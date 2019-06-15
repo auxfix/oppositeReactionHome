@@ -1,0 +1,9 @@
+@import "src/vrs";
+
+.add-button-container {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  height: 7rem;
+  border-bottom: $grey-one 0.1rem solid;
+}

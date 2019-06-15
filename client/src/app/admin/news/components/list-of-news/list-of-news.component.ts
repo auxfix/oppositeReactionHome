@@ -1,4 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+
+interface NewsItem {
+  _id: String;
+  title: String;
+  text: String;
+  date: String;
+}
 
 @Component({
   selector: 'app-list-of-news',
@@ -6,6 +13,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./list-of-news.component.scss']
 })
 export class ListOfNewsComponent implements OnInit {
+
+  @Input() news: NewsItem[];
 
   constructor() { }
 

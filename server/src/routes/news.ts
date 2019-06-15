@@ -4,13 +4,8 @@ const router = express.Router();
 const newsModel = mongoose.model("NewsItem");
 
 // get all news
-router.get("/news", async (req, res, next) => {
-    try {
-        const allNews = await newsModel.find({});
-        res.send(allNews);
-    } catch (exception) {
-        res.status(500).json({ error: JSON.stringify(exception) });
-    }
+router.get("/news", (req, res, next) => {
+    newsModel.find({}).sort({date: -1}).exec((err, news) => {res.send(news); });
 });
 
 // post news
@@ -20,6 +15,7 @@ router.post("/news", async (req, res, next) => {
             _id: new mongoose.Types.ObjectId(),
             title: req.body.title,
             text: req.body.text,
+            date: new Date(),
         });
         await newNews.save();
         res.sendStatus(200);

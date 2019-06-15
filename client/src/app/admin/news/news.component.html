@@ -1,3 +1,15 @@
-<p>
-  news works!
-</p>
+<div class="add-button-container">
+  <app-round-button
+   [customStyles]="{width: '5.5rem',height: '5.5rem'}"
+   [customIconStyle]="{width:'5rem', height: '5rem', fontSize: '5rem'}"
+   [icon]="'add'"
+  >
+  </app-round-button>
+</div>
+<div class="news-list-container">
+  <app-list-of-news
+    [news]="news"
+  >
+
+  </app-list-of-news>
+</div>
