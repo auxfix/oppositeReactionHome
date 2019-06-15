@@ -10,6 +10,10 @@ const NewsItem = new mongoose.Schema({
         type: String,
         required: true
     },
+    date: {
+        type: Date,
+        required: true
+    }
 });
 
 mongoose.model("NewsItem", NewsItem);

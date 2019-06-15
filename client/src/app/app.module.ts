@@ -33,7 +33,11 @@ import { AdminTrackItemComponent } from 'admin/tracks/tracks-list/admin-track-it
 import { ControlButtonComponent } from 'common/components/control-button/control-button.component';
 import { AudioPlrComponent } from 'admin/tracks/audio-plr/audio-plr.component';
 import { PublicTrackItemComponent } from 'tracks/components/public-track-item/public-track-item.component';
-import { PublicAudioPlayerComponent } from './tracks/components/public-audio-player/public-audio-player.component';
+import { PublicAudioPlayerComponent } from 'tracks/components/public-audio-player/public-audio-player.component';
+import { NewsComponent } from 'admin/news/news.component';
+import { ListOfNewsComponent } from 'admin/news/components/list-of-news/list-of-news.component';
+import { EditNewsComponent } from 'admin/news/components/edit-news/edit-news.component';
+import { NewsAdminItemComponent } from 'admin/news/components/list-of-news/news-admin-item/news-admin-item.component';
 
 @NgModule({
   declarations: [
@@ -61,6 +65,10 @@ import { PublicAudioPlayerComponent } from './tracks/components/public-audio-pla
     AudioPlrComponent,
     PublicTrackItemComponent,
     PublicAudioPlayerComponent,
+    NewsComponent,
+    ListOfNewsComponent,
+    EditNewsComponent,
+    NewsAdminItemComponent,
   ],
   imports: [
     BrowserModule,
