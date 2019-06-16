@@ -1,15 +1,26 @@
-<div class="add-button-container">
-  <app-round-button
-   [customStyles]="{width: '5.5rem',height: '5.5rem'}"
-   [customIconStyle]="{width:'5rem', height: '5rem', fontSize: '5rem'}"
-   [icon]="'add'"
-  >
-  </app-round-button>
+<div *ngIf="isShowList">
+  <div class="add-button-container">
+    <app-round-button
+     [customStyles]="{width: '5.5rem',height: '5.5rem'}"
+     [customIconStyle]="{width:'5rem', height: '5rem', fontSize: '5rem'}"
+     [icon]="'add'"
+     (clickButton)="addNews()"
+    >
+    </app-round-button>
+  </div>
+  <div class="news-list-container">
+    <app-list-of-news
+      [news]="news"
+      (editNews)="editNews($event.newsId)"
+    >
+    </app-list-of-news>
+  </div>
 </div>
-<div class="news-list-container">
-  <app-list-of-news
-    [news]="news"
-  >
-
-  </app-list-of-news>
+<div *ngIf="isShowEditForm">
+  <app-edit-news
+    [newsId]="editTrackId"
+    [isNewNews]="isNewNews"
+    (saveNewsCallback)="newsHasBeenSaved()"
+    (backCallback)="toListState()"
+  ></app-edit-news>
 </div>

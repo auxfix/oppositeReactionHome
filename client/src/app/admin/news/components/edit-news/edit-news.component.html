@@ -1,3 +1,35 @@
-<p>
-  edit-news works!
-</p>
+<div class="container">
+  <form class="news-edit-form" #newsEditFormTag="ngForm" [formGroup]="newsEditForm" (ngSubmit)="onFormSubmit($event)">
+    <div class="input-block">
+      <app-input-form-control [formControl]="newsEditForm.controls['title']"></app-input-form-control>
+      <app-validation-message [field]="newsEditForm && newsEditForm.get('title')"></app-validation-message>
+    </div>
+    <div class="input-block">
+      <app-input-form-control [formControl]="newsEditForm.controls['text']"></app-input-form-control>
+      <app-validation-message [field]="newsEditForm && newsEditForm.get('text')"></app-validation-message>
+    </div>
+  </form>
+  <div class="bottom-buttons">
+    <app-round-button
+      [customStyles]="{width: '3.7rem',height: '3.7rem', marginRight: '1rem'}"
+      [icon]="'save'"
+      (clickButton)="saveNews()"
+    >
+    </app-round-button>
+    <app-round-button
+      [customStyles]="{width: '3.7rem',height: '3.7rem', marginRight: '1rem'}"
+      [icon]="'keyboard_backspace'"
+      (clickButton)="back()"
+    >
+    </app-round-button>
+    <app-round-button
+      *ngIf="!isNewNews"
+      [customStyles]="{width: '3.7rem',height: '3.7rem', marginRight: '1rem'}"
+      [icon]="'delete_forever'"
+      (clickButton)="delete()"
+    >
+    </app-round-button>
+
+  </div>
+</div>
+

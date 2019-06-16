@@ -2,6 +2,7 @@
   <div *ngFor="let newsItem of news">
     <app-news-admin-item
       [data]="newsItem"
+      (click) = "editNewsItem(newsItem._id)"
     >
     </app-news-admin-item>
   </div>

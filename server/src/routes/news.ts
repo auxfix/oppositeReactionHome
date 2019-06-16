@@ -8,6 +8,15 @@ router.get("/news", (req, res, next) => {
     newsModel.find({}).sort({date: -1}).exec((err, news) => {res.send(news); });
 });
 
+router.get("/news/:id", async (req, res, next) => {
+    try {
+        const newsItem = await newsModel.findById(req.params.id);
+        res.send(newsItem);
+    } catch (exception) {
+        res.status(500).json({ error: JSON.stringify(exception) });
+    }
+});
+
 // post news
 router.post("/news", async (req, res, next) => {
     try {

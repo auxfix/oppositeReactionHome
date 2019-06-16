@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 
 interface NewsItem {
   _id: String;
@@ -15,10 +15,14 @@ interface NewsItem {
 export class ListOfNewsComponent implements OnInit {
 
   @Input() news: NewsItem[];
+  @Output() editNews = new EventEmitter<any>();
 
   constructor() { }
 
   ngOnInit() {
   }
 
+  editNewsItem (newsId: string) {
+    this.editNews.emit({newsId});
+  }
 }

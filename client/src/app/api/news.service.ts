@@ -13,12 +13,16 @@ export class NewsService {
     return this.httpClient.get(`${this.API}/news`);
   }
 
+  public getNewsItem(id: string): Observable<any> {
+    return this.httpClient.get(`${this.API}/news/${id}`);
+  }
+
   public postNews(newsItem: Object): Observable<any> {
     return this.httpClient.post(`${this.API}/news`, newsItem);
   }
 
-  public editNews(id: string, order: Number): Observable<any> {
-    return this.httpClient.put(`${this.API}/news/${id}`, {});
+  public editNews(id: string, newsData: Object): Observable<any> {
+    return this.httpClient.put(`${this.API}/news/${id}`, newsData);
   }
 
   public deleteNews(id: string): Observable<any> {
