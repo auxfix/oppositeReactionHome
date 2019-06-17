@@ -18,14 +18,14 @@ export class NewsService {
   }
 
   public postNews(newsItem: Object): Observable<any> {
-    return this.httpClient.post(`${this.API}/news`, newsItem);
+    return this.httpClient.post(`${this.API}/news`, newsItem, {responseType: 'text'});
   }
 
   public editNews(id: string, newsData: Object): Observable<any> {
-    return this.httpClient.put(`${this.API}/news/${id}`, newsData);
+    return this.httpClient.put(`${this.API}/news/${id}`, newsData, {responseType: 'text'});
   }
 
   public deleteNews(id: string): Observable<any> {
-    return this.httpClient.delete(`${this.API}/news/${id}`);
+    return this.httpClient.delete(`${this.API}/news/${id}`, {responseType: 'text'});
   }
 }
