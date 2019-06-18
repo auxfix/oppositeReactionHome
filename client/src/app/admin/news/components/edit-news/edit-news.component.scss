@@ -1,0 +1,28 @@
+@import "src/vrs";
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  height: 70vh;
+  width: 50vw;
+  .news-edit-form {
+    width: 100%;
+    .input-block {
+      .form-component-title {
+        margin-top: 2rem;
+        font-size: 1.7rem;
+        font-weight: 500;
+        color: $font-color-header-one;
+      }
+      width: 100%;
+    }
+  }
+
+  .bottom-buttons {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+  }
+}

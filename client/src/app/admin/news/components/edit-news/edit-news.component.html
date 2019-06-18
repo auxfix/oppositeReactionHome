@@ -1,16 +1,22 @@
 <div class="container">
   <form class="news-edit-form" #newsEditFormTag="ngForm" [formGroup]="newsEditForm" (ngSubmit)="onFormSubmit($event)">
     <div class="input-block">
-      <app-input-form-control [formControl]="newsEditForm.controls['title']"></app-input-form-control>
+      <div class="form-component-title">Title</div>
+      <app-input-form-control
+        [formControl]="newsEditForm.controls['title']"
+        [customStyles]="{width: '100%'}"
+      ></app-input-form-control>
       <app-validation-message [field]="newsEditForm && newsEditForm.get('title')"></app-validation-message>
     </div>
     <div class="input-block">
+      <div class="form-component-title">Text</div>
       <app-input-form-control [formControl]="newsEditForm.controls['text']"></app-input-form-control>
       <app-validation-message [field]="newsEditForm && newsEditForm.get('text')"></app-validation-message>
     </div>
   </form>
   <div class="bottom-buttons">
     <app-round-button
+      *ngIf="newsEditForm.valid"
       [customStyles]="{width: '3.7rem',height: '3.7rem', marginRight: '1rem'}"
       [icon]="'save'"
       (clickButton)="saveNews()"
