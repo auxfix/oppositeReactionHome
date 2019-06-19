@@ -13,6 +13,7 @@ import { AppComponent } from './app.component';
 
 // components
 import { PlyrModule } from 'ngx-plyr';
+import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 import { NavPanelComponent } from 'navigation/nav-panel/nav-panel.component';
 import { HomeComponent } from 'home/home.component';
 import { TracksComponent } from 'tracks/tracks.component';
@@ -38,6 +39,7 @@ import { NewsComponent } from 'admin/news/news.component';
 import { ListOfNewsComponent } from 'admin/news/components/list-of-news/list-of-news.component';
 import { EditNewsComponent } from 'admin/news/components/edit-news/edit-news.component';
 import { NewsAdminItemComponent } from 'admin/news/components/list-of-news/news-admin-item/news-admin-item.component';
+import { RichTextEditorComponent } from 'common/components/form/rich-text-editor/rich-text-editor.component';
 
 @NgModule({
   declarations: [
@@ -70,6 +72,7 @@ import { NewsAdminItemComponent } from 'admin/news/components/list-of-news/news-
     ListOfNewsComponent,
     EditNewsComponent,
     NewsAdminItemComponent,
+    RichTextEditorComponent,
   ],
   imports: [
     BrowserModule,
@@ -80,7 +83,8 @@ import { NewsAdminItemComponent } from 'admin/news/components/list-of-news/news-
     MatTabsModule,
     MatIconModule,
     ReactiveFormsModule,
-    PlyrModule
+    PlyrModule,
+    CKEditorModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -10,7 +10,7 @@
     </div>
     <div class="input-block">
       <div class="form-component-title">Text</div>
-      <app-input-form-control [formControl]="newsEditForm.controls['text']"></app-input-form-control>
+      <app-rich-text-editor [formControl]="newsEditForm.controls['text']"></app-rich-text-editor>
       <app-validation-message [field]="newsEditForm && newsEditForm.get('text')"></app-validation-message>
     </div>
   </form>
