@@ -18,6 +18,8 @@ import { NavPanelComponent } from 'navigation/nav-panel/nav-panel.component';
 import { HomeComponent } from 'home/home.component';
 import { TracksComponent } from 'tracks/tracks.component';
 import { AlbumComponent } from 'album/album.component';
+import { NewsComponent } from 'news/news.component';
+import { NewsAdminComponent } from 'admin/news/news.component';
 import { AdminComponent } from 'admin/admin.component';
 import { AdminPhotoComponent } from 'admin/photo/photo.component';
 import { AdminTracksComponent } from 'admin/tracks/tracks.component';
@@ -35,7 +37,6 @@ import { ControlButtonComponent } from 'common/components/control-button/control
 import { AudioPlrComponent } from 'admin/tracks/audio-plr/audio-plr.component';
 import { PublicTrackItemComponent } from 'tracks/components/public-track-item/public-track-item.component';
 import { PublicAudioPlayerComponent } from 'tracks/components/public-audio-player/public-audio-player.component';
-import { NewsComponent } from 'admin/news/news.component';
 import { ListOfNewsComponent } from 'admin/news/components/list-of-news/list-of-news.component';
 import { EditNewsComponent } from 'admin/news/components/edit-news/edit-news.component';
 import { NewsAdminItemComponent } from 'admin/news/components/list-of-news/news-admin-item/news-admin-item.component';
@@ -44,6 +45,8 @@ import { RichTextEditorComponent } from 'common/components/form/rich-text-editor
 @NgModule({
   declarations: [
     AppComponent,
+    NewsComponent,
+    NewsAdminComponent,
     NavPanelComponent,
     NavPanelComponent,
     NavPanelComponent,

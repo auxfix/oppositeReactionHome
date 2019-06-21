@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { HomeComponent } from './home/home.component';
-import { TracksComponent } from './tracks/tracks.component';
-import { AlbumComponent } from './album/album.component';
-import { AdminComponent } from './admin/admin.component';
+import { HomeComponent } from 'home/home.component';
+import { TracksComponent } from 'tracks/tracks.component';
+import { NewsComponent } from 'news/news.component';
+import { AdminComponent } from 'admin/admin.component';
 
 export const routes: Routes = [
   {
@@ -13,8 +13,8 @@ export const routes: Routes = [
     pathMatch: 'full'
   },
   { path: 'home', component: HomeComponent },
+  { path: 'news', component: NewsComponent},
   { path: 'tracks', component: TracksComponent },
-  { path: 'album', component: AlbumComponent},
   { path: 'admin', component: AdminComponent }
 ];
 

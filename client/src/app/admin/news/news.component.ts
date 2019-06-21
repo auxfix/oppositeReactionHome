@@ -14,7 +14,7 @@ interface NewsItem {
   styleUrls: ['./news.component.scss'],
   providers: [NewsService]
 })
-export class NewsComponent implements OnInit {
+export class NewsAdminComponent implements OnInit {
 
   public news: NewsItem[] = [];
   public editTrackId: string;

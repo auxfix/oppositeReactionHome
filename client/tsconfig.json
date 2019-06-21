@@ -33,6 +33,9 @@
       "album/*": [
         "src/app/album/*"
       ],
+      "news/*": [
+        "src/app/news/*"
+      ],
       "api/*": [
         "src/app/api/*"
       ],
