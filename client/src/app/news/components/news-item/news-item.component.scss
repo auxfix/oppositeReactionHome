@@ -1,0 +1,42 @@
+@import "src/vrs";
+
+.container {
+  margin-bottom: 12rem;
+  .header{
+    margin-bottom: 4rem;
+    font-size: 3rem;
+    border-bottom: $grey-one 0.1rem solid;
+    padding-bottom: 1.8rem;
+    font-weight: 500;
+  }
+
+  :host ::ng-deep .text {
+    p {
+      font-size: 1.7rem;
+    }
+
+    h4 {
+      font-size: 2.1rem;
+    }
+
+    h3 {
+      font-size: 2.5rem;
+    }
+
+    h2 {
+      font-size: 2.9rem;
+    }
+
+    ol {
+      li {
+        font-size: 1.7rem;
+      }
+    }
+
+    ul {
+      li {
+        font-size: 1.7rem;
+      }
+    }
+  }
+}

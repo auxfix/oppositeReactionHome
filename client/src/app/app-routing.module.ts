@@ -3,7 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { HomeComponent } from 'home/home.component';
 import { TracksComponent } from 'tracks/tracks.component';
-import { NewsComponent } from 'news/news.component';
+import { PublicNewsComponent } from 'news/news.component';
 import { AdminComponent } from 'admin/admin.component';
 
 export const routes: Routes = [
@@ -13,7 +13,7 @@ export const routes: Routes = [
     pathMatch: 'full'
   },
   { path: 'home', component: HomeComponent },
-  { path: 'news', component: NewsComponent},
+  { path: 'news', component: PublicNewsComponent},
   { path: 'tracks', component: TracksComponent },
   { path: 'admin', component: AdminComponent }
 ];

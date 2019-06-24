@@ -18,7 +18,7 @@ import { NavPanelComponent } from 'navigation/nav-panel/nav-panel.component';
 import { HomeComponent } from 'home/home.component';
 import { TracksComponent } from 'tracks/tracks.component';
 import { AlbumComponent } from 'album/album.component';
-import { NewsComponent } from 'news/news.component';
+import { PublicNewsComponent } from 'news/news.component';
 import { NewsAdminComponent } from 'admin/news/news.component';
 import { AdminComponent } from 'admin/admin.component';
 import { AdminPhotoComponent } from 'admin/photo/photo.component';
@@ -41,11 +41,13 @@ import { ListOfNewsComponent } from 'admin/news/components/list-of-news/list-of-
 import { EditNewsComponent } from 'admin/news/components/edit-news/edit-news.component';
 import { NewsAdminItemComponent } from 'admin/news/components/list-of-news/news-admin-item/news-admin-item.component';
 import { RichTextEditorComponent } from 'common/components/form/rich-text-editor/rich-text-editor.component';
+import { PublicNewsItemComponent } from 'news/components/news-item/news-item.component';
+import { SafeHtmlPipe } from 'pipes/safeHtml.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
-    NewsComponent,
+    PublicNewsComponent,
     NewsAdminComponent,
     NavPanelComponent,
     NavPanelComponent,
@@ -71,11 +73,12 @@ import { RichTextEditorComponent } from 'common/components/form/rich-text-editor
     AudioPlrComponent,
     PublicTrackItemComponent,
     PublicAudioPlayerComponent,
-    NewsComponent,
     ListOfNewsComponent,
     EditNewsComponent,
     NewsAdminItemComponent,
     RichTextEditorComponent,
+    PublicNewsItemComponent,
+    SafeHtmlPipe,
   ],
   imports: [
     BrowserModule,

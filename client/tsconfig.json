@@ -36,6 +36,9 @@
       "news/*": [
         "src/app/news/*"
       ],
+      "pipes/*": [
+        "src/app/pipes/*"
+      ],
       "api/*": [
         "src/app/api/*"
       ],
