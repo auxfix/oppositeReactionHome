@@ -1,12 +1,18 @@
-<app-upload-track (uploadStart)="uploadTrack($event)"></app-upload-track>
+<div class="upload-container">
+  <app-upload-track (uploadStart)="uploadTrack($event)"></app-upload-track>
+</div>
 <div class="container">
-  <div class="tracks-container">
-    <app-tracks-list
-      [tracks]="tracks"
-      (getAllTracksOut)="getAllTracks()"
-      [currentTrackId]="currentTrackId"
-      [isPlay]="isPlay"
-      (trackPlayFromList)="trackPlayFromLst($event.trackId, $event.isPlay)"></app-tracks-list>
+  <div class="tracks-list-container">
+    <ng-scrollbar>
+      <div class="tracks-container">
+        <app-tracks-list
+          [tracks]="tracks"
+          (getAllTracksOut)="getAllTracks()"
+          [currentTrackId]="currentTrackId"
+          [isPlay]="isPlay"
+          (trackPlayFromList)="trackPlayFromLst($event.trackId, $event.isPlay)"></app-tracks-list>
+      </div>
+    </ng-scrollbar>
   </div>
   <app-audio-plr *ngIf="!!tracks && tracks.length > 0"
     (trackPlayEvent)="trackPlay($event.trackId, $event.isPlay)"

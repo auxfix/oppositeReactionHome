@@ -1,11 +1,22 @@
+@import "src/vrs";
+
 .container {
   height: 70rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  .tracks-container{
-    margin-top: 3rem;
-    max-height: 55rem;
-    overflow-y: auto;
+  .tracks-list-container{
+    .tracks-container{
+      margin-top: 3rem;
+      max-height: 58rem;
+    }
   }
 }
+
+.upload-container {
+  -webkit-box-shadow: -8px 6px 81px -24px rgba(0,0,0,0.75);
+  -moz-box-shadow: -8px 6px 81px -24px rgba(0,0,0,0.75);
+  box-shadow: -8px 6px 81px -24px rgba(0,0,0,0.75);
+  border-bottom: $grey-one 0.1rem solid;
+}
+

@@ -1,8 +1,10 @@
 <div
   class="container"
 >
-  <app-public-news-item *ngFor="let newsItem of publicNews"
-    [newsItem]="newsItem"
-  >
-  </app-public-news-item>
+  <ng-scrollbar>
+    <app-public-news-item *ngFor="let newsItem of publicNews"
+      [newsItem]="newsItem"
+    >
+    </app-public-news-item>
+  </ng-scrollbar>
 </div>

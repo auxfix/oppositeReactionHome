@@ -1,14 +1,16 @@
-<div class="main-container">
-  <div *ngFor="let track of tracks" class="container">
-    <app-public-track-item
-      [trackData]="track"
-      [currentTrackId]="currentTrackId"
-      [isPlay]="isPlay"
-      (playTrack)="trackPlayFromLst($event.trackId, $event.isPlay)">
+<ng-scrollbar>
+  <div class="main-container">
+    <div *ngFor="let track of tracks" class="container">
+      <app-public-track-item
+        [trackData]="track"
+        [currentTrackId]="currentTrackId"
+        [isPlay]="isPlay"
+        (playTrack)="trackPlayFromLst($event.trackId, $event.isPlay)">
 
-    </app-public-track-item>
+      </app-public-track-item>
+    </div>
   </div>
-</div>
+</ng-scrollbar>
 <app-public-audio-player *ngIf="!!tracks && tracks.length > 0"
   (trackPlayEvent)="trackPlay($event.trackId, $event.isPlay)"
   [initTrackId] = "tracks[0].songId">

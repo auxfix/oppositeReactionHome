@@ -1,9 +1,11 @@
 <div class="container">
-  <div *ngFor="let newsItem of news">
-    <app-news-admin-item
-      [data]="newsItem"
-      (click) = "editNewsItem(newsItem._id)"
-    >
-    </app-news-admin-item>
-  </div>
+  <ng-scrollbar>
+    <div *ngFor="let newsItem of news">
+      <app-news-admin-item
+        [data]="newsItem"
+        (click) = "editNewsItem(newsItem._id)"
+      >
+      </app-news-admin-item>
+    </div>
+  </ng-scrollbar>
 </div>

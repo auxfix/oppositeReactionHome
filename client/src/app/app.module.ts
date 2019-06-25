@@ -43,6 +43,7 @@ import { NewsAdminItemComponent } from 'admin/news/components/list-of-news/news-
 import { RichTextEditorComponent } from 'common/components/form/rich-text-editor/rich-text-editor.component';
 import { PublicNewsItemComponent } from 'news/components/news-item/news-item.component';
 import { SafeHtmlPipe } from 'pipes/safeHtml.pipe';
+import { NgScrollbarModule } from 'ngx-scrollbar';
 
 @NgModule({
   declarations: [
@@ -91,6 +92,7 @@ import { SafeHtmlPipe } from 'pipes/safeHtml.pipe';
     ReactiveFormsModule,
     PlyrModule,
     CKEditorModule,
+    NgScrollbarModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
