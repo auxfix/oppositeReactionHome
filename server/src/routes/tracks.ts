@@ -87,7 +87,8 @@ db.once("open", () => {
                 order: maxOrder + 1,
                 songId: res.req.file.id,
                 bandName: res.req.file.metadata.bandName,
-                trackName: res.req.file.metadata.trackName, }
+                trackName: res.req.file.metadata.trackName,
+                isFrontPageTrack: false}
                 );
             TrackInstance.save().then(() => {
                 console.log('SAVED_FILE_DATA:', res.req.file) // tslint:disable-line
@@ -160,6 +161,33 @@ router.post("/tracks/shift/:order/:way", async (req, res, next) => {
         trackModel.find({}).sort({order: 1}).exec((err, tracks) => { res.send(tracks); });
     } else {
         res.send(allTracks);
+    }
+});
+
+// set front page track
+router.post("/tracks/front/:trackId", async (req, res, next) => {
+    try {
+        await trackModel.updateMany(
+            { isFrontPageTrack: true },
+            { $set:
+                    {
+                        isFrontPageTrack: false,
+                    }
+            },
+            {upsert: true}
+            );
+        await trackModel.updateMany(
+            { _id: req.params.trackId },
+            { $set:
+                    {
+                        isFrontPageTrack: true,
+                    }
+            },
+            {upsert: true}
+            );
+        res.sendStatus(200);
+    } catch (exception) {
+        res.status(500).json({ error: JSON.stringify(exception) });
     }
 });
 

@@ -7,6 +7,7 @@ const TrackSchema = new mongoose.Schema({
     order: Number,
     bandName: String,
     trackName: String,
+    isFrontPageTrack: Boolean,
 });
 
 mongoose.model("Track", TrackSchema);
