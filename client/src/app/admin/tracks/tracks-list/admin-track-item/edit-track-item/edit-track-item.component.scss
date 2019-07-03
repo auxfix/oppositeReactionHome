@@ -10,6 +10,14 @@
     display: flex;
     justify-content: center;
     align-items: center;
+
+    .front-page-icon{
+      font-size: 4rem;
+      font-weight: 100;
+      color: $font-color-header-one;
+      margin-right: 2.3rem;
+      margin-top: -1.2rem;
+    }
   }
   .track-edit-form{
     height: 50%;

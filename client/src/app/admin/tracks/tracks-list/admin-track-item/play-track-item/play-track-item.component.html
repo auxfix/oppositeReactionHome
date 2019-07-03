@@ -18,10 +18,16 @@
       (clickButton)="trackPlay(trackData.songId, true)"
     >
     </app-round-button>
-    </div>
+  </div>
   <div class="right-container">
-    <app-control-track-button [icon]="'edit'" (click)="doChangeState()"></app-control-track-button>
-    <app-control-track-button [icon]="'keyboard_arrow_up'" (click)="orderUp()"></app-control-track-button>
-    <app-control-track-button [icon]="'keyboard_arrow_down'" (click)="orderDown()"></app-control-track-button>
+    <mat-icon
+      *ngIf="trackData.isFrontPageTrack"
+      class="material-icons-outlined front-page-icon"
+      >looks_one_outline</mat-icon>
+    <div>
+      <app-control-track-button [icon]="'edit'" (click)="doChangeState()"></app-control-track-button>
+      <app-control-track-button [icon]="'keyboard_arrow_up'" (click)="orderUp()"></app-control-track-button>
+      <app-control-track-button [icon]="'keyboard_arrow_down'" (click)="orderDown()"></app-control-track-button>
+    </div>
   </div>
 </div>

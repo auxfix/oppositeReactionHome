@@ -45,7 +45,15 @@
   }
   .right-container {
     display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+    align-items: center;
+    justify-content: flex-end;
+    width: 7rem;
+    .front-page-icon {
+      font-size: 4rem;
+      font-weight: 100;
+      color: $font-color-header-one;
+      margin-right: 7rem;
+      margin-top: -1.2rem;
+    }
   }
 }

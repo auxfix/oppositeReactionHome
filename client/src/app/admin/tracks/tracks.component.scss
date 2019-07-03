@@ -4,13 +4,12 @@
   height: 70rem;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  .tracks-list-container{
+  justify-content: flex-start;
     .tracks-container{
-      margin-top: 3rem;
-      max-height: 58rem;
+      max-height: 68rem;
+      overflow-y: auto;
+      overflow-x: hidden;
     }
-  }
 }
 
 .upload-container {

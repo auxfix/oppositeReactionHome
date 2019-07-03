@@ -11,6 +11,7 @@ interface Track {
   fileName: String;
   originalName: String;
   contentType: String;
+  isFrontPageTrack: Boolean;
 }
 
 @Component({

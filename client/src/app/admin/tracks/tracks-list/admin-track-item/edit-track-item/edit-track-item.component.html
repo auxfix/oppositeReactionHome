@@ -18,6 +18,11 @@
       </app-round-button>
   </form>
   <div class="right-buttons">
+    <mat-icon
+      *ngIf="!trackData.isFrontPageTrack"
+      class="material-icons-outlined front-page-icon"
+      (click)="doFrontPage()"
+      >looks_one_outline</mat-icon>
     <app-round-button
       [customStyles]="{width: '3.7rem',height: '3.7rem', marginRight: '1rem'}"
       [icon]="'delete_forever'"

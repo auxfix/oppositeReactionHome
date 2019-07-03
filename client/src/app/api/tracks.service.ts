@@ -28,4 +28,8 @@ export class TracksService {
   public deleteTrack(id: any) {
     return this.httpClient.delete(`${this.API}/tracks/delete/${id}`, {});
   }
+
+  public doFrontPageTrack(id: string) {
+    return this.httpClient.post(`${this.API}/tracks/front/${id}`, {}, {responseType: 'text'});
+  }
 }

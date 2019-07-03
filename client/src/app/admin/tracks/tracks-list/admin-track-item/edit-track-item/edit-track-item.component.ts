@@ -5,6 +5,7 @@ interface Track {
   fileName: string;
   trackName: string;
   bandName: string;
+  isFrontPageTrack: Boolean;
   _id: any;
 }
 
@@ -18,6 +19,7 @@ export class EditTrackItemComponent implements OnInit {
   @Output() changeState = new EventEmitter();
   @Output() updateTrackData = new EventEmitter();
   @Output() deleteTrackEvent = new EventEmitter();
+  @Output() doFrontPageTrack = new EventEmitter();
 
   @ViewChild('trackEditFormTag') trackEditFormRef: NgForm;
 
@@ -51,5 +53,9 @@ export class EditTrackItemComponent implements OnInit {
 
   doChangeState() {
     this.changeState.emit();
+  }
+
+  doFrontPage() {
+    this.doFrontPageTrack.emit({id: this.trackData._id});
   }
 }

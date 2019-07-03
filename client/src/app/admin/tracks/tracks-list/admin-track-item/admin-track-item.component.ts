@@ -5,6 +5,7 @@ interface Track {
   fileName: string;
   trackName: string;
   bandName: string;
+  isFrontPageTrack: Boolean;
 }
 
 @Component({
@@ -45,6 +46,12 @@ export class AdminTrackItemComponent implements OnInit {
 
   async deleteTrack(id: any) {
     await this.http.deleteTrack(id).toPromise();
+    this.trackDataChanged.emit();
+  }
+
+  async doFrontPageTrack(id: string) {
+    await this.http.doFrontPageTrack(id).toPromise();
+    this.isEdit = false;
     this.trackDataChanged.emit();
   }
 

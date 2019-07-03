@@ -6,6 +6,7 @@ interface Track {
   bandName: string;
   order: Number;
   songId: any;
+  isFrontPageTrack: Boolean;
   _id: any;
 }
 
