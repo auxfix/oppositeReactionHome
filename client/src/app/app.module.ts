@@ -44,6 +44,7 @@ import { RichTextEditorComponent } from 'common/components/form/rich-text-editor
 import { PublicNewsItemComponent } from 'news/components/news-item/news-item.component';
 import { SafeHtmlPipe } from 'pipes/safeHtml.pipe';
 import { NgScrollbarModule } from 'ngx-scrollbar';
+import { BigPlayButtonComponent } from 'home/components/big-play-button/big-play-button.component';
 
 @NgModule({
   declarations: [
@@ -80,6 +81,7 @@ import { NgScrollbarModule } from 'ngx-scrollbar';
     RichTextEditorComponent,
     PublicNewsItemComponent,
     SafeHtmlPipe,
+    BigPlayButtonComponent,
   ],
   imports: [
     BrowserModule,

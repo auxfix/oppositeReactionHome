@@ -1,0 +1,27 @@
+@import "src/vrs";
+
+.container {
+  border: $front-page-button solid 2px;
+  border-radius: 50%;
+  width: 17rem;
+  height: 17rem;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+
+  .reset{
+    position: absolute;
+    top: 0;
+    right: 0;
+    color: $front-page-button;
+  }
+
+  .button-icon{
+    font-size: 13rem;
+    width: 13rem;
+    height: 13rem;
+    color: $front-page-icon;
+  }
+}
