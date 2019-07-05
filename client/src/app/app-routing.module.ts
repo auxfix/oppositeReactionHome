@@ -9,10 +9,10 @@ import { AdminComponent } from 'admin/admin.component';
 export const routes: Routes = [
   {
     path: '',
-    redirectTo: '/home',
+    redirectTo: '/or',
     pathMatch: 'full'
   },
-  { path: 'home', component: HomeComponent },
+  { path: 'or', component: HomeComponent },
   { path: 'news', component: PublicNewsComponent},
   { path: 'tracks', component: TracksComponent },
   { path: 'admin', component: AdminComponent }

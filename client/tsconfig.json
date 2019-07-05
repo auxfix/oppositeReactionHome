@@ -53,6 +53,9 @@
       ],
       "common/*": [
         "src/app/common/*"
+      ],
+      "img/*": [
+        "src/assets/img/*"
       ]
     }
   }
