@@ -1,27 +1,47 @@
 @import "src/vrs";
 
-.container {
-  border: $front-page-button solid 2px;
-  border-radius: 50%;
-  width: 17rem;
-  height: 17rem;
-  cursor: pointer;
+.container{
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
-  position: relative;
+  justify-content: flex-start;
 
-  .reset{
-    position: absolute;
-    top: 0;
-    right: 0;
+  .track-name {
+    opacity: 0;
+    margin-top: 1.5rem;
     color: $front-page-button;
+    font-size: 1.4rem;
+    transition: all 0.5s;
   }
 
-  .button-icon{
-    font-size: 13rem;
-    width: 13rem;
-    height: 13rem;
-    color: $front-page-icon;
+  &:hover .track-name {
+    opacity: 1;
+    transition: all 0.5s;
+  }
+
+  .btn-container {
+    border: $front-page-button solid 2px;
+    border-radius: 50%;
+    width: 17rem;
+    height: 17rem;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+
+    .reset{
+      position: absolute;
+      top: 0;
+      right: 0;
+      color: $front-page-button;
+    }
+
+    .button-icon{
+      font-size: 13rem;
+      width: 13rem;
+      height: 13rem;
+      color: $front-page-icon;
+    }
   }
 }

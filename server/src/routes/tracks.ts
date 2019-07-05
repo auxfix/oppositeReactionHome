@@ -191,4 +191,15 @@ router.post("/tracks/front/:trackId", async (req, res, next) => {
     }
 });
 
+// get front page track
+router.get("/tracks/front", async (req, res, next) => {
+    try {
+        const frontPageTrack = await trackModel.findOne({isFrontPageTrack: true});
+
+        res.send(frontPageTrack);
+    } catch (exception) {
+        res.status(500).json({ error: JSON.stringify(exception) });
+    }
+});
+
 export default router;

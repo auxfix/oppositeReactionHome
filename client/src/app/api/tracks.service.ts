@@ -32,4 +32,8 @@ export class TracksService {
   public doFrontPageTrack(id: string) {
     return this.httpClient.post(`${this.API}/tracks/front/${id}`, {}, {responseType: 'text'});
   }
+
+  public getFrontPageTrack() {
+    return this.httpClient.get(`${this.API}/tracks/front`);
+  }
 }

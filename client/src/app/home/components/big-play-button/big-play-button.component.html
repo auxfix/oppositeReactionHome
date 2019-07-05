@@ -1,20 +1,23 @@
 <div class="container">
-  <div class="reset"
-    [@resetButtonAnim]="resetButtonAnimTrigger"
-    (@resetButtonAnim.done)="rotateEnd()"
-    (click)="doReset()"
-  >
-    <mat-icon
-      class="reset-icon">autorenew</mat-icon>
+  <div class="btn-container">
+    <div class="reset"
+      [@resetButtonAnim]="resetButtonAnimTrigger"
+      (@resetButtonAnim.done)="rotateEnd()"
+      (click)="doReset()"
+    >
+      <mat-icon
+        class="reset-icon">autorenew</mat-icon>
+    </div>
+    <div
+      (click)="changeState()"
+      class="button">
+      <mat-icon
+        *ngIf="isPause"
+        class="button-icon">play_arrow</mat-icon>
+      <mat-icon
+        *ngIf="isPlay"
+        class="button-icon">pause</mat-icon>
+    </div>
   </div>
-  <div
-    (click)="changeState()"
-    class="button">
-    <mat-icon
-      *ngIf="isPause"
-      class="button-icon">play_arrow</mat-icon>
-    <mat-icon
-      *ngIf="isPlay"
-      class="button-icon">pause</mat-icon>
-  </div>
+  <div class="track-name">{{track && track.trackName}}</div>
 </div>

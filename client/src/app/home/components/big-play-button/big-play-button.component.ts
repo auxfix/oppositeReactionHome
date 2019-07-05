@@ -1,10 +1,12 @@
-import {Component, OnInit } from '@angular/core';
+import {Component, OnInit, OnDestroy } from '@angular/core';
 import {animate, state, style, transition, trigger} from '@angular/animations';
+import {TracksService} from 'api/tracks.service';
 
 @Component({
   selector: 'app-big-play-button',
   templateUrl: './big-play-button.component.html',
   styleUrls: ['./big-play-button.component.scss'],
+  providers: [TracksService],
   animations: [
     trigger('resetButtonAnim', [
       state('hold', style({
@@ -22,9 +24,9 @@ import {animate, state, style, transition, trigger} from '@angular/animations';
     ]),
   ]
 })
-export class BigPlayButtonComponent implements OnInit {
+export class BigPlayButtonComponent implements OnInit, OnDestroy {
 
-  constructor() { }
+  constructor(private http: TracksService) { }
 
   get isPlay() {
     return this.isPlaying;
@@ -38,8 +40,22 @@ export class BigPlayButtonComponent implements OnInit {
 
   public isPlaying = false;
 
-  ngOnInit() {
+  public track;
+
+  public audio;
+
+  async ngOnInit() {
     this.resetButtonAnimTrigger = 'hold';
+    this.audio = new Audio();
+    this.track = await this.http.getFrontPageTrack().toPromise();
+    this.audio.src = `http://localhost:3000/tracks/play/${this.track.songId}`;
+    this.audio.load();
+    this.audio.volume = 0.5;
+  }
+
+  ngOnDestroy() {
+    this.audio.pause();
+    this.audio = null;
   }
 
   rotateEnd() {
@@ -48,10 +64,18 @@ export class BigPlayButtonComponent implements OnInit {
 
   doReset() {
     this.isPlaying = false;
+    this.audio.pause();
+    this.audio.currentTime = 0;
     this.resetButtonAnimTrigger = 'rotate';
   }
 
   changeState() {
+    if (this.isPlaying) {
+      this.audio.pause();
+    } else {
+      this.audio.play();
+    }
+
     this.isPlaying = !this.isPlaying;
   }
 }
