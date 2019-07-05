@@ -1,4 +1,4 @@
-import {Component, OnInit, OnDestroy } from '@angular/core';
+import {Component, OnInit, OnDestroy, AfterViewInit } from '@angular/core';
 import {animate, state, style, transition, trigger} from '@angular/animations';
 import {TracksService} from 'api/tracks.service';
 
@@ -24,7 +24,7 @@ import {TracksService} from 'api/tracks.service';
     ]),
   ]
 })
-export class BigPlayButtonComponent implements OnInit, OnDestroy {
+export class BigPlayButtonComponent implements OnInit, OnDestroy, AfterViewInit {
 
   constructor(private http: TracksService) { }
 
@@ -44,6 +44,8 @@ export class BigPlayButtonComponent implements OnInit, OnDestroy {
 
   public audio;
 
+  public volume = 50;
+
   async ngOnInit() {
     this.resetButtonAnimTrigger = 'hold';
     this.audio = new Audio();
@@ -53,9 +55,21 @@ export class BigPlayButtonComponent implements OnInit, OnDestroy {
     this.audio.volume = 0.5;
   }
 
+  ngAfterViewInit() {
+    this.audio.onended = () => {
+      this.audio.currentTime = 0;
+      this.isPlaying = false;
+    };
+  }
+
   ngOnDestroy() {
     this.audio.pause();
     this.audio = null;
+  }
+
+  onChangeVolume(event) {
+    this.audio.volume = event / 100;
+    this.volume = event;
   }
 
   rotateEnd() {

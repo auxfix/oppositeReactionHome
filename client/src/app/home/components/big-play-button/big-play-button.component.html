@@ -20,4 +20,9 @@
     </div>
   </div>
   <div class="track-name">{{track && track.trackName}}</div>
+  <mat-slider
+    class="volume-slider"
+    [step]="0.1"
+    [(ngModel)]="volume"
+    (ngModelChange)="onChangeVolume($event)"></mat-slider>
 </div>

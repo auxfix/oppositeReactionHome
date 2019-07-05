@@ -19,6 +19,16 @@
     transition: all 0.5s;
   }
 
+  .volume-slider {
+    opacity: 0;
+    transition: all 0.2s;
+  }
+
+  &:hover .volume-slider {
+    opacity: 1;
+    transition: all 0.8s;
+  }
+
   .btn-container {
     border: $front-page-button solid 2px;
     border-radius: 50%;

@@ -7,6 +7,7 @@ import { FileSelectDirective } from 'ng2-file-upload';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTabsModule } from '@angular/material/tabs';
 import { FormsModule } from '@angular/forms';
+import { MatSliderModule } from '@angular/material/slider';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -45,6 +46,8 @@ import { PublicNewsItemComponent } from 'news/components/news-item/news-item.com
 import { SafeHtmlPipe } from 'pipes/safeHtml.pipe';
 import { NgScrollbarModule } from 'ngx-scrollbar';
 import { BigPlayButtonComponent } from 'home/components/big-play-button/big-play-button.component';
+
+import 'hammerjs';
 
 @NgModule({
   declarations: [
@@ -95,6 +98,7 @@ import { BigPlayButtonComponent } from 'home/components/big-play-button/big-play
     PlyrModule,
     CKEditorModule,
     NgScrollbarModule,
+    MatSliderModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
