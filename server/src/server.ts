@@ -1,9 +1,10 @@
 import bodyParser from 'body-parser';
+import cookieParser from 'cookie-parser';
 import cors from 'cors';
 import express from 'express';
 import http from 'http';
 import mongoose from 'mongoose';
-import cookieParser from 'cookie-parser';
+import {retrieveUserIdFromRequest} from './middleware/get-user.middleware';
 
 mongoose.connect('mongodb://database/mean-docker');
 
@@ -13,6 +14,7 @@ import './models/user';
 
 import newsRoutes from './routes/news';
 import tracksRoutes from './routes/tracks';
+import userRoutes from './routes/user';
 
 const app = express();
 
@@ -21,7 +23,9 @@ const corsOptions = {
     optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
     origin: 'http://localhost:4200',
 };
-app.use(cookieParser);
+
+app.use(cookieParser());
+app.use(retrieveUserIdFromRequest);
 app.use(cors(corsOptions));
 // Parsers for POST data
 app.use(bodyParser.json());
@@ -30,6 +34,17 @@ app.use(bodyParser.urlencoded({ extended: false }));
 // Set our api routes
 app.use('/', tracksRoutes);
 app.use('/', newsRoutes);
+app.use('/', userRoutes);
+
+app.use((req, res, next) => {
+    // @ts-ignore
+    res.header('Access-Control-Allow-Credentials', true);
+    // @ts-ignore
+    res.header('Access-Control-Allow-Origin', req.headers.origin);
+    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+    res.header('Access-Control-Allow-Headers', 'X-Requested-With, X-HTTP-Method-Override, Content-Type, Accept');
+    next();
+});
 
 /**
  * Get port from environment and store in Express.

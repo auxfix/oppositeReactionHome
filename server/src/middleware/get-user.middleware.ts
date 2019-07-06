@@ -1,19 +1,27 @@
-import {Response} from 'express';
-import mongoose from 'mongoose';
-const userModel = mongoose.model('UserItem');
+import {NextFunction} from 'express';
+import {decodeJwt} from '../utils/security.utils';
 
+export function retrieveUserIdFromRequest(req: any, res: any, next: NextFunction) {
 
+    const jwt = req.cookies['SESSIONID'];
 
-export function getUser(req: any, res: Response) {
-
-    const userInfo = req['user'];
-
-    if (userInfo) {
-
-        const user: any = userModel.findById(userInfo.sub);
-
-        res.status(200).json({id: user._id, login: user.login });
+    if (jwt) {
+        handleSessionCookie(jwt, req)
+            .then(() => next())
+            .catch((err) => {
+                next();
+            });
     } else {
-        res.sendStatus(204);
+        next();
+    }
+}
+
+async function handleSessionCookie(jwt: string, req: any) {
+    try {
+
+        req['user'] = await decodeJwt(jwt);
+
+    } catch (err) {
+        console.log('Error: Could not extract user from request:', err.message);
     }
 }

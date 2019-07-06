@@ -56,6 +56,15 @@
       ],
       "img/*": [
         "src/assets/img/*"
+      ],
+      "login/*": [
+        "src/app/login/*"
+      ],
+      "models/*": [
+        "src/app/models/*"
+      ],
+      "interceptors/*": [
+        "src/app/interceptors/*"
       ]
     }
   }

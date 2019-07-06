@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FileSelectDirective } from 'ng2-file-upload';
 import { MatIconModule } from '@angular/material/icon';
@@ -46,8 +46,15 @@ import { PublicNewsItemComponent } from 'news/components/news-item/news-item.com
 import { SafeHtmlPipe } from 'pipes/safeHtml.pipe';
 import { NgScrollbarModule } from 'ngx-scrollbar';
 import { BigPlayButtonComponent } from 'home/components/big-play-button/big-play-button.component';
+import { LoginFormComponent } from 'login/login-form/login-form.component';
+import { AuthorizationGuard } from 'api/authorization.guard';
+import {WithCreadantialsInterceptor} from 'interceptors/withCreadantials.interceptor';
+
 
 import 'hammerjs';
+import {Router} from '@angular/router';
+import {AuthService} from 'api/auth.service';
+
 
 @NgModule({
   declarations: [
@@ -85,6 +92,7 @@ import 'hammerjs';
     PublicNewsItemComponent,
     SafeHtmlPipe,
     BigPlayButtonComponent,
+    LoginFormComponent,
   ],
   imports: [
     BrowserModule,
@@ -100,7 +108,24 @@ import 'hammerjs';
     NgScrollbarModule,
     MatSliderModule,
   ],
-  providers: [],
+  providers: [
+    AuthService,
+    {
+      provide: 'adminsOnlyGuard',
+      useFactory: (authService: AuthService,
+                   router: Router) =>
+        new AuthorizationGuard(authService, router),
+      deps: [
+        AuthService,
+        Router
+      ]
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: WithCreadantialsInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
