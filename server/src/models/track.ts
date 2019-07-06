@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose';
 
 const TrackSchema = new mongoose.Schema({
     _id: mongoose.Schema.Types.ObjectId,
@@ -10,4 +10,4 @@ const TrackSchema = new mongoose.Schema({
     isFrontPageTrack: Boolean,
 });
 
-mongoose.model("Track", TrackSchema);
+mongoose.model('Track', TrackSchema);

@@ -8,7 +8,9 @@
   },
   "rules": {
     "trailing-comma": [ false ],
-    "object-literal-sort-keys": false
+    "object-literal-sort-keys": false,
+    "quotemark": [true, "single"],
+    "no-string-literal": false
   },
   "rulesDirectory": []
 }

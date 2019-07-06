@@ -1,56 +1,57 @@
-import express from "express";
-import mongoose from "mongoose";
-import GridFSStorage from "multer-gridfs-storage";
+import express from 'express';
+import mongoose from 'mongoose';
+import GridFSStorage from 'multer-gridfs-storage';
 const router = express.Router();
-import mongodb, {MongoClient, ObjectID} from "mongodb";
-import multer from "multer";
-const trackModel = mongoose.model("Track");
+import mongodb, {MongoClient, ObjectID} from 'mongodb';
+import multer from 'multer';
+import { checkIfAuthenticated } from '../middleware/authentication.middleware';
+const trackModel = mongoose.model('Track');
 
 mongoose.Promise = global.Promise;
 
-const dbHost = "mongodb://database/mean-docker";
+const dbHost = 'mongodb://database/mean-docker';
 const db = mongoose.createConnection(dbHost);
 
-MongoClient.connect("mongodb://database", (err, client) => {
+MongoClient.connect('mongodb://database', (err, client) => {
     if (err) {
         process.exit(1);
     }
-    const dbRaw = client.db("mean-docker");
+    const dbRaw = client.db('mean-docker');
 
-    router.get("/tracks/play/:trackID", (req, res) => {
+    router.get('/tracks/play/:trackID', (req, res) => {
 
         const trackID = new ObjectID(req.params.trackID);
 
-        res.set("content-type", "audio/mp3");
-        res.set("accept-ranges", "bytes");
+        res.set('content-type', 'audio/mp3');
+        res.set('accept-ranges', 'bytes');
 
         const bucket = new mongodb.GridFSBucket(dbRaw, {
-            bucketName: "tracks"
+            bucketName: 'tracks'
         });
 
         const downloadStream = bucket.openDownloadStream(trackID);
 
-        downloadStream.on("data", (chunk) => {
+        downloadStream.on('data', (chunk) => {
             res.write(chunk);
         });
 
-        downloadStream.on("error", () => {
+        downloadStream.on('error', () => {
             res.sendStatus(404);
         });
 
-        downloadStream.on("end", () => {
+        downloadStream.on('end', () => {
             res.end();
         });
     });
 });
 
-db.once("open", () => {
+db.once('open', () => {
     const storage = new GridFSStorage({
         db,
         file: (req: any, file) => {
             return {
-                bucketName: "tracks",
-                filename: "file_" + file.originalname + "_" + Date.now(),
+                bucketName: 'tracks',
+                filename: 'file_' + file.originalname + "_" + Date.now(),
                 metadata: {
                     bandName: req.body.bandName,
                     trackName: req.body.trackName,
@@ -61,14 +62,14 @@ db.once("open", () => {
 
     const upload = multer({
         storage
-    }).single("file");
+    }).single('file');
 
-    router.get("/", (req, res) => {
-        res.send("api works 3");
+    router.get('/', (req, res) => {
+        res.send('api works 3');
     });
 
     // Route for file upload
-    router.post("/tracks", async (req, res, next) => {
+    router.post( '/tracks', checkIfAuthenticated, async (req, res, next) => {
 
         const allTracks: any = await trackModel.find({});
         let maxOrder = 0;
@@ -99,12 +100,12 @@ db.once("open", () => {
 });
 
 // Get all routes
-router.get("/tracks", (req, res) => {
+router.get('/tracks', (req, res) => {
     trackModel.find({}).sort({order: 1}).exec((err, tracks) => {res.send(tracks); });
 });
 
 // Delete track
-router.delete("/tracks/delete/:trackId", async (req, res, next) => {
+router.delete('/tracks/delete/:trackId', checkIfAuthenticated, async (req, res, next) => {
     await trackModel.deleteOne({ _id: req.params.trackId });
 
     const allTracks = await trackModel.find({}, null, {sort: {order: 1}});
@@ -117,10 +118,10 @@ router.delete("/tracks/delete/:trackId", async (req, res, next) => {
 });
 
 // Edit track
-router.post("/tracks/edit/:trackId", (req, res, next) => {
+router.post('/tracks/edit/:trackId', checkIfAuthenticated, (req, res, next) => {
     trackModel.findById(req.params.trackId, (err, track: any) => {
         if (!track) {
-            return next(new Error("Could not load track"));
+            return next(new Error('Could not load track'));
         } else {
             // do your updates here
             track.bandName = req.body.bandName;
@@ -128,7 +129,7 @@ router.post("/tracks/edit/:trackId", (req, res, next) => {
 
             track.save((saveError: any) => {
                 if (saveError) {
-                    return next(new Error("Could not load save track"));
+                    return next(new Error('Could not load save track'));
                 } else {
                     res.send(track);
                 }
@@ -137,11 +138,11 @@ router.post("/tracks/edit/:trackId", (req, res, next) => {
     });
 });
 
-router.post("/tracks/shift/:order/:way", async (req, res, next) => {
+router.post('/tracks/shift/:order/:way', checkIfAuthenticated, async (req, res, next) => {
     const allTracks = await trackModel.find({}, null, {sort: {order: 1}});
     const allTracksLength = allTracks.length;
 
-    if (req.params.way === "down") {
+    if (req.params.way === 'down') {
         if (Number(req.params.order) > (allTracksLength - 1) || Number(req.params.order) < 1) {
             return res.send(allTracks);
         }
@@ -150,7 +151,7 @@ router.post("/tracks/shift/:order/:way", async (req, res, next) => {
         await trackModel.findByIdAndUpdate(itemToMove._id, {$set: {order: Number(req.params.order) + 1}});
         await trackModel.findByIdAndUpdate(downItem._id, {$set: {order: Number(req.params.order)}});
         trackModel.find({}).sort({order: 1}).exec((err, tracks) => { res.send(tracks); });
-    } else if (req.params.way === "up") {
+    } else if (req.params.way === 'up') {
         if (Number(req.params.order) < 2 || (Number(req.params.order) > allTracks.length)) {
             return res.send(allTracks);
         }
@@ -165,7 +166,7 @@ router.post("/tracks/shift/:order/:way", async (req, res, next) => {
 });
 
 // set front page track
-router.post("/tracks/front/:trackId", async (req, res, next) => {
+router.post('/tracks/front/:trackId', checkIfAuthenticated, async (req, res, next) => {
     try {
         await trackModel.updateMany(
             { isFrontPageTrack: true },
@@ -192,7 +193,7 @@ router.post("/tracks/front/:trackId", async (req, res, next) => {
 });
 
 // get front page track
-router.get("/tracks/front", async (req, res, next) => {
+router.get('/tracks/front', async (req, res, next) => {
     try {
         const frontPageTrack = await trackModel.findOne({isFrontPageTrack: true});
 

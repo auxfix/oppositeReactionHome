@@ -1,14 +1,15 @@
-import express from "express";
-import mongoose from "mongoose";
+import express from 'express';
+import mongoose from 'mongoose';
 const router = express.Router();
-const newsModel = mongoose.model("NewsItem");
+const newsModel = mongoose.model('NewsItem');
+import { checkIfAuthenticated } from '../middleware/authentication.middleware';
 
 // get all news
-router.get("/news", (req, res, next) => {
+router.get('/news', (req, res, next) => {
     newsModel.find({}).sort({date: -1}).exec((err, news) => {res.send(news); });
 });
 
-router.get("/news/:id", async (req, res, next) => {
+router.get('/news/:id', checkIfAuthenticated, async (req, res, next) => {
     try {
         const newsItem = await newsModel.findById(req.params.id);
         res.send(newsItem);
@@ -18,7 +19,7 @@ router.get("/news/:id", async (req, res, next) => {
 });
 
 // post news
-router.post("/news", async (req, res, next) => {
+router.post('/news', checkIfAuthenticated, async (req, res, next) => {
     try {
         const newNews = new newsModel({
             _id: new mongoose.Types.ObjectId(),
@@ -34,7 +35,7 @@ router.post("/news", async (req, res, next) => {
 });
 
 // update news
-router.put("/news/:id", async (req, res, next) => {
+router.put('/news/:id', checkIfAuthenticated, async (req, res, next) => {
     try {
         const newsItem: any = await newsModel.findById(req.params.id);
         newsItem.title = req.body.title;
@@ -47,7 +48,7 @@ router.put("/news/:id", async (req, res, next) => {
 });
 
 // delete news
-router.delete("/news/:id", async (req, res, next) => {
+router.delete('/news/:id', checkIfAuthenticated, async (req, res, next) => {
     try {
         await newsModel.deleteOne({_id: req.params.id})
         res.sendStatus(200);
