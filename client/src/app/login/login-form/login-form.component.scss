@@ -1,0 +1,71 @@
+@import "src/vrs";
+
+.container {
+  width: 100%;
+  height: 90vh;
+
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+
+  form {
+    margin-top: 15rem;
+    h3 {
+      font-size: 2rem;
+      color: $login-input-text;
+    }
+
+    .form-field {
+      margin-top: 2rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-content: flex-start;
+
+      label {
+        display: inline-block;
+        font-size: 1.5rem;
+        margin-bottom: 0.6rem;
+      }
+
+      input {
+        height: 3rem;
+        width: 30rem;
+        border-radius: 2rem;
+        border: 0.1rem solid $grey-one;
+        font-size: 2.4rem;
+        padding: 0 2rem;
+        color: $login-input-text;
+      }
+
+      .error-msg {
+        margin-top: 0.5rem;
+        color: $red-two;
+        font-size: 2rem;
+      }
+    }
+  }
+
+  .error-message {
+    margin-top: 0.7rem;
+    color: $red-two;
+    font-size: 1.3rem;
+    max-width: 30rem;
+  }
+
+  .form-buttons{
+    margin-top: 3rem;
+    display: flex;
+    justify-content: flex-end;
+
+    button {
+      background-color: $main-bkg;
+      border: 0.1rem solid $grey-one;
+      width: 8rem;
+      color: $login-input-text;
+      height: 3rem;
+      border-radius: 2rem;
+      cursor: pointer;
+    }
+  }
+}

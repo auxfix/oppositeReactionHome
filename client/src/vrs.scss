@@ -5,6 +5,7 @@ $grey-two: #555757;
 $grey-three: #f6f8f8;
 
 $dark-one: #000000;
+$login-input-text: lighten( $dark-one, 20% );
 $public-news-text: lighten( $dark-one, 35% );
 $public-news-header: lighten( $dark-one, 28% );
 $front-page-msg: lighten( $dark-one, 28% );
