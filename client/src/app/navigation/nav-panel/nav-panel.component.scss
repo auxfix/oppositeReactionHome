@@ -1,44 +1,52 @@
 @import "src/vrs";
 
-nav {
-  background-color: $main-bkg;
-  padding: 0.3rem 10%;
-  border-bottom: $grey-one 0.2rem solid;
-  ul {
-    list-style-type: none;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    li {
+header {
+  position: relative;
+  .logout-btn {
+    position: absolute;
+    right: 10rem;
+    top: 1.3rem;
+  }
+  nav {
+    background-color: $main-bkg;
+    padding: 0.3rem 10%;
+    border-bottom: $grey-one 0.2rem solid;
+    ul {
+      list-style-type: none;
       display: flex;
-      justify-items: center;
+      justify-content: flex-start;
       align-items: center;
-      min-height: 2.7rem;
-      &:hover{
-        border-left: $grey-one 0.2rem solid;
-        border-right: $grey-one 0.2rem solid;
-      }
-      a{
-        color: $dark-one;
-        text-decoration: none;
-        transition: all 0.1s;
-        border-bottom: 0.1rem solid $main-bkg;
-
-        &.active{
-          display: block;
-          border-bottom: 0.1rem solid $dark-one;
-          transform: rotate(-7deg);
-          transition: all 0.1s;
-          letter-spacing: 0.4rem;
+      li {
+        display: flex;
+        justify-items: center;
+        align-items: center;
+        min-height: 2.7rem;
+        &:hover{
+          border-left: $grey-one 0.2rem solid;
+          border-right: $grey-one 0.2rem solid;
         }
+        a{
+          color: $dark-one;
+          text-decoration: none;
+          transition: all 0.1s;
+          border-bottom: 0.1rem solid $main-bkg;
+
+          &.active{
+            display: block;
+            border-bottom: 0.1rem solid $dark-one;
+            transform: rotate(-7deg);
+            transition: all 0.1s;
+            letter-spacing: 0.4rem;
+          }
+        }
+        border-left: $main-bkg 0.2rem solid;
+        border-right: $main-bkg 0.2rem solid;
+
+        cursor:pointer;
+
+        font-size: 1.8rem;
+        padding: 1.5rem 2.5rem;
       }
-      border-left: $main-bkg 0.2rem solid;
-      border-right: $main-bkg 0.2rem solid;
-
-      cursor:pointer;
-
-      font-size: 1.8rem;
-      padding: 1.5rem 2.5rem;
     }
   }
 }

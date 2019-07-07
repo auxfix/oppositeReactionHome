@@ -61,8 +61,7 @@ export class NewsAdminComponent implements OnInit {
   getNews() {
     this.http.getAllNews()
       .subscribe(news => {
-        console.log(news);
         this.news = news;
-      }, error => console.log(error));
+      });
   }
 }

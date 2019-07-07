@@ -7,4 +7,13 @@
       <li><a class="admin" routerLink="/admin" routerLinkActive="active">admin</a></li>
     </ul>
   </nav>
+  <div class="logout-btn">
+    <app-round-button
+      *ngIf="isLoggedIn$ | async"
+      [customStyles]="{width: '4rem',height: '4rem'}"
+      [icon]="'exit_to_app'"
+      (clickButton)="logout()"
+    >
+    </app-round-button>
+  </div>
 </header>

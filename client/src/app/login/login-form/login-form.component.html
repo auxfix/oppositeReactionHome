@@ -1,23 +1,23 @@
-
-<div class="messages messages-error" *ngIf="errors?.length">
-  <div class="messages-container">
-    <div *ngFor="let error of errors">{{messagePerErrorCode[error]}}</div>
-  </div>
-</div>
-
-<form autocomplete="off" novalidate [formGroup]="form">
-
-  <fieldset>
-    <legend>Login</legend>
+<form [formGroup]="form">
+    <h3>Login</h3>
     <div class="form-field">
       <label>login:</label>
       <input name="login" formControlName="login">
+      <div *ngIf="form.controls['login'].errors && !form.controls['login'].pristine" class="error-msg">
+        <div [hidden]="!form.controls['login'].errors['required']">Login is required.</div>
+      </div>
     </div>
     <div class="form-field">
       <label>Password:</label>
       <input name="password" formControlName="password" type="password">
+      <div *ngIf="form.controls['password'].errors && !form.controls['password'].pristine" class="error-msg">
+        <div [hidden]="!form.controls['password'].errors['required']">Password is required.</div>
+      </div>
     </div>
-  </fieldset>
+
+  <div class="error-message" *ngIf="error">
+    {{error}}
+  </div>
 
   <div class="form-buttons">
     <button class="button button-primary" (click)="login()">Login</button>

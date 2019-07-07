@@ -8,9 +8,7 @@ import { createSessionToken } from '../utils/security.utils';
 
 router.post('/user/login', async (req: any, res: any) => {
     const credentials = req.body;
-    console.log('1 credentials', credentials);
     const user = await userModel.findOne({login: credentials.login});
-    console.log('2 user', user);
 
     if (!user) {
         res.sendStatus(403);
@@ -27,11 +25,8 @@ router.post('/user/logout', (req: any, res: any) => {
 router.get('/user', async (req: any, res: any) => {
     const userInfo = req['user'];
 
-    console.log('6 userInfo', userInfo);
-
     if (userInfo) {
         const user: any = await userModel.findOne(mongoose.Types.ObjectId(userInfo.sub));
-        console.log('7 userInfo', user);
 
         res.send({login: user.login, id: user._id});
     } else {
@@ -44,9 +39,7 @@ async function loginAndBuildResponse(credentials: any, user: any,  res: any) {
     try {
 
         const sessionToken = await attemptLogin(credentials, user);
-        console.log('3 sessionToken', sessionToken);
-        res.cookie('SESSIONID', sessionToken, {httpOnly: false});
-        console.log('4 user', user);
+        res.cookie('SESSIONID', sessionToken, {httpOnly: true});
 
         res.send({id: user._id, login: user.login});
 

@@ -44,9 +44,8 @@ export class AdminTracksComponent implements OnInit {
   getAllTracks() {
     this.http.getAllTracks()
       .subscribe(songs => {
-        console.log(songs);
         this.tracks = songs;
-      }, error => console.log(error));
+      });
   }
 
   trackPlay(trackId: any, isPlay: boolean) {

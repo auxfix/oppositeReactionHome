@@ -26,7 +26,6 @@ export class PublicNewsComponent implements OnInit {
 
   async getNews() {
     const news = await this.http.getAllNews().toPromise();
-    console.log(news);
     this.publicNews = news;
   }
 }

@@ -57,7 +57,6 @@ export class EditNewsComponent implements OnInit {
 
   async delete() {
     await this.http.deleteNews(this.newsId).toPromise();
-    console.log('why?')
     this.saveNewsCallback.emit();
   }
 

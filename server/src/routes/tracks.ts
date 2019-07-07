@@ -92,7 +92,6 @@ db.once('open', () => {
                 isFrontPageTrack: false}
                 );
             TrackInstance.save().then(() => {
-                console.log('SAVED_FILE_DATA:', res.req.file) // tslint:disable-line
                 res.json({error_code: 0, error_desc: null, file_uploaded: true});
             }).catch((error) => res.send(error));
         });

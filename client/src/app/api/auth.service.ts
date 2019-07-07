@@ -21,8 +21,6 @@ export class AuthService {
 
   isLoggedIn$: Observable<boolean> = this.user$.pipe(map(user => !!user.id));
 
-  isLoggedOut$: Observable<boolean> = this.isLoggedIn$.pipe(map(isLoggedIn => !isLoggedIn));
-
   constructor(private http: HttpClient) {
     http.get<User>(`${this.API}/user`)
       .subscribe(user => this.subject.next(user ? user : ANONYMOUS_USER));
@@ -34,7 +32,7 @@ export class AuthService {
   }
 
   logout(): Observable<any> {
-    return this.http.post(`${this.API}/user/logout`, null).pipe(shareReplay(),
+    return this.http.post(`${this.API}/user/logout`, null, {responseType: 'text'}).pipe(shareReplay(),
       tap(user => this.subject.next(ANONYMOUS_USER)));
   }
 }

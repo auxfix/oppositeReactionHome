@@ -12,11 +12,7 @@ export class LoginFormComponent implements OnInit {
 
   form: FormGroup;
 
-  messagePerErrorCode = {
-    loginfailed: 'Invalid credentials'
-  };
-
-  errors = [];
+  error = '';
 
   constructor(private fb: FormBuilder, private authService: AuthService, private router: Router) {
 
@@ -25,6 +21,9 @@ export class LoginFormComponent implements OnInit {
       password: ['', Validators.required]
     });
 
+    this.form.valueChanges.subscribe(
+      () => { this.error = ''; }
+    );
   }
 
   ngOnInit() {
@@ -41,6 +40,10 @@ export class LoginFormComponent implements OnInit {
         .subscribe(
           () => {
             this.router.navigateByUrl('/admin');
+          },
+          error => {
+            console.log(error);
+            this.error = error.message;
           }
         );
     }
