@@ -26,14 +26,15 @@ header {
           border-right: $grey-one 0.2rem solid;
         }
         a{
-          color: $dark-one;
+          color: $grey-two;
+          font-weight: 500;
           text-decoration: none;
           transition: all 0.1s;
           border-bottom: 0.1rem solid $main-bkg;
 
           &.active{
             display: block;
-            border-bottom: 0.1rem solid $dark-one;
+            border-bottom: 0.1rem solid $grey-two;
             transform: rotate(-7deg);
             transition: all 0.1s;
             letter-spacing: 0.4rem;
