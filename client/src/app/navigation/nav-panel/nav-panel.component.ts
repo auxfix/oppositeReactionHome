@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {AuthService} from 'api/auth.service';
 import {Observable} from 'rxjs';
-import {User} from 'models/user';
-import {Router} from "@angular/router";
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-nav-panel',

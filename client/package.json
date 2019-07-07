@@ -13,7 +13,7 @@
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
     "precommit": "npm run lint",
-    "prepush": "npm run lint && npm run test:ci && npm run e2e:ci"
+    "prepush": "npm run test:ci"
   },
   "private": true,
   "dependencies": {

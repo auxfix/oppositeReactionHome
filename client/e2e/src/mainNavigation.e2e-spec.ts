@@ -9,21 +9,16 @@ describe('e2e: main navigation', () => {
 
   it('navigate to root', () => {
     page.navigateTo('/');
-    expect(page.getCssText('app-root h3')).toEqual('Home');
+    expect(page.getCssText('app-root h3')).toEqual('or');
   });
 
-  it('navigate to home', () => {
+  it('navigate to or', () => {
     page.navigateTo('/home');
-    expect(page.getCssText('app-root h3')).toEqual('Home');
+    expect(page.getCssText('app-root h3')).toEqual('or');
   });
 
   it('navigate to tracks', () => {
     page.navigateTo('/tracks');
-    expect(page.getCssText('app-root h3')).toEqual('Tracks');
-  });
-
-  it('navigate to album', () => {
-    page.navigateTo('/album');
-    expect(page.getCssText('app-root h3')).toEqual('Album');
+    expect(page.getCssText('app-root h3')).toEqual('tracks');
   });
 });
