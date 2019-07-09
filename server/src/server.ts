@@ -6,7 +6,7 @@ import http from 'http';
 import mongoose from 'mongoose';
 import {retrieveUserIdFromRequest} from './middleware/get-user.middleware';
 
-mongoose.connect('mongodb://database/mean-docker');
+mongoose.connect(`${process.env.DATABASE_URL}/${process.env.DATABASE_NAME}`);
 
 import './models/newsItem';
 import './models/track';
@@ -21,7 +21,7 @@ const app = express();
 const corsOptions = {
     credentials: true,
     optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
-    origin: 'http://localhost:4200',
+    origin:  process.env.CORS_ORIGIN,
 };
 
 app.use(cookieParser());
@@ -49,7 +49,7 @@ app.use((req, res, next) => {
 /**
  * Get port from environment and store in Express.
  */
-const port = process.env.PORT || '3000';
+const port = process.env.PORT;
 app.set('port', port);
 
 /**

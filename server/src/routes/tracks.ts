@@ -9,14 +9,13 @@ const trackModel = mongoose.model('Track');
 
 mongoose.Promise = global.Promise;
 
-const dbHost = 'mongodb://database/mean-docker';
-const db = mongoose.createConnection(dbHost);
+const db = mongoose.createConnection(`${process.env.DATABASE_URL}/${process.env.DATABASE_NAME}`);
 
-MongoClient.connect('mongodb://database', (err, client) => {
+MongoClient.connect(process.env.DATABASE_URL, (err, client) => {
     if (err) {
         process.exit(1);
     }
-    const dbRaw = client.db('mean-docker');
+    const dbRaw = client.db(process.env.DATABASE_NAME);
 
     router.get('/tracks/play/:trackID', (req, res) => {
 

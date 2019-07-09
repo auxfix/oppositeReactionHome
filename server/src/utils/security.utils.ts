@@ -1,16 +1,11 @@
-import * as fs from 'fs';
 import * as jwt from 'jsonwebtoken';
-import * as path from 'path';
-
-const RSA_PRIVATE_KEY = fs.readFileSync(path.join(__dirname, '../keys/private.key'));
-
-const RSA_PUBLIC_KEY = fs.readFileSync(path.join(__dirname, '../keys/public.key'));
 
 function signAsync(user: any) {
+    console.log('process.env.PRIVATE_KEY: ', process.env.PRIVATE_KEY);
     return new Promise((resolve, reject) => {
         jwt.sign(
             {},
-            RSA_PRIVATE_KEY,
+            process.env.PRIVATE_KEY,
             {algorithm: 'RS256', subject: user._id.toString()},
             (err, token) => {
             resolve(token);
@@ -23,5 +18,6 @@ export async function createSessionToken(user: any) {
 }
 
 export async function decodeJwt(token: string) {
-    return await jwt.verify(token, RSA_PUBLIC_KEY);
+    console.log('process.env.PUBLIC_KEY: ', process.env.PUBLIC_KEY);
+    return await jwt.verify(token, process.env.PUBLIC_KEY);
 }

@@ -6,3 +6,6 @@
 .c9/
 *.launch
 .settings/
+/server/dist
+client/.idea
+.env

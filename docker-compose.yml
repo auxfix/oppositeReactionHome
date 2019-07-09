@@ -2,7 +2,9 @@ version: '2'
 services:
 
   express:
-    build: server
+    build:
+      context: ./server
+      dockerfile: Dockerfile.dev
     volumes:
       - './server/src:/usr/src/app/src'
     ports:
