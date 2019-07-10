@@ -1,8 +1,9 @@
 import express from 'express';
 import mongoose from 'mongoose';
 const router = express.Router();
-const newsModel = mongoose.model('NewsItem');
 import { checkIfAuthenticated } from '../middleware/authentication.middleware';
+
+import { NewsItemModel as newsModel } from '../models/newsItem';
 
 // get all news
 router.get('/news', (req, res, next) => {

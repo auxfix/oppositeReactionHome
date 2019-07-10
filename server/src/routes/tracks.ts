@@ -6,7 +6,7 @@ import mongodb, {MongoClient, ObjectID} from 'mongodb';
 import multer from 'multer';
 import { checkIfAuthenticated } from '../middleware/authentication.middleware';
 
-const trackModel = mongoose.model('Track');
+import { TrackModel as trackModel } from '../models/track';
 
 mongoose.Promise = global.Promise;
 

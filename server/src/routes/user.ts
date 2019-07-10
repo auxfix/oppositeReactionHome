@@ -1,8 +1,8 @@
 import * as argon2 from 'argon2';
 import express from 'express';
 import mongoose from 'mongoose';
+import {UserModel as userModel} from '../models/user';
 const router = express.Router();
-const userModel = mongoose.model('User');
 
 import { createSessionToken } from '../utils/security.utils';
 
