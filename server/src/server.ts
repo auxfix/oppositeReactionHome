@@ -6,7 +6,8 @@ import http from 'http';
 import mongoose from 'mongoose';
 import {retrieveUserIdFromRequest} from './middleware/get-user.middleware';
 
-mongoose.connect(`${process.env.DATABASE_URL}/${process.env.DATABASE_NAME}`);
+mongoose.set('useNewUrlParser', true);
+mongoose.connect(`${process.env.DATABASE_URL}/${process.env.DATABASE_NAME}`, { useNewUrlParser: true });
 
 import './models/newsItem';
 import './models/track';

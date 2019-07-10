@@ -42,7 +42,6 @@ export class LoginFormComponent implements OnInit {
             this.router.navigateByUrl('/admin');
           },
           error => {
-            console.log(error);
             this.error = error.message;
           }
         );

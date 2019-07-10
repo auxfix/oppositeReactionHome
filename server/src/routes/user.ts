@@ -9,7 +9,6 @@ import { createSessionToken } from '../utils/security.utils';
 router.post('/user/login', async (req: any, res: any) => {
     const credentials = req.body;
     const user = await userModel.findOne({login: credentials.login});
-
     if (!user) {
         res.sendStatus(403);
     } else {

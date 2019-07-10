@@ -5,13 +5,15 @@ const router = express.Router();
 import mongodb, {MongoClient, ObjectID} from 'mongodb';
 import multer from 'multer';
 import { checkIfAuthenticated } from '../middleware/authentication.middleware';
+
 const trackModel = mongoose.model('Track');
 
 mongoose.Promise = global.Promise;
 
-const db = mongoose.createConnection(`${process.env.DATABASE_URL}/${process.env.DATABASE_NAME}`);
+const db = mongoose.createConnection(`${process.env.DATABASE_URL}/${process.env.DATABASE_NAME}`,
+    { useNewUrlParser: true });
 
-MongoClient.connect(process.env.DATABASE_URL, (err, client) => {
+MongoClient.connect(process.env.DATABASE_URL, { useNewUrlParser: true }, (err, client) => {
     if (err) {
         process.exit(1);
     }
@@ -50,7 +52,7 @@ db.once('open', () => {
         file: (req: any, file) => {
             return {
                 bucketName: 'tracks',
-                filename: 'file_' + file.originalname + "_" + Date.now(),
+                filename: 'file_' + file.originalname + '_' + Date.now(),
                 metadata: {
                     bandName: req.body.bandName,
                     trackName: req.body.trackName,
@@ -92,7 +94,7 @@ db.once('open', () => {
                 );
             TrackInstance.save().then(() => {
                 res.json({error_code: 0, error_desc: null, file_uploaded: true});
-            }).catch((error) => res.send(error));
+            }).catch((error: any) => res.send(error));
         });
     });
 });

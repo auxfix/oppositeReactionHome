@@ -1,7 +1,6 @@
 import * as jwt from 'jsonwebtoken';
 
 function signAsync(user: any) {
-    console.log('process.env.PRIVATE_KEY: ', process.env.PRIVATE_KEY);
     return new Promise((resolve, reject) => {
         jwt.sign(
             {},
@@ -18,6 +17,5 @@ export async function createSessionToken(user: any) {
 }
 
 export async function decodeJwt(token: string) {
-    console.log('process.env.PUBLIC_KEY: ', process.env.PUBLIC_KEY);
     return await jwt.verify(token, process.env.PUBLIC_KEY);
 }
