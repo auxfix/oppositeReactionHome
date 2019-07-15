@@ -1,5 +1,6 @@
 import {Component, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
 import {PlyrComponent} from 'ngx-plyr';
+import { environment } from 'environments/environment';
 
 @Component({
   selector: 'app-public-audio-player',
@@ -22,7 +23,7 @@ export class PublicAudioPlayerComponent implements OnInit {
   ngOnInit() {
     this.audioSources = [
       {
-        src: `http://localhost:3000/tracks/play/${this.initTrackId}`,
+        src: `${environment.api}/tracks/play/${this.initTrackId}`,
         type: 'audio/mp3',
       },
     ];
@@ -38,7 +39,7 @@ export class PublicAudioPlayerComponent implements OnInit {
       type: 'audio',
       sources: [
         {
-          src: `http://localhost:3000/tracks/play/${this.trackId}`,
+          src: `${environment.api}/tracks/play/${this.trackId}`,
           type: 'audio/mp3',
         }
       ]

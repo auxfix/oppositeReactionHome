@@ -65,7 +65,10 @@
       ],
       "interceptors/*": [
         "src/app/interceptors/*"
-      ]
+      ],
+      "environments/*": [
+        "src/environments/*"
+      ],
     }
   }
 }

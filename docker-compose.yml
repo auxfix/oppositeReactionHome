@@ -9,19 +9,5 @@ services:
       - './server/src:/usr/src/app/src'
     ports:
      - "3000:3000"
-    links:
-     - database
 
-  database:
-    image: mongo
-    ports:
-     - "27017:27017"
 
-  dbadmin:
-    image: mongo-express
-    ports:
-      - "8081:8081"
-    links:
-      - database
-    environment:
-      - ME_CONFIG_MONGODB_SERVER=database

@@ -1,11 +1,12 @@
 import {HttpClient} from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from 'environments/environment';
 
 @Injectable()
 export class NewsService {
 
-  API = 'http://localhost:3000';
+  API = environment.api;
 
   constructor(private httpClient: HttpClient) { }
 

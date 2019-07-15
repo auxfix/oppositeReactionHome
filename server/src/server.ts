@@ -22,7 +22,7 @@ const app = express();
 const corsOptions = {
     credentials: true,
     optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
-    origin:  process.env.CORS_ORIGIN,
+    origin:  true,
 };
 
 app.use(cookieParser());
@@ -31,6 +31,7 @@ app.use(cors(corsOptions));
 // Parsers for POST data
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+
 
 // Set our api routes
 app.use('/', tracksRoutes);

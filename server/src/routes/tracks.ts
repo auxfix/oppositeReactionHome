@@ -65,10 +65,6 @@ db.once('open', () => {
         storage
     }).single('file');
 
-    router.get('/', (req, res) => {
-        res.send('api works 3');
-    });
-
     // Route for file upload
     router.post( '/tracks', checkIfAuthenticated, async (req, res, next) => {
 

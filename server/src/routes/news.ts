@@ -5,6 +5,11 @@ import { checkIfAuthenticated } from '../middleware/authentication.middleware';
 
 import { NewsItemModel as newsModel } from '../models/newsItem';
 
+// health check
+router.get('/', (req, res) => {
+    res.sendStatus(200);
+});
+
 // get all news
 router.get('/news', (req, res, next) => {
     newsModel.find({}).sort({date: -1}).exec((err, news) => {res.send(news); });

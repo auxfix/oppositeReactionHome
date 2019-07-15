@@ -3,6 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import {Observable, BehaviorSubject} from 'rxjs';
 import { map, filter, shareReplay, tap } from 'rxjs/operators';
 import {User} from 'models/user';
+import { environment } from 'environments/environment';
 
 export const ANONYMOUS_USER: User = {
   id: undefined,
@@ -13,7 +14,7 @@ export const ANONYMOUS_USER: User = {
 @Injectable()
 export class AuthService {
 
-  API = 'http://localhost:3000';
+  API = environment.api;
 
   private subject = new BehaviorSubject<User>(undefined);
 

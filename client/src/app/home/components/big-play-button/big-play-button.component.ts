@@ -1,6 +1,7 @@
 import {Component, OnInit, OnDestroy, AfterViewInit } from '@angular/core';
 import {animate, state, style, transition, trigger} from '@angular/animations';
 import {TracksService} from 'api/tracks.service';
+import { environment } from 'environments/environment';
 
 @Component({
   selector: 'app-big-play-button',
@@ -50,7 +51,7 @@ export class BigPlayButtonComponent implements OnInit, OnDestroy, AfterViewInit 
     this.resetButtonAnimTrigger = 'hold';
     this.audio = new Audio();
     this.track = await this.http.getFrontPageTrack().toPromise();
-    this.audio.src = `http://localhost:3000/tracks/play/${this.track.songId}`;
+    this.audio.src = `${environment.api}/tracks/play/${this.track.songId}`;
     this.audio.load();
     this.audio.volume = 0.5;
   }
