@@ -17,6 +17,7 @@ addons:
   chrome: stable
 
 install:
+  - pip install --upgrade pip
   - pip install awscli
 
 branches:
