@@ -1,5 +1,9 @@
 language: node_js
 
+env:
+  global:
+    - PATH=$HOME/.local/bin:$PATH
+
 dist: xenial
 
 node_js:
@@ -13,12 +17,10 @@ cache:
   pip: true
   npm: true
 
-addons:
-  chrome: stable
 
-install:
-  - pip install --upgrade pip
-  - pip install awscli
+before_install:
+  - pip install --user --upgrade pip
+  - pip install --user awscli
 
 branches:
   only:
@@ -51,3 +53,22 @@ deploy:
 after_deploy:
   - aws configure set preview.cloudfront true
   - aws cloudfront create-invalidation --distribution-id $CLOUDFRONT_DISTRIBUTION_ID --paths "/*"
+
+jobs:
+  include:
+    - stage: build_front
+      language: node_js
+      node_js:
+        - stable
+      sudo: true
+      cache: npm
+      branches:
+        only:
+          - master
+      before_script:
+        - cd client
+        - npm install -g @angular/cli
+        - npm install
+
+    - stage: deploy
+      script: ./deploy
