@@ -1,10 +1,21 @@
 language: node_js
+
 node_js:
   - 10.4.1
+python:
+  - 3.5
+
 sudo: true
+
+cache:
+  pip: true
+  npm: true
 
 addons:
   chrome: stable
+
+install:
+  - pip install awscli
 
 branches:
   only:
@@ -16,5 +27,24 @@ before_script:
   - npm install
 
 script:
-  - npm run lint
-  - npm run test:ci
+  - npm run build:prod
+
+deploy:
+  on:
+    branch: master
+  provider: s3
+
+  access_key_id: $AWS_ACCESS_KEY_ID
+  secret_access_key: $AWS_SECRET_ACCESS_KEY
+
+  bucket: oppositereaction.rocks
+
+  skip_cleanup: true
+
+  local_dir: dist
+
+  cache_control: "max-age=21600"
+
+after_deploy:
+  - aws configure set preview.cloudfront true
+  - aws cloudfront create-invalidation --distribution-id $CLOUDFRONT_DISTRIBUTION_ID --paths "/*"
