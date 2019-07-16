@@ -4,10 +4,15 @@ import cors from 'cors';
 import express from 'express';
 import http from 'http';
 import mongoose from 'mongoose';
+import logger from './utils/logger';
 import {retrieveUserIdFromRequest} from './middleware/get-user.middleware';
 
 mongoose.set('useNewUrlParser', true);
 mongoose.connect(`${process.env.DATABASE_URL}/${process.env.DATABASE_NAME}`, { useNewUrlParser: true });
+
+
+
+
 
 import './models/newsItem';
 import './models/track';
@@ -63,4 +68,4 @@ const server = http.createServer(app);
  * Listen on provided port, on all network interfaces.
  */
 
-server.listen(port, () => console.log(`API running on localhost:${port}`)); // tslint:disable-line
+server.listen(port, () => logger.info(`API running on localhost:${port}`));

@@ -13,7 +13,7 @@ interface UploadDataType {
   styleUrls: ['./upload-track.component.scss']
 })
 export class UploadTrackComponent implements OnInit {
-  private isActiveUpload: boolean;
+  public isActiveUpload: boolean;
 
   @ViewChild('trackUploadFormTag') trackUploadFormRef: NgForm;
   @Output() uploadStart = new EventEmitter<UploadDataType>();

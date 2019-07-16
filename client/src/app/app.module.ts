@@ -3,11 +3,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
-import { FileSelectDirective } from 'ng2-file-upload';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTabsModule } from '@angular/material/tabs';
 import { FormsModule } from '@angular/forms';
 import { MatSliderModule } from '@angular/material/slider';
+import { FileUploadModule } from 'ng2-file-upload';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -68,7 +68,6 @@ import {AuthService} from 'api/auth.service';
     TracksComponent,
     AlbumComponent,
     AdminComponent,
-    FileSelectDirective,
     AdminTracksComponent,
     AdminPhotoComponent,
     ValidationMessageComponent,
@@ -107,6 +106,7 @@ import {AuthService} from 'api/auth.service';
     CKEditorModule,
     NgScrollbarModule,
     MatSliderModule,
+    FileUploadModule,
   ],
   providers: [
     AuthService,

@@ -14,8 +14,8 @@ interface Track {
   styleUrls: ['./admin-track-item.component.scss']
 })
 export class AdminTrackItemComponent implements OnInit {
-  private isEdit: boolean;
-  private trackDataToShare: Track;
+  public isEdit: boolean;
+  public trackDataToShare: Track;
   @Input() trackData: Track;
   @Output() trackDataChanged = new EventEmitter();
   @Input() public currentTrackId: any;

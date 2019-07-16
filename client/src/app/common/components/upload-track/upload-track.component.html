@@ -1,4 +1,4 @@
-<form class="main-container" #trackUploadFormTag="ngForm" [formGroup]="trackUploadForm" (ngSubmit)="onFormSubmit($event)">
+<form class="main-container" #trackUploadFormTag="ngForm" [formGroup]="trackUploadForm" (ngSubmit)="onFormSubmit()">
   <div class="upload-container">
     <div class="upload-block"
          [ngClass]="isActiveUpload ? 'show-shadow-fall-upload-up' : 'show-shadow-fall-upload-down'"
