@@ -7,7 +7,7 @@ env:
 dist: xenial
 
 node_js:
-  - stable
+  - 8.16.0
 python:
   - 3.7
 
