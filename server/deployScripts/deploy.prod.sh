@@ -1,5 +1,6 @@
 #!/bin/bash
 # Deploy to prod
+set -ev
 echo "Deploying to ECR"
 $(aws ecr get-login --no-include-email --region eu-north-1)
 docker build -t opposite.reaction.home .
