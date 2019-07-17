@@ -46,7 +46,7 @@ deploy:
 
   skip_cleanup: true
 
-  local_dir: dist\oppositeReaction
+  local_dir: dist/oppositeReaction
 
   cache_control: "max-age=21600"
 
