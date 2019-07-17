@@ -55,7 +55,7 @@ matrix:
         - npm run build
       deploy:
         provider: script
-        script: deployScripts/deploy.prod.sh
+        script: chmod +x deployScripts/deploy.prod.sh && deployScripts/deploy.prod.sh
         local_dir: dist
         skip_cleanup: true
         on:
