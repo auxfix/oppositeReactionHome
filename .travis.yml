@@ -18,6 +18,7 @@ cache:
   npm: true
 
 matrix:
+  fast_finish: true
   include:
     - name: build front
       before_install:
@@ -56,6 +57,7 @@ matrix:
         provider: script
         script: ./deployScripts/deploy.prod.sh
         local_dir: dist
+        skip_cleanup: true
         on:
           branch: master
 
