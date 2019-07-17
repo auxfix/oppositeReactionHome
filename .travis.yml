@@ -60,8 +60,8 @@ matrix:
         skip_cleanup: true
         on:
           branch: master
-        after_deploy:
-          - aws ecs update-service --cluster $CLUSTER --service $SERVICE --region $DEPLOY_REGION --force-new-deployment
+      after_deploy:
+        - aws ecs update-service --cluster $CLUSTER --service $SERVICE --region $DEPLOY_REGION --force-new-deployment
 
 
 
