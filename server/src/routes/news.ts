@@ -10,6 +10,11 @@ router.get('/', (req, res) => {
     res.sendStatus(200);
 });
 
+// server version
+router.get('/version', (req, res) => {
+    res.send('v_0.0.1');
+});
+
 // get all news
 router.get('/news', (req, res, next) => {
     newsModel.find({}).sort({date: -1}).exec((err, news) => {res.send(news); });
