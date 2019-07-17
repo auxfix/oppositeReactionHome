@@ -12,7 +12,7 @@ router.get('/', (req, res) => {
 
 // server version
 router.get('/version', (req, res) => {
-    res.send('v_0.0.1.2');
+    res.send('v_0.0.1.5');
 });
 
 // get all news
