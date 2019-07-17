@@ -22,9 +22,6 @@ before_install:
   - pip install --user --upgrade pip
   - pip install --user awscli
 
-branches:
-  only:
-    - master
 
 before_script:
   - cd client
@@ -53,3 +50,32 @@ deploy:
 after_deploy:
   - aws configure set preview.cloudfront true
   - aws cloudfront create-invalidation --distribution-id $CLOUDFRONT_DISTRIBUTION_ID --paths "/*"
+
+
+
+matrix:
+  include:
+    - name: build front
+      before_install:
+        - pip install --user --upgrade pip
+        - pip install --user awscli
+      before_script:
+        - cd client
+        - npm install -g @angular/cli
+        - npm install
+      script:
+        - npm run build:prod
+      deploy:
+        on:
+          branch: master
+        provider: s3
+        region: $S3_REGION
+        access_key_id: $AWS_ACCESS_KEY_ID
+        secret_access_key: $AWS_SECRET_ACCESS_KEY
+        bucket: $BUCKET_NAME
+        skip_cleanup: true
+        local_dir: dist/oppositeReaction
+        cache_control: "max-age=21600"
+      after_deploy:
+        - aws configure set preview.cloudfront true
+        - aws cloudfront create-invalidation --distribution-id $CLOUDFRONT_DISTRIBUTION_ID --paths "/*"
