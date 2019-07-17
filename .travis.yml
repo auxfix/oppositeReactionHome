@@ -79,3 +79,19 @@ matrix:
       after_deploy:
         - aws configure set preview.cloudfront true
         - aws cloudfront create-invalidation --distribution-id $CLOUDFRONT_DISTRIBUTION_ID --paths "/*"
+    - name: build server
+        before_install:
+          - pip install --user --upgrade pip
+          - pip install --user awscli
+        before_script:
+          - cd server
+          - npm install
+        script:
+          - npm run build
+        deploy:
+          provider: script
+          script: ./deployScripts/deploy.prod.sh
+          local_dir: dist
+          on:
+            branch: master
+
