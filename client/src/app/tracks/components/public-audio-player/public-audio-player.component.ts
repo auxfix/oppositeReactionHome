@@ -11,6 +11,7 @@ export class PublicAudioPlayerComponent implements OnInit {
   @Input() initTrackId;
   trackId: any = null;
   @Output() trackPlayEvent = new EventEmitter<{isPlay: boolean, trackId: any}>();
+  @Output() trackEndedEvent = new EventEmitter<{ trackId: any}>();
 
   @ViewChild(PlyrComponent)
   plyr: PlyrComponent;
@@ -54,5 +55,9 @@ export class PublicAudioPlayerComponent implements OnInit {
 
   playPause() {
     this.trackPlayEvent.emit({isPlay: false, trackId: this.trackId});
+  }
+
+  trackEnded() {
+    this.trackEndedEvent.emit({ trackId: this.trackId});
   }
 }
