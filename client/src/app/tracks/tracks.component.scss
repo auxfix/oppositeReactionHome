@@ -1,5 +1,28 @@
 .main-container {
-  max-height: 79vh;
+
+  @media (min-height: 360px) {
+    max-height: 54vh;
+  }
+
+  @media (min-height: 460px) {
+    max-height: 60vh;
+  }
+
+  @media (min-height: 560px) {
+    max-height: 67vh;
+  }
+
+  @media (min-height: 660px) {
+    max-height: 71vh;
+  }
+
+  @media (min-height: 760px) {
+    max-height: 75vh;
+  }
+
+  @media (min-height: 960px) {
+    max-height: 79vh;
+  }
 
   .container{
     &:first-child {
