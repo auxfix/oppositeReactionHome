@@ -13,5 +13,6 @@
 </ng-scrollbar>
 <app-public-audio-player *ngIf="!!tracks && tracks.length > 0"
   (trackPlayEvent)="trackPlay($event.trackId, $event.isPlay)"
+  (trackEndedEvent)="playNextTrack($event.trackId)"
   [initTrackId] = "tracks[0].songId">
 </app-public-audio-player>

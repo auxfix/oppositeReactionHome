@@ -6,6 +6,7 @@ interface Track {
   fileName: String;
   originalName: String;
   contentType: String;
+  songId: string;
 }
 
 @Component({
@@ -39,6 +40,22 @@ export class TracksComponent implements OnInit {
   trackPlay(trackId: any, isPlay: boolean) {
     this.currentTrackId = trackId;
     this.isPlay = isPlay;
+  }
+
+  playNextTrack(trackId: string){
+    const currentTrackIndex = this.tracks.findIndex((element) => {
+      return element.songId === trackId;
+    });
+
+    if(currentTrackIndex !== -1){
+      if(this.tracks[currentTrackIndex + 1]){
+        setTimeout(()=>{
+          this.currentTrackId = this.tracks[currentTrackIndex + 1].songId;
+          this.isPlay = true;
+          this.player.play(this.tracks[currentTrackIndex + 1].songId);
+        }, 1000);
+      }
+    }
   }
 
   trackPlayFromLst(trackId: any, isPlay: boolean) {
