@@ -15,22 +15,23 @@
   justify-content: space-evenly;
   align-items: center;
   .logo {
-    width: 8rem;
-    height: 8rem;
 
-    @media (min-width: 1200px) {
-      width: 20rem;
-      height: 20rem;
-    }
+    width: 20rem;
+    height: 20rem;
 
-    @media (min-width: 576px) {
+    @media (max-width: 1200px) {
       width: 13rem;
       height: 13rem;
     }
 
-    @media (min-width: 360px) {
+    @media (max-width: 576px) {
       width: 12rem;
       height: 12rem;
+    }
+
+    @media (max-width: 360px) {
+      width: 10rem;
+      height: 10rem;
     }
 
     background: url("/assets/logo-front-page.png");
@@ -42,35 +43,33 @@
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
+    padding: 0 0.5rem;
+
+    width: 55rem;
     height: 12rem;
 
     &.big-msg{
-      display: none;
+      display: flex;
     }
     &.sm-msg{
-      display: block;
+      display: none;
       text-align: center;
-      a {
-        display: inline;
-      }
     }
 
-    @media (min-width: 1200px) {
-      width: 55rem;
+    @media (max-width: 768px) {
+      width: 27rem;
+      height: unset;
+
       &.big-msg{
-        display: flex;
-      }
-      &.sm-msg{
         display: none;
       }
+      &.sm-msg{
+        display: block;
+      }
     }
 
-    @media (min-width: 576px) {
-      width: 35rem;
-    }
-
-    @media (min-width: 360px) {
-      width: 25rem;
+    @media (max-width: 360px) {
+      width: 100%;
     }
 
     span {

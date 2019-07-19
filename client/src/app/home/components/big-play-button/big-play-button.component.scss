@@ -7,7 +7,10 @@
   justify-content: flex-start;
 
   .track-name {
-    opacity: 0;
+    opacity: 1;
+    @media (min-width: 1200px) {
+      opacity: 0;
+    }
     margin-top: 1.5rem;
     color: $front-page-button;
     font-size: 1.4rem;
@@ -33,17 +36,17 @@
   }
 
   .btn-container {
-    margin-top:4rem;
+    width: 17rem;
+    height: 17rem;
 
-    @media (min-width: 1200px) {
-      width: 17rem;
-      height: 17rem;
-      margin-top:0;
-    }
-
-    @media (min-width: 576px) {
+    @media (max-width: 1200px) {
       width: 15rem;
       height: 15rem;
+    }
+
+    @media (max-width: 320px) {
+      width: 12rem;
+      height: 12rem;
     }
 
     border: $front-page-button solid 2px;
