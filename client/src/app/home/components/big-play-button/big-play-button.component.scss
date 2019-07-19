@@ -20,7 +20,10 @@
   }
 
   .volume-slider {
-    opacity: 0;
+    @media (min-width: 1200px) {
+      opacity: 0;
+    }
+    opacity: 1;
     transition: all 0.2s;
   }
 
@@ -30,10 +33,22 @@
   }
 
   .btn-container {
+    margin-top:4rem;
+
+    @media (min-width: 1200px) {
+      width: 17rem;
+      height: 17rem;
+      margin-top:0;
+    }
+
+    @media (min-width: 576px) {
+      width: 15rem;
+      height: 15rem;
+    }
+
     border: $front-page-button solid 2px;
     border-radius: 50%;
-    width: 17rem;
-    height: 17rem;
+
     cursor: pointer;
     display: flex;
     justify-content: center;
