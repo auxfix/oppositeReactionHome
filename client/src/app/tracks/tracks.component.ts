@@ -42,14 +42,14 @@ export class TracksComponent implements OnInit {
     this.isPlay = isPlay;
   }
 
-  playNextTrack(trackId: string){
+  playNextTrack(trackId: string) {
     const currentTrackIndex = this.tracks.findIndex((element) => {
       return element.songId === trackId;
     });
 
-    if(currentTrackIndex !== -1){
-      if(this.tracks[currentTrackIndex + 1]){
-        setTimeout(()=>{
+    if (currentTrackIndex !== -1) {
+      if (this.tracks[currentTrackIndex + 1]) {
+        setTimeout (() => {
           this.currentTrackId = this.tracks[currentTrackIndex + 1].songId;
           this.isPlay = true;
           this.player.play(this.tracks[currentTrackIndex + 1].songId);
