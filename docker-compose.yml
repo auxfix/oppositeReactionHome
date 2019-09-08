@@ -1,6 +1,5 @@
 version: '2'
 services:
-
   express:
     build:
       context: ./server
@@ -8,6 +7,8 @@ services:
     volumes:
       - './server/src:/usr/src/app/src'
     ports:
-     - "3000:3000"
-
-
+      - "3000:3000"
+  database:
+    image: mongo
+    ports:
+      - "27017:27017"

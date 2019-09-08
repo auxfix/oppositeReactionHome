@@ -1,0 +1,30 @@
+@import "src/vrs";
+
+.container {
+  margin-top: 2rem;
+  @media (max-width: 1200px) {
+    margin: 2rem 3%;
+  }
+
+  h3{
+    margin-bottom: 2rem;
+    font-size: 3rem;
+    border-bottom: $grey-one 0.1rem solid;
+    padding-bottom: 1.8rem;
+    font-weight: 500;
+    color: $public-news-header;
+  }
+  .social-networks {
+    margin-bottom: 4rem;
+  }
+
+  .social-networks, .music {
+    div{
+      margin-bottom: 1.5rem;
+    }
+  }
+  a{
+    color: $public-news-header;
+    font-size: 2rem;
+  }
+}

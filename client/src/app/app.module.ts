@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
-import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTabsModule } from '@angular/material/tabs';
@@ -17,6 +17,7 @@ import { PlyrModule } from 'ngx-plyr';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 import { NavPanelComponent } from 'navigation/nav-panel/nav-panel.component';
 import { HomeComponent } from 'home/home.component';
+import { LinksComponent } from 'links/links.component';
 import { TracksComponent } from 'tracks/tracks.component';
 import { AlbumComponent } from 'album/album.component';
 import { PublicNewsComponent } from 'news/news.component';
@@ -48,7 +49,7 @@ import { NgScrollbarModule } from 'ngx-scrollbar';
 import { BigPlayButtonComponent } from 'home/components/big-play-button/big-play-button.component';
 import { LoginFormComponent } from 'login/login-form/login-form.component';
 import { AuthorizationGuard } from 'api/authorization.guard';
-import {WithCreadantialsInterceptor} from 'interceptors/withCreadantials.interceptor';
+import { WithCreadantialsInterceptor } from 'interceptors/withCreadantials.interceptor';
 
 
 import 'hammerjs';
@@ -92,6 +93,7 @@ import {AuthService} from 'api/auth.service';
     SafeHtmlPipe,
     BigPlayButtonComponent,
     LoginFormComponent,
+    LinksComponent,
   ],
   imports: [
     BrowserModule,

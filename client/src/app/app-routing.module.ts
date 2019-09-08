@@ -5,6 +5,7 @@ import { HomeComponent } from 'home/home.component';
 import { TracksComponent } from 'tracks/tracks.component';
 import { PublicNewsComponent } from 'news/news.component';
 import { AdminComponent } from 'admin/admin.component';
+import { LinksComponent } from 'links/links.component';
 import { LoginFormComponent } from 'login/login-form/login-form.component';
 
 export const routes: Routes = [
@@ -17,7 +18,8 @@ export const routes: Routes = [
   { path: 'news', component: PublicNewsComponent},
   { path: 'tracks', component: TracksComponent },
   { path: 'admin', component: AdminComponent, canActivate: ['adminsOnlyGuard'] },
-  { path: 'login', component: LoginFormComponent }
+  { path: 'login', component: LoginFormComponent },
+  { path: 'links', component: LinksComponent }
 ];
 
 @NgModule({
