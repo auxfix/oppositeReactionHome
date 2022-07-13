@@ -1,8 +1,8 @@
 import express from 'express';
 import mongoose from 'mongoose';
-import GridFSStorage from 'multer-gridfs-storage';
+import { GridFsStorage } from 'multer-gridfs-storage';
 const router = express.Router();
-import mongodb, {MongoClient, ObjectID} from 'mongodb';
+import mongodb, { MongoClient } from 'mongodb';
 import multer from 'multer';
 import { checkIfAuthenticated } from '../middleware/authentication.middleware';
 
@@ -10,10 +10,9 @@ import { TrackModel as trackModel } from '../models/track';
 
 mongoose.Promise = global.Promise;
 
-const db = mongoose.createConnection(`${process.env.DATABASE_URL}/${process.env.DATABASE_NAME}`,
-    { useNewUrlParser: true });
+const db = mongoose.createConnection(`${process.env.DATABASE_URL}/${process.env.DATABASE_NAME}`);
 
-MongoClient.connect(process.env.DATABASE_URL, { useNewUrlParser: true }, (err, client) => {
+MongoClient.connect(process.env.DATABASE_URL,  (err: any, client: { db: (arg0: string) => any; }) => {
     if (err) {
         process.exit(1);
     }
@@ -21,7 +20,7 @@ MongoClient.connect(process.env.DATABASE_URL, { useNewUrlParser: true }, (err, c
 
     router.get('/tracks/play/:trackID', (req, res) => {
 
-        const trackID = new ObjectID(req.params.trackID);
+        const trackID = new mongoose.Types.ObjectId(req.params.trackID);
 
         res.set('content-type', 'audio/mp3');
         res.set('accept-ranges', 'bytes');
@@ -47,7 +46,7 @@ MongoClient.connect(process.env.DATABASE_URL, { useNewUrlParser: true }, (err, c
 });
 
 db.once('open', () => {
-    const storage = new GridFSStorage({
+    const storage = new GridFsStorage({
         db,
         file: (req: any, file) => {
             return {
@@ -73,7 +72,7 @@ db.once('open', () => {
         if (!!allTracks && allTracks.length > 0) {
            maxOrder = Math.max.apply(null, allTracks.map((track: any) => track.order));
         }
-        upload(req, res, (err) => {
+        upload(req, res, (err: any) => {
             if (err) {
                 res.json({error_code: 1, err_desc: err});
                 return;
@@ -115,7 +114,7 @@ router.delete('/tracks/delete/:trackId', checkIfAuthenticated, async (req, res, 
 
 // Edit track
 router.post('/tracks/edit/:trackId', checkIfAuthenticated, (req, res, next) => {
-    trackModel.findById(req.params.trackId, (err, track: any) => {
+    trackModel.findById(req.params.trackId, (err: any, track: any) => {
         if (!track) {
             return next(new Error('Could not load track'));
         } else {

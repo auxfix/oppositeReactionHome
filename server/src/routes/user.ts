@@ -25,7 +25,7 @@ router.get('/user', async (req: any, res: any) => {
     const userInfo = req['user'];
 
     if (userInfo) {
-        const user: any = await userModel.findOne(mongoose.Types.ObjectId(userInfo.sub));
+        const user: any = await userModel.findOne(new mongoose.Types.ObjectId(userInfo.sub));
 
         res.send({login: user.login, id: user._id});
     } else {

@@ -4,15 +4,10 @@ import cors from 'cors';
 import express from 'express';
 import http from 'http';
 import mongoose from 'mongoose';
-import logger from './utils/logger';
 import {retrieveUserIdFromRequest} from './middleware/get-user.middleware';
+import logger from './utils/logger';
 
-mongoose.set('useNewUrlParser', true);
-mongoose.connect(`${process.env.DATABASE_URL}/${process.env.DATABASE_NAME}`, { useNewUrlParser: true });
-
-
-
-
+mongoose.connect(`${process.env.DATABASE_URL}/${process.env.DATABASE_NAME}`);
 
 import './models/newsItem';
 import './models/track';
@@ -36,7 +31,6 @@ app.use(cors(corsOptions));
 // Parsers for POST data
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-
 
 // Set our api routes
 app.use('/', tracksRoutes);
@@ -68,4 +62,4 @@ const server = http.createServer(app);
  * Listen on provided port, on all network interfaces.
  */
 
-server.listen(port, () => logger.info(`API running on localhost:${port}`));
+server.listen(3000, () => logger.info(`API running on localhost:${port}`));
