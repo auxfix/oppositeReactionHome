@@ -136,5 +136,8 @@
       }
     }
   },
-  "defaultProject": "oppositeReaction"
+  "defaultProject": "oppositeReaction",
+  "cli": {
+    "analytics": "56510e1e-99b2-4d43-8970-4957c4535798"
+  }
 }

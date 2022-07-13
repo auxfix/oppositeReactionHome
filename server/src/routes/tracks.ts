@@ -2,7 +2,7 @@ import express from 'express';
 import mongoose from 'mongoose';
 import { GridFsStorage } from 'multer-gridfs-storage';
 const router = express.Router();
-import mongodb, { MongoClient } from 'mongodb';
+import { GridFSBucket, MongoClient } from 'mongodb';
 import multer from 'multer';
 import { checkIfAuthenticated } from '../middleware/authentication.middleware';
 
@@ -25,7 +25,7 @@ MongoClient.connect(process.env.DATABASE_URL,  (err: any, client: { db: (arg0: s
         res.set('content-type', 'audio/mp3');
         res.set('accept-ranges', 'bytes');
 
-        const bucket = new mongodb.GridFSBucket(dbRaw, {
+        const bucket = new GridFSBucket(dbRaw, {
             bucketName: 'tracks'
         });
 

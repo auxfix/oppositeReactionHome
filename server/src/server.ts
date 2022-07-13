@@ -17,6 +17,8 @@ import newsRoutes from './routes/news';
 import tracksRoutes from './routes/tracks';
 import userRoutes from './routes/user';
 
+logger.info(`Connected to db: url(${process.env.DATABASE_URL}) : name(${process.env.DATABASE_NAME})`);
+
 const app = express();
 
 const corsOptions = {
