@@ -1,0 +1,7 @@
+apiVearsion: v1
+kind: Pod
+metadata:
+  name: or_server
+spec:
+  containers:
+    - name: or_server
