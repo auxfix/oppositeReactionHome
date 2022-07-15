@@ -1,5 +1,5 @@
 # Create image based off of the official Node 9 image
-FROM node:9
+FROM node:14.20.0
 
 # Create a directory where our app will be placed
 RUN mkdir -p /usr/src/app
