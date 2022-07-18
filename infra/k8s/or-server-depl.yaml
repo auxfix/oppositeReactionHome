@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: or-server-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: or-server
+  template:
+    metadata:
+      labels:
+        app: or-server
+    spec:
+      containers: 
+        - name: or-server
+          image: sofarawaydev/or-server
+          env:
+            - name: PORT
+              value: "3000" 
+            - name: DATABASE_NAME
+              valueFrom:
+                secretKeyRef:
+                  name: srv-secret
+                  key: database-name
+                  optional: false                      
+            - name: DATABASE_URL
+              valueFrom:
+                secretKeyRef:
+                  name: srv-secret
+                  key: database-url
+                  optional: false                    
+            - name: PUBLIC_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: srv-secret
+                  key: public-key
+                  optional: false
+            - name: PRIVATE_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: srv-secret
+                  key: private-key
+                  optional: false 

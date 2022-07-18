@@ -64,4 +64,7 @@ const server = http.createServer(app);
  * Listen on provided port, on all network interfaces.
  */
 
-server.listen(3000, () => logger.info(`API running on localhost:${port}`));
+server.listen(3000, () => {
+    logger.info(`app version: v_0.0.2.3`);
+    logger.info(`API running on localhost:${port}`);
+});
