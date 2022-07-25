@@ -41,4 +41,19 @@ spec:
                 secretKeyRef:
                   name: srv-secret
                   key: private-key
-                  optional: false 
+                  optional: false
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: or-server
+spec:
+  selector:
+    app: or-server
+  type: ClusterIP
+  ports:
+    - name: or-server
+      protocol: TCP
+      port: 80
+      targetPort: 3000
+                    
