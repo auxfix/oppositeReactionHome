@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  api: 'https://server.oppositereaction.rocks',
+  api: 'https://oppositereaction.rocks/api',
 };
