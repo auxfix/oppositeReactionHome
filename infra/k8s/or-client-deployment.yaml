@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: or-client-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: or-client
+  template:
+    metadata:
+      labels:
+        app: or-client
+    spec:
+      containers:
+        - name: or-client
+          image: sofarawaydev/or-client:0004
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: or-client-clusterip-srv
+spec:
+  selector:
+    app: or-client
+  type: ClusterIP
+  ports:
+    - name: or-server
+      protocol: TCP
+      port: 80
+      targetPort: 80
+
