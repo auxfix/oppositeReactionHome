@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: or-client
-          image: sofarawaydev/or-client:0004
+          image: sofarawaydev/or-client:0008
 ---
 apiVersion: v1
 kind: Service
