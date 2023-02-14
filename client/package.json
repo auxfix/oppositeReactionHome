@@ -30,7 +30,7 @@
     "@angular/platform-browser-dynamic": "~14.0.5",
     "@angular/router": "~14.0.5",
     "@ckeditor/ckeditor5-angular": "^4.0.0",
-    "@ckeditor/ckeditor5-build-classic": "^34.2.0",
+    "@ckeditor/ckeditor5-build-classic": "^36.0.1",
     "@swc/core": "^1.2.213",
     "codelyzer": "^6.0.2",
     "core-js": "^3.23.4",
